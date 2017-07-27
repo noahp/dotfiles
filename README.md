@@ -1,3 +1,5 @@
+*warning this is NOT GREAT, just for reference, until I clean it up and stow!*
+
 # oh-myzsh
 https://github.com/robbyrussell/oh-my-zsh
 
