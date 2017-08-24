@@ -12,6 +12,9 @@ https://github.com/cyrus-and/gdb-dashboard
 # ripgrep
 https://github.com/BurntSushi/ripgrep
 
+# fzf
+https://github.com/junegunn/fzf#using-git
+
 # tpm
 https://github.com/tmux-plugins/tpm
 
