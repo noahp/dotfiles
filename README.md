@@ -1,4 +1,8 @@
 *warning this is NOT GREAT, just for reference, until I clean it up and stow!*
+# alacritty
+https://github.com/jwilm/alacritty#manual-installation
+`sudo cp ~/alacritty/target/alacritty /usr/bin`
+`gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'`
 
 # oh-myzsh
 https://github.com/robbyrussell/oh-my-zsh
