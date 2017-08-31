@@ -29,7 +29,7 @@ https://github.com/tmux-plugins/tmux-yank
 `gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
 
 # urlview
-```
+```bash
 sudo apt-get install urlview
 https://github.com/insanum/dotfiles/blob/master/urlview
 
