@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # deploy dotfiles with stow
-./stowsh/stowsh gdb
-./stowsh/stowsh tmux
-./stowsh/stowsh vim
-./stowsh/stowsh zsh
+./stowsh/stowsh gdb -t ~
+./stowsh/stowsh tmux -t ~
+./stowsh/stowsh vim -t ~
+./stowsh/stowsh zsh -t ~
 
