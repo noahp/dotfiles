@@ -1391,7 +1391,9 @@ end
 
 # Better GDB defaults ----------------------------------------------------------
 
-set history save
+set history save on
+set history size 10000
+set history filename ~/.gdb_history
 set confirm off
 set verbose off
 set print pretty on
