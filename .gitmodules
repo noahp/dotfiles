@@ -1,0 +1,3 @@
+[submodule "stowsh"]
+	path = stowsh
+	url = https://github.com/williamsmj/stowsh
