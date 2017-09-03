@@ -5,4 +5,5 @@
 ./stowsh/stowsh tmux -t ~
 ./stowsh/stowsh vim -t ~
 ./stowsh/stowsh zsh -t ~
+./stowsh/stowsh urlview -t ~
 
