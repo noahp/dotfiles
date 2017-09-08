@@ -89,6 +89,7 @@ alias gsu='git submodule update --init --recursive'
 alias gsd='git submodule deinit -f .'
 alias git-nuke='gsc && gsd && git reset --hard HEAD && git pull && gsu'
 alias gaf='git add . && git commit --amend --no-edit'
+alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN %Cred%D %Creset%s"'
 
 # boson arm toolchain
 PATH=$PATH:~/boson/bin
