@@ -1,4 +1,11 @@
-*warning this is NOT GREAT, just for reference, until I clean it up and stow!*
+# Install
+Run
+```
+./deploy.sh
+```
+That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
+
+*Warning this is NOT GREAT (but usable!), mostly just for reference, I need to clean up the deploy/undeploy to be cleaner!*
 # alacritty
 https://github.com/jwilm/alacritty#manual-installation
 `sudo cp ~/alacritty/target/alacritty /usr/bin`
