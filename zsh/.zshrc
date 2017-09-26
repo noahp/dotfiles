@@ -124,3 +124,8 @@ fi
 # Source invoke completion
 source ~/dev/invoke/completion/zsh
 
+# added by Miniconda2 4.3.21 installer
+export PATH="$PATH:~/miniconda2/bin"
+
+# source spaceship!
+source "~/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
