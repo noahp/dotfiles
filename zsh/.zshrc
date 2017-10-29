@@ -92,34 +92,25 @@ alias gaf='git commit -a --amend --no-edit'
 alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN %Cred%D %Creset%s"'
 alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
+alias gddir='git difftool --dir-diff'
 
 # boson arm toolchain
-PATH=$PATH:~/boson/bin
+export PATH=$PATH:~/boson/bin
 
 # cmake path
-PATH=$PATH:~/cmake-3.8.1-Linux-x86_64/bin
+export PATH=$PATH:~/cmake-3.8.1-Linux-x86_64/bin
 
 # arcanist path
-PATH=$PATH:~/arcinstall/arcanist/bin
+export PATH=$PATH:~/arcinstall/arcanist/bin
 
 # ripgrep
-PATH=$PATH:~/ripgrep-0.5.2-x86_64-unknown-linux-musl
-
-# add rust stuff
-PATH=$PATH:"$HOME/.cargo/bin:$PATH"
+export PATH=$PATH:~/ripgrep-0.5.2-x86_64-unknown-linux-musl
 
 # add ccache
-PATH=/usr/lib/ccache:$PATH
+export PATH=/usr/lib/ccache:$PATH
 
 # add fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# venv launch
-if [ -n "$VIRTUAL_ENV" ]; then
-  source "$VIRTUAL_ENV/bin/activate"
-else
-  source ~/.virtualenvs/default/bin/activate
-fi
 
 # Source invoke completion
 source ~/dev/invoke/completion/zsh
@@ -130,3 +121,11 @@ export PATH="$PATH:$HOME/miniconda2/bin"
 # source spaceship!
 SPACESHIP_BATTERY_SHOW=false
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+# venv launch
+if [ -n "$VIRTUAL_ENV" ]; then
+  source "$VIRTUAL_ENV/bin/activate"
+else
+  source ~/.virtualenvs/default/bin/activate
+fi
+
