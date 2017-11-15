@@ -51,7 +51,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -93,6 +93,9 @@ alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN
 alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
+
+# disable venv before activating tmux
+alias tmux='deactivate; tmux'
 
 # boson arm toolchain
 export PATH=$PATH:~/boson/bin
