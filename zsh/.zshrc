@@ -95,7 +95,7 @@ alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
 
 # disable venv before activating tmux
-alias tmux='deactivate; tmux'
+alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
 # boson arm toolchain
 export PATH=$PATH:~/boson/bin
