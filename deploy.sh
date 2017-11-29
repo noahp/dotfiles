@@ -6,4 +6,4 @@
 ./stowsh/stowsh vim -t ~
 ./stowsh/stowsh zsh -t ~
 ./stowsh/stowsh urlview -t ~
-
+./stowsh/stowsh vscode -t ~/.config/Code/User

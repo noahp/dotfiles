@@ -1,0 +1,37 @@
+// Place your settings in this file to overwrite the default settings
+{
+    // for snippets
+    "editor.tabCompletion": true,
+
+    "editor.renderWhitespace": "all",
+
+    // remove trailing on save
+    "files.trimTrailingWhitespace": true,
+
+    // no minimap plz
+    "editor.minimap.enabled": false,
+
+    // ruler at 80 and 100
+    "editor.rulers": [80, 100],
+
+    "workbench.welcome.enabled": false,
+    "window.zoomLevel": 0,
+    "rust.rustup": {
+        "toolchain": "nightly-2017-08-01-x86_64-unknown-linux-gnu",
+        "nightlyToolchain": "nightly-2017-08-01-x86_64-unknown-linux-gnu"
+    },
+    "rust.mode": "rls",
+    "rust.rls": {
+        "useRustfmt": true
+    },
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": true,
+        "suppressWelcomeNotice": false
+    }
+}
