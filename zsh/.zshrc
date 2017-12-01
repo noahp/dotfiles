@@ -87,7 +87,7 @@ HISTSIZE=10000000
 alias gsc='git clean -dxf && git submodule foreach --recursive git clean -xfd'
 alias gsu='git submodule update --init --recursive'
 alias gsd='git submodule deinit -f .'
-alias git-nuke='gsc && gsd && git reset --hard HEAD && git pull && gsu'
+alias git-nuke='rm -rf * && git reset --hard HEAD && gsu'
 alias gaf='git commit -a --amend --no-edit'
 alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN %Cred%D %Creset%s"'
 alias dec2hex='printf "%x\n"'
