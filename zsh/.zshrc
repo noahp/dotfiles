@@ -118,12 +118,12 @@ export PATH=/usr/lib/ccache:$PATH
 # Source invoke completion
 source ~/dev/invoke/completion/zsh
 
-# added by Miniconda2 4.3.21 installer
-export PATH="$PATH:$HOME/miniconda2/bin"
-
 # source spaceship!
 SPACESHIP_BATTERY_SHOW=false
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+
+# Conda utils
+source /home/noah/miniconda2/etc/profile.d/conda.sh
 
 # venv launch
 if [ -n "$VIRTUAL_ENV" ]; then
