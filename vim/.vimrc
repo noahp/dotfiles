@@ -1,8 +1,25 @@
-" General
+" ---------------------
+" Plug
+" ---------------------
+" Setting up Plug - A minimalist Vim plugin manager
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
+         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source ~/.vimrc
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'altercation/vim-colors-solarized'       " solarized color scheme
+Plug 'rhysd/vim-clang-format'                 " clang formatter
+call plug#end()
+
 set number    " Show line numbers
+" highlight current line
+set cursorline
 set linebreak    " Break lines at word (requires Wrap lines)
 set showbreak=+++    " Wrap-broken line prefix
-set textwidth=100    " Line wrap (number of cols)
+set colorcolumn=100 " column marker
 set showmatch    " Highlight matching brace
 set visualbell    " Use visual bell (no beeping)
 
@@ -17,10 +34,25 @@ set smartindent    " Enable smart-indent
 set smarttab    " Enable smart-tabs
 set softtabstop=4    " Number of spaces per Tab
 
-" Advanced
+" syntax highlighting
+if has("syntax")
+    syntax enable
+endif
+
+set background=dark
+" colorscheme solarized
+" let g:solarized_termcolors=256
+
+" enable spellcheck
+set spell
+
 set ruler    " Show row and column ruler information
 
 set undolevels=1000    " Number of undo levels
 set backspace=indent,eol,start    " Backspace behaviour
 " set jj to esc
 :imap jj <Esc>
+
+" Use .clang-format file spec for vim-clang-format
+let g:clang_format#detect_style_file=1
+
