@@ -85,6 +85,7 @@ HISTSIZE=10000000
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gsc='git clean -dxf && git submodule foreach --recursive git clean -xfd'
+alias gcln='git clean -dxf'
 alias gsu='git submodule update --init --recursive'
 alias gsd='git submodule deinit -f .'
 alias git-nuke='rm -rf * && git reset --hard HEAD && gsu'
@@ -93,6 +94,7 @@ alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN
 alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
+alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 
 # disable venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
@@ -123,7 +125,7 @@ SPACESHIP_BATTERY_SHOW=false
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # Conda utils
-source /home/noah/miniconda2/etc/profile.d/conda.sh
+source $HOME/miniconda2/etc/profile.d/conda.sh
 
 # venv launch
 if [ -n "$VIRTUAL_ENV" ]; then
