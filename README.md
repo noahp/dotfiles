@@ -1,3 +1,5 @@
+![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)  ![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)
+
 # Install
 Run
 ```
