@@ -57,6 +57,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 HISTSIZE=10000000
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+# setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -94,6 +100,7 @@ alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN
 alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
+alias gdm='git difftool --dir-diff $(git merge-base HEAD origin/master)'
 alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 
 # disable venv before activating tmux
