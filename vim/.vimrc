@@ -44,7 +44,7 @@ set background=dark
 " let g:solarized_termcolors=256
 
 " enable spellcheck
-set spell
+" set spell
 
 set ruler    " Show row and column ruler information
 
