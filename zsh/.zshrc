@@ -102,7 +102,9 @@ alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
 alias gdm='git difftool --dir-diff $(git merge-base HEAD origin/master)'
 alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
-
+# pipe data to gnuplot
+alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
+alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 # disable venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
