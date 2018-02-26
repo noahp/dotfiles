@@ -12,6 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'altercation/vim-colors-solarized'       " solarized color scheme
 Plug 'rhysd/vim-clang-format'                 " clang formatter
+Plug 'tell-k/vim-autopep8'                    " autopep8 for python files
 call plug#end()
 
 set number    " Show line numbers
