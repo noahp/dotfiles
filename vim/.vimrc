@@ -13,6 +13,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'altercation/vim-colors-solarized'       " solarized color scheme
 Plug 'rhysd/vim-clang-format'                 " clang formatter
 Plug 'tell-k/vim-autopep8'                    " autopep8 for python files
+Plug 'prabirshrestha/async.vim'               " required by vim-lsp
+Plug 'prabirshrestha/vim-lsp'                 " language server protocol
+
 call plug#end()
 
 set number    " Show line numbers
@@ -56,4 +59,32 @@ set backspace=indent,eol,start    " Backspace behaviour
 
 " Use .clang-format file spec for vim-clang-format
 let g:clang_format#detect_style_file=1
+
+" Language Server config
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+if executable('cquery')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'cquery',
+        \ 'cmd': {server_info->['cquery']},
+        \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+        \ 'initialization_options': { 'cacheDirectory': '/path/to/cquery/cache' },
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
 
