@@ -104,10 +104,13 @@ alias gdm='git difftool --dir-diff $(git merge-base HEAD origin/master)'
 alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
+alias gt='git tree' # https://github.com/knugie/git-status-tree#install
+
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
 alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
-# disable venv before activating tmux
+
+# disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
 # boson arm toolchain
