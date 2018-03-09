@@ -61,6 +61,7 @@ set backspace=indent,eol,start    " Backspace behaviour
 let g:clang_format#detect_style_file=1
 
 " Language Server config
+" See https://github.com/prabirshrestha/vim-lsp#registering-servers
 if executable('pyls')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
