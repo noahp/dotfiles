@@ -23,9 +23,7 @@ gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 
 # virtualenv
 ```bash
-pip install virtualenv
-# or if that doesn't do it
-sudo /usr/bin/easy_install virtualenv
+sudo apt install python-virtualenv
 ```
 
 # oh-myzsh
