@@ -62,6 +62,8 @@ https://github.com/insanum/dotfiles/blob/master/urlview
 # gitconfig
 Not yet checked in. So:
 ```bash
-git config core.editor vim
-git config merge.tool meld # sudo apt install meld
+git config --global core.editor vim
+git config --global merge.tool meld # sudo apt install meld
+git config --global diff.tool meld
 ```
+
