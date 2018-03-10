@@ -51,7 +51,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions pip jira wd common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -105,6 +105,7 @@ alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
+alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
