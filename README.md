@@ -7,7 +7,7 @@ Run
 ```
 That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
 
-*Warning this is NOT GREAT (but usable!), mostly just for reference, I need to clean up the deploy/undeploy to be cleaner!*
+*Warning this is NOT GREAT (but usable!), mostly just for reference, I need to clean up the deploy/undeploy to actually [be usable](https://github.com/ansible/ansible)*
 # alacritty
 https://github.com/jwilm/alacritty
 ```bash
@@ -19,7 +19,15 @@ cargo install --git https://github.com/jwilm/alacritty
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 ```
 
+# virtualenv
+```bash
+pip install virtualenv
+# or if that doesn't do it
+sudo /usr/bin/easy_install virtualenv
+```
+
 # oh-myzsh
+zsh first with `sudo apt install zsh`
 https://github.com/robbyrussell/oh-my-zsh
 
 # spaceship theme
@@ -49,4 +57,11 @@ https://github.com/tmux-plugins/tpm
 ```bash
 sudo apt-get install urlview
 https://github.com/insanum/dotfiles/blob/master/urlview
+```
+
+# gitconfig
+Not yet checked in. So:
+```bash
+git config core.editor vim
+git config merge.tool meld # sudo apt install meld
 ```
