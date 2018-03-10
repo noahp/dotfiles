@@ -13,6 +13,8 @@ https://github.com/jwilm/alacritty
 ```bash
 # install cargo
 curl https://sh.rustup.rs -sSf | sh
+# install dependencies
+sudo apt install cmake libfreetype6-dev libfontconfig1-dev xclip
 # install alacritty
 cargo install --git https://github.com/jwilm/alacritty
 # apply in ubuntu
