@@ -69,6 +69,7 @@ let g:netrw_banner = 0
 
 " Use .clang-format file spec for vim-clang-format
 let g:clang_format#detect_style_file=1
+let g:clang_format#enable_fallback_style='Google'
 
 " Language Server config
 " See https://github.com/prabirshrestha/vim-lsp#registering-servers
