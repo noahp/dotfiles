@@ -113,7 +113,12 @@ alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 
 # Custom functions
 function git-plot-loc()	{
+    # plot the lines of code in a file per commit
     git log --reverse --oneline -- $1 | cut -d " " -f 1 | xargs -I {} sh -c "git show {}:$1 | wc -l" | gplot
+}
+function git-cherry-pit() {
+    # remove a commit forever, goodbye (well ok it's still in the reflog if you have regrets)
+    git rebase -p --onto $1^ $1
 }
 
 # disable python venv before activating tmux
