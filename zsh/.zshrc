@@ -107,6 +107,9 @@ alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
 alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 
+# no safe cp for me
+unalias cp
+
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
 alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
