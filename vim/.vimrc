@@ -15,6 +15,9 @@ Plug 'rhysd/vim-clang-format'                 " clang formatter
 Plug 'tell-k/vim-autopep8'                    " autopep8 for python files
 Plug 'prabirshrestha/async.vim'               " required by vim-lsp
 Plug 'prabirshrestha/vim-lsp'                 " language server protocol
+" https://github.com/junegunn/fzf#as-vim-plugin
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -56,6 +59,13 @@ set undolevels=1000    " Number of undo levels
 set backspace=indent,eol,start    " Backspace behaviour
 " set jj to esc
 :imap jj <Esc>
+
+" Use system clipboard
+set clipboard^=unnamedplus
+
+" Set file picker to tree style
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
 
 " Use .clang-format file spec for vim-clang-format
 let g:clang_format#detect_style_file=1
