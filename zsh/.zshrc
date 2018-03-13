@@ -51,7 +51,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions pip jira wd common-aliases)
+plugins=(git zsh-autosuggestions jira wd common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -110,6 +110,11 @@ alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
 alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
+
+# Custom functions
+function git-plot-loc()	{
+    git log --reverse --oneline -- $1 | cut -d " " -f 1 | xargs -I {} sh -c "git show {}:$1 | wc -l" | gplot
+}
 
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
