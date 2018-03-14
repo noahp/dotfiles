@@ -105,10 +105,13 @@ alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
+alias gddo='git difftool --dir-diff origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 
 # no safe cp for me
-unalias cp
+unalias rm cp mv
+# this gets added somewhere, but I'd rather have https://github.com/sharkdp/fd
+unalias fd
 
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
