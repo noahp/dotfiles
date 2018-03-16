@@ -1,5 +1,9 @@
 // Place your settings in this file to overwrite the default settings
 {
+    "window.enableMenuBarMnemonics": false,
+    "window.menuBarVisibility": "hidden",
+    "gitlens.keymap": "alternate",
+
     "gitlens.codeLens.enabled": false,
 
     // for snippets
