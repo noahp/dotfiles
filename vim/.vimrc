@@ -18,6 +18,7 @@ Plug 'prabirshrestha/vim-lsp'                 " language server protocol
 " https://github.com/junegunn/fzf#as-vim-plugin
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'                " beginning of the end
 
 call plug#end()
 
