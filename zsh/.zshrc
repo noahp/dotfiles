@@ -57,6 +57,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 HISTSIZE=10000000
+SAVEHIST=$HISTSIZE
 setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 # setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
