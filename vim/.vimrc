@@ -19,6 +19,7 @@ Plug 'prabirshrestha/vim-lsp'                 " language server protocol
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'                " beginning of the end
+Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 
 call plug#end()
 
@@ -63,6 +64,15 @@ set backspace=indent,eol,start    " Backspace behaviour
 
 " Use system clipboard
 set clipboard^=unnamedplus
+
+" No backup etc
+set nobackup
+set nowb
+set noswapfile
+
+" Automatically update a file if it is changed externally
+set autoread
+au FocusGained,BufEnter * checktime  " see https://github.com/tmux-plugins/vim-tmux-focus-events
 
 " Set file picker to tree style
 let g:netrw_liststyle = 3
