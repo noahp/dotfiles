@@ -90,6 +90,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Git aliases
 alias gsc='git clean -dxf && git submodule foreach --recursive git clean -xfd'
 alias gcln='git clean -dxf'
 alias gsu='git submodule update --init --recursive'
@@ -107,6 +109,9 @@ alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
 alias gddo='git difftool --dir-diff origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
+
+# Other aliases
+alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
 
 # no safe cp for me
 unalias rm cp mv
