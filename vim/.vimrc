@@ -10,7 +10,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'altercation/vim-colors-solarized'       " solarized color scheme
+Plug 'tomasiser/vim-code-dark'                " vim code dark
 Plug 'rhysd/vim-clang-format'                 " clang formatter
 Plug 'tell-k/vim-autopep8'                    " autopep8 for python files
 Plug 'prabirshrestha/async.vim'               " required by vim-lsp
@@ -18,8 +18,12 @@ Plug 'prabirshrestha/async.vim'               " required by vim-lsp
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'                " beginning of the end
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'                 " git status info
+Plug 'tpope/vim-fugitive'                     " use git
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting or leaving normal mode
+Plug 'rust-lang/rust.vim'                     " rusty vim
 
 " LSP client
 Plug 'autozimu/LanguageClient-neovim', {
@@ -55,8 +59,10 @@ if has("syntax")
 endif
 
 set background=dark
-" colorscheme solarized
+colorscheme codedark
 " let g:solarized_termcolors=256
+
+let g:airline_powerline_fonts = 1
 
 " enable spellcheck
 " set spell
@@ -88,11 +94,14 @@ let g:netrw_banner = 0
 let g:clang_format#detect_style_file=1
 let g:clang_format#enable_fallback_style='Google'
 
+" Map control-p to :FZF in normal mode
+map <C-p> :FZF<CR>
+
 " Language server
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-let g:LanguageClient_loggingLevel = 'DEBUG'
+" let g:LanguageClient_loggingLevel = 'DEBUG'
 
 " For rls:
 " rustup component add rls-preview rust-analysis rust-src
