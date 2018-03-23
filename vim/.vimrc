@@ -1,11 +1,23 @@
+" Should work for neovim and vim8. For neovim, symlink:
+" mkdir -p ~/.config/nvim; ln -s ~/.vimrc ~/.config/nvim/init.vim
+
 " ---------------------
 " Plug
 " ---------------------
 " Setting up Plug - A minimalist Vim plugin manager
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
-         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source ~/.vimrc
+if has('nvim')
+    " Set up for neovim
+    if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+      silent !curl -sfLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+	     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall | source ~/.vimrc
+    endif
+else
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -sfLo ~/.vim/autoload/plug.vim --create-dirs
+	     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall | source ~/.vimrc
+    endif
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -22,7 +34,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'                 " git status info
 Plug 'tpope/vim-fugitive'                     " use git
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
-Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting or leaving normal mode
+Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting
 Plug 'rust-lang/rust.vim'                     " rusty vim
 
 " LSP client
@@ -101,6 +113,9 @@ map <C-p> :FZF<CR>
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+nnoremap <silent> <C-S-i> :call LanguageClient_textDocument_formatting()<CR>
+" not woking >_<
+vmap <silent> <C-S-i> :call LanguageClient_textDocument_rangeFormatting()<CR>
 " let g:LanguageClient_loggingLevel = 'DEBUG'
 
 " For rls:
