@@ -114,6 +114,10 @@ alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 # Other aliases
 alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
 
+# alias vim to nvim
+alias vim=nvim
+alias v=nvim
+
 # no safe cp for me
 unalias rm cp mv
 # this gets added somewhere, but I'd rather have https://github.com/sharkdp/fd
