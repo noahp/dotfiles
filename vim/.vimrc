@@ -23,8 +23,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'tomasiser/vim-code-dark'                " vim code dark
-Plug 'rhysd/vim-clang-format'                 " clang formatter
-Plug 'tell-k/vim-autopep8'                    " autopep8 for python files
+Plug 'rhysd/vim-clang-format'                 " clang formatter... maybe redundant now
+Plug 'tell-k/vim-autopep8'                    " autopep8 for python files... maybe redundant w/ lsp
 " https://github.com/junegunn/fzf#as-vim-plugin
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
