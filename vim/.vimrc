@@ -32,6 +32,7 @@ Plug 'vim-airline/vim-airline'                " beginning of the end
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'                 " git status info
 Plug 'tpope/vim-fugitive'                     " use git
+Plug 'tpope/vim-vinegar'                      " easy netrw open
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting
 Plug 'rust-lang/rust.vim'                     " rusty vim
