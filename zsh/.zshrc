@@ -103,8 +103,10 @@ alias glp='git log --pretty=format:"%C(yellow)%h %Cblue%>(12)%ai %Cgreen%<(7)%aN
 alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
-alias gdm='git difftool --dir-diff $(git merge-base HEAD origin/master)'
-alias gdd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
+alias gdm='git diff $(git merge-base HEAD origin/master)'
+alias gdd='git diff $(git merge-base HEAD origin/develop)'
+alias gddm='git difftool --dir-diff $(git merge-base HEAD origin/master)'
+alias gddd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
