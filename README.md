@@ -63,7 +63,8 @@ https://github.com/insanum/dotfiles/blob/master/urlview
 Not yet checked in. So:
 ```bash
 git config --global core.editor vim
-git config --global merge.tool meld # sudo apt install meld
+git config --global merge.tool meld  # sudo apt install meld
 git config --global diff.tool meld
+git config --global diff.colorMoved default  # requires 2.15+. do the right thing.
 ```
 
