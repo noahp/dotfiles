@@ -6,6 +6,8 @@
 
     "gitlens.codeLens.enabled": false,
 
+    "C_Cpp.dimInactiveRegions": false,
+
     // for snippets
     "editor.tabCompletion": true,
 
@@ -37,6 +39,8 @@
         "suppressGitVersionWarning": false,
         "suppressLineUncommittedWarning": false,
         "suppressNoRepositoryWarning": false,
+        "suppressResultsExplorerNotice": false,
+        "suppressShowKeyBindingsNotice": true,
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": false
     }
