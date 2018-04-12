@@ -68,3 +68,17 @@ git config --global diff.tool meld
 git config --global diff.colorMoved default  # requires 2.15+. do the right thing.
 ```
 
+# watchman
+https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample
+```bash
+git clone https://github.com/facebook/watchman.git
+cd watchman
+git checkout v4.9.0
+./autogen.sh && ./configure && make && sudo make install
+# because you know it's right
+echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches  && echo 999999 | sudo tee -a  /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee  -a /proc/sys/fs/inotify/max_user_instances
+
+# install the hook to whatever repo
+wget https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample -O .git/hooks/query-watchman
+git config core.fsmonitor .git/hooks/query-watchman
+```
