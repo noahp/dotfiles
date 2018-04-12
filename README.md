@@ -65,7 +65,7 @@ Not yet checked in. So:
 git config --global core.editor vim
 git config --global merge.tool meld  # sudo apt install meld
 git config --global diff.tool meld
-git config --global diff.colorMoved default  # requires 2.15+. do the right thing.
+git config --global diff.colorMoved dimmed_zebra  # requires 2.15+. do the right thing.
 ```
 
 # watchman
