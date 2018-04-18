@@ -34,6 +34,7 @@ Plug 'airblade/vim-gitgutter'                 " git status info
 Plug 'tpope/vim-fugitive'                     " use git
 Plug 'tpope/vim-rhubarb'                      " github links
 Plug 'tpope/vim-vinegar'                      " easy netrw open
+Plug 'tpope/vim-sleuth'                       " non-insane auto tabs vs spaces
 Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting
 Plug 'rust-lang/rust.vim'                     " rusty vim
