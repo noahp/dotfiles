@@ -39,6 +39,8 @@ Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
 Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting
 Plug 'rust-lang/rust.vim'                     " rusty vim
 Plug 'ntpeters/vim-better-whitespace'         " highlight trailing whitespace
+Plug 'matze/vim-move'			      " move lines
+Plug 'justinmk/vim-sneak'                     " faster search
 " LSP client
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
