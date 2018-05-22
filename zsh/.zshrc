@@ -110,6 +110,7 @@ alias gddd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
+alias gdd='git diff origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gddo='git difftool --dir-diff origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gnp='git --no-pager'
@@ -162,7 +163,7 @@ export PATH=/usr/lib/ccache:$PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Source invoke completion
-source ~/dev/invoke/completion/zsh
+source ~/dev/github/invoke/completion/zsh
 
 # source spaceship!
 SPACESHIP_BATTERY_SHOW=false
@@ -178,3 +179,6 @@ else
   source ~/.virtualenvs/default/bin/activate
 fi
 
+# Direnv stuff
+export DIRENV_LOG_FORMAT=  # disable logging
+eval "$(direnv hook zsh)"
