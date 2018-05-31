@@ -141,6 +141,12 @@ function git-cherry-pit() {
     git rebase -p --onto $1^ $1
 }
 
+# Hex dump to binary python oneliner
+# usage: hexdump-to-bin abcd0123 > out.bin
+function hexdump-to-bin {
+    python -c "import sys; sys.stdout.write(sys.argv[1].decode('hex'))" $1
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
