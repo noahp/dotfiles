@@ -1,5 +1,8 @@
 // Place your settings in this file to overwrite the default settings
 {
+
+    "C_Cpp.clang_format_path": "/usr/local/bin/clang-format",
+
     "window.enableMenuBarMnemonics": false,
     "window.menuBarVisibility": "hidden",
     "gitlens.keymap": "alternate",
@@ -43,5 +46,6 @@
         "suppressShowKeyBindingsNotice": true,
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": false
-    }
+    },
+    "gitlens.historyExplorer.enabled": true
 }
