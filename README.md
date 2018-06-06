@@ -8,6 +8,8 @@ Run
 That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
 Also run as `./install`
 
+*Note- the below instructions are incomplete + partially incorrect... #4 will fix this up to be more readable! Apologies in the meantime.*
+
 # alacritty
 https://github.com/jwilm/alacritty
 ```bash
