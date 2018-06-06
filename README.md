@@ -2,12 +2,12 @@
 
 # Install
 Run
-```
-./deploy.sh
+```bash
+./install
 ```
 That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
+Also run as `./install`
 
-*Warning this is NOT GREAT (but usable!), mostly just for reference, I need to clean up the deploy/undeploy to actually [be usable](https://github.com/ansible/ansible)*
 # alacritty
 https://github.com/jwilm/alacritty
 ```bash

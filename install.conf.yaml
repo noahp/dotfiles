@@ -1,0 +1,26 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.gdbinit: gdb/.gdbinit
+    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.urlview: urlview/.urlview
+    ~/.vimrc: vim/.vimrc
+    ~/.config/nvim/init.vim: vim/.vimrc
+    ~/.vscode:
+    ~/.zshrc: zsh/.zshrc
+
+- shell:
+    - which sudo || apt install sudo -y
+    - which curl || sudo apt install -y curl
+    - which nvim || sudo apt install -y neovim
+    - which urlview || sudo apt install -y urlview
+    - ls ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+    # TODO below command doesn't work as-is
+    - which cargo || bash <(curl https://sh.rustup.rs -sSf) -y
+    - which alacritty || (sudo apt install -y cmake libfreetype6-dev libfontconfig1-dev xclip && cargo install --git https://github.com/jwilm/alacritty)
