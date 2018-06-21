@@ -51,7 +51,7 @@ ZSH_THEME="spaceship"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions jira wd common-aliases)
+plugins=(git zsh-autosuggestions wd common-aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,6 +114,9 @@ alias gdd='git diff origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gddo='git difftool --dir-diff origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gnp='git --no-pager'
+# 'git reset date'... set date of top commit to current date. use a single variable
+# in a subshell to avoid committer/author date not exactly matching
+alias grd='(export GIT_COMMITTER_DATE="$(date -R)" git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
 
 # Other aliases
 alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
