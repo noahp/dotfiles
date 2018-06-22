@@ -143,7 +143,10 @@ function git-cherry-pit() {
     # remove a commit forever, goodbye (well ok it's still in the reflog if you have regrets)
     git rebase -p --onto $1^ $1
 }
-
+# fuzzy search git log
+function git-select() {
+ git log --oneline "$@" | fzf --preview 'git show $(echo {} | cut -d " " -f 1)' | cut -d " " -f 1
+}
 # Hex dump to binary python oneliner
 # usage: hexdump-to-bin abcd0123 > out.bin
 function hexdump-to-bin {
