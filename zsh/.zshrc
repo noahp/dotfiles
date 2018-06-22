@@ -147,6 +147,24 @@ function git-cherry-pit() {
 function git-select() {
  git log --oneline "$@" | fzf --preview 'git show $(echo {} | cut -d " " -f 1)' | cut -d " " -f 1
 }
+
+# haste client
+# Either set env variable HASTE_SERVER to your server base url, eg:
+# HASTE_SERVER=https://hastebin.com
+# or
+# Put a file ~/.hastebin with the url.
+# Returns url of paste. TODO doesn't return non-zero on failure
+function hastebin() {
+  a=$(cat);
+  if [ -z "$HASTE_SERVER" ]; then
+    if [ -f ~/.hastebin ]; then
+      local HASTE_SERVER=$(cat ~/.hastebin)
+    else
+      local HASTE_SERVER='https://hastebin.com'
+    fi
+  fi
+  curl -X POST -s -d "$a" $HASTE_SERVER/documents | awk -v HASTE_SERVER=$HASTE_SERVER -F '"' '{print HASTE_SERVER "/" $4}';
+}
 # Hex dump to binary python oneliner
 # usage: hexdump-to-bin abcd0123 > out.bin
 function hexdump-to-bin {
