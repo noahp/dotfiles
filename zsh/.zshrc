@@ -156,17 +156,11 @@ function hexdump-to-bin {
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
-# boson arm toolchain
-export PATH=$PATH:~/boson/bin
-
 # cmake path
 export PATH=$PATH:~/cmake-3.8.1-Linux-x86_64/bin
 
 # arcanist path
 export PATH=$PATH:~/arcinstall/arcanist/bin
-
-# ripgrep
-export PATH=$PATH:~/ripgrep-0.5.2-x86_64-unknown-linux-musl
 
 # add ccache
 export PATH=/usr/lib/ccache:$PATH
@@ -175,22 +169,35 @@ export PATH=/usr/lib/ccache:$PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Source invoke completion
-source ~/dev/github/invoke/completion/zsh
+if [ -f ~/dev/github/invoke/completion/zsh ]; then
+  source ~/dev/github/invoke/completion/zsh
+fi
 
 # source spaceship!
 SPACESHIP_BATTERY_SHOW=false
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # Conda utils
-source $HOME/miniconda2/etc/profile.d/conda.sh
+if [ -f ~/miniconda2/etc/profile.d ]; then
+  source $HOME/miniconda2/etc/profile.d/conda.sh
+fi
 
 # venv launch
 if [ -n "$VIRTUAL_ENV" ]; then
   source "$VIRTUAL_ENV/bin/activate"
 else
-  source ~/.virtualenvs/default/bin/activate
+  if [ -f ~/.virtualenvs/default/bin/activate ]; then
+    source ~/.virtualenvs/default/bin/activate
+  fi
 fi
 
 # Direnv stuff
-export DIRENV_LOG_FORMAT=  # disable logging
-eval "$(direnv hook zsh)"
+if type direnv > /dev/null; then
+  export DIRENV_LOG_FORMAT=  # disable logging
+  eval "$(direnv hook zsh)"
+fi
+
+# Local config, if present
+if [ -f ~/.zshrc_local ]; then
+  source ~/.zshrc_local
+fi
