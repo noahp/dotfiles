@@ -196,7 +196,7 @@ SPACESHIP_BATTERY_SHOW=false
 source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # Conda utils
-if [ -f ~/miniconda2/etc/profile.d ]; then
+if [ -f ~/miniconda2/etc/profile.d/conda.sh ]; then
   source $HOME/miniconda2/etc/profile.d/conda.sh
 fi
 
