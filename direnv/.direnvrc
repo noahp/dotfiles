@@ -1,0 +1,11 @@
+# layout a particular venv by path
+layout_virtualenv() {
+  local venv_path="$1"
+  source ${venv_path}/bin/activate
+}
+
+# layout a standard location venv by friendlyname
+layout_virtualenvwrapper() {
+  local venv_path="$HOME/.virtualenvs/$1"
+  layout_virtualenv $venv_path
+}
