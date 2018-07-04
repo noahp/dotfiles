@@ -148,6 +148,17 @@ function git-select() {
  git log --oneline "$@" | fzf --preview 'git show $(echo {} | cut -d " " -f 1)' | cut -d " " -f 1
 }
 
+# print an svg piechart to stdout
+# requires pygal (pip install pygal)
+# ex: piechart "My Chart" "cat 1" 1.25 "cat 2" 3.56 "cat 3" 2.34 > /tmp/out.svg && firefox /tmp/out.svg
+function piechart() {
+  python -c "import sys, pygal; pie_chart = pygal.Pie(); \
+  pie_chart.title = sys.argv[1]; \
+  slices = zip(*[iter(sys.argv[2:])]*2); \
+  map(lambda a: pie_chart.add(a[0],float(a[1])), slices); \
+  print pie_chart.render()" "$@"
+}
+
 # haste client
 # Either set env variable HASTE_SERVER to your server base url, eg:
 # HASTE_SERVER=https://hastebin.com
