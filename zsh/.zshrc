@@ -95,7 +95,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # Git aliases
 alias gsc='git clean -dxf && git submodule foreach --recursive git clean -xfd'
 alias gcln='git clean -dxf'
-alias gsu='git submodule update --init --recursive'
+alias gsu='git submodule update --jobs 6 --init --recursive'
 alias gsd='git submodule deinit -f .'
 alias git-nuke='rm -rf * && git reset --hard HEAD && gsu'
 alias gaf='git commit -a --amend --no-edit'
