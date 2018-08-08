@@ -1401,6 +1401,10 @@ set print pretty on
 set print array-indexes on
 set python print-stack full
 
+# Bring in backtrace colorize
+# from https://github.com/tromey/gdb-helpers/blob/master/gdbhelpers/colorize.py
+source ~/.gdb_colorize.py
+
 # Start ------------------------------------------------------------------------
 python Dashboard.start()
 
