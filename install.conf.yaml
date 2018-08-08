@@ -10,6 +10,7 @@
     ~/.config/nvim/init.vim: vim/.vimrc
     ~/.direnvrc: direnv/.direnvrc
     ~/.gdbinit: gdb/.gdbinit
+    ~/.gdb_colorize.py: gdb/.gdb_colorize.py
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.urlview: urlview/.urlview
     ~/.vimrc: vim/.vimrc
