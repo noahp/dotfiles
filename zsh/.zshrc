@@ -125,7 +125,7 @@ alias xclip="xclip -selection c"
 # print ansi 256 colors
 alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
 
-# emoji picker
+# emoji picker, uses https://github.com/noahp/emoji-fzf
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
 # alias vim to nvim
