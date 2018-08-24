@@ -172,6 +172,7 @@ function piechart() {
 # or
 # Put a file ~/.hastebin with the url.
 # Returns url of paste. TODO doesn't return non-zero on failure
+# Inspired by https://github.com/seejohnrun/haste-client#lightweight-alternative
 function hastebin() {
   a=$(cat);
   if [ -z "$HASTE_SERVER" ]; then
@@ -183,6 +184,7 @@ function hastebin() {
   fi
   curl -X POST -s -d "$a" $HASTE_SERVER/documents | awk -v HASTE_SERVER=$HASTE_SERVER -F '"' '{print HASTE_SERVER "/" $4}';
 }
+
 # Hex dump to binary python oneliner
 # usage: hexdump-to-bin abcd0123 > out.bin
 function hexdump-to-bin {
