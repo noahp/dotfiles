@@ -15,6 +15,7 @@
     ~/.urlview: urlview/.urlview
     ~/.vimrc: vim/.vimrc
     ~/.zshrc: zsh/.zshrc
+    ~/.local/bin/diff-so-fancy: modules/diff-so-fancy/third_party/build_fatpack/diff-so-fancy
 
 - shell:
     - which sudo || apt install sudo -y
