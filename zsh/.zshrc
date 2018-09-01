@@ -203,6 +203,9 @@ export PATH=$PATH:~/arcinstall/arcanist/bin
 # add ccache
 export PATH=/usr/lib/ccache:$PATH
 
+# include ~/.local/bin
+export PATH=$PATH:~/.local/bin
+
 # add fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
