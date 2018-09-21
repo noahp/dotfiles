@@ -70,6 +70,11 @@ git config --global diff.tool meld
 git config --global diff.colorMoved dimmed_zebra  # requires 2.15+. do the right thing.
 ```
 
+# diff-so-fancy
+Debatably nicer diff output for git diff.
+Installation and config instructions:
+https://github.com/so-fancy/diff-so-fancy#usage
+
 # watchman
 https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample
 ```bash
