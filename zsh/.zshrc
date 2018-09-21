@@ -210,8 +210,8 @@ export PATH=$PATH:~/.local/bin
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Source invoke completion
-if [ -f ~/dev/github/invoke/completion/zsh ]; then
-  source ~/dev/github/invoke/completion/zsh
+if [ -f ~/.invoke-completion.zsh ]; then
+  source ~/.invoke-completion.zsh
 fi
 
 # source spaceship!
