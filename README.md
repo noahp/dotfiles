@@ -1,4 +1,4 @@
-![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)  ![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)
+[![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)  [![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)  [![Travis (.com) branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-the-badge)](https://travis-ci.com/noahp/dotfiles)
 
 # Install
 Run
