@@ -1,0 +1,10 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+script:
+  - docker build -t dotfiles-test .
+  - docker run dotfiles-test
