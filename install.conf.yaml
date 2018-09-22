@@ -19,11 +19,18 @@
 
 - shell:
     - which sudo || apt install sudo -y
+    - which zsh || sudo apt install -y zsh
+    # - stat ~/.oh-my-zsh ] || (cd ~ && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
     - which curl || sudo apt install -y curl
     - which nvim || sudo apt install -y neovim
     - which urlview || sudo apt install -y urlview
     - ls ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
     # TODO below command doesn't work as-is
-    - which cargo || bash <(curl https://sh.rustup.rs -sSf) -y
-    - which alacritty || (sudo apt install -y cmake libfreetype6-dev libfontconfig1-dev xclip && cargo install --git https://github.com/jwilm/alacritty)
+    # - which cargo || bash <(curl https://sh.rustup.rs -sSf) -y
+
+    # TODO disable rust utils install... takes forever!
+    # - which alacritty || (sudo apt install -y cmake libfreetype6-dev libfontconfig1-dev xclip && cargo install --git https://github.com/jwilm/alacritty)
+    # - which rg || cargo install --git https://github.com/BurntSushi/ripgrep
+    # - which fd || cargo install --git https://github.com/sharkdp/fd
+    # - which bat || cargo install --git https://github.com/sharkdp/bat
