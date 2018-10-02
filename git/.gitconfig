@@ -1,0 +1,27 @@
+[status-tree]
+	indent = 4
+[alias]
+	tree = !sh -c \"/home/npendleton/dev/github/git-status-tree/bin/git-status-tree\"
+[color]
+	ui = true
+[core]
+	editor = nvim
+[push]
+	default = current
+[diff]
+	tool = meld
+	colorMoved = dimmed_zebra
+[merge]
+	tool = meld
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
