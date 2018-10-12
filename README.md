@@ -23,37 +23,24 @@ cargo install --git https://github.com/jwilm/alacritty
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 ```
 
-# virtualenv
-```bash
-sudo apt install python-virtualenv
-```
+# fzf
+https://github.com/junegunn/fzf#using-git
+
+# nice gdb
+https://github.com/cyrus-and/gdb-dashboard
 
 # oh-myzsh
 zsh first with `sudo apt install zsh`
 https://github.com/robbyrussell/oh-my-zsh
 
-# spaceship theme
-https://github.com/denysdovhan/spaceship-zsh-theme
-
-# zsh autosuggestions
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-```
-
-# nice gdb
-https://github.com/cyrus-and/gdb-dashboard
-
 # ripgrep
 https://github.com/BurntSushi/ripgrep
 
-# fzf
-https://github.com/junegunn/fzf#using-git
+# spaceship theme
+https://github.com/denysdovhan/spaceship-zsh-theme
 
 # tpm
 https://github.com/tmux-plugins/tpm
-
-# vs code multi cursor
-`gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
 
 # urlview
 ```bash
@@ -61,11 +48,27 @@ sudo apt-get install urlview
 https://github.com/insanum/dotfiles/blob/master/urlview
 ```
 
+# virtualenv
+```bash
+sudo apt install python-virtualenv
+```
+
+# vs code multi cursor
+`gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
+
 # ydiff
 Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
 ```bash
 pip install ydiff
 ```
+
+# zsh autosuggestions
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+
+___
+___
 
 # watchman
 *Not using this anymore, but here's the instructions*
