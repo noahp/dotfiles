@@ -116,8 +116,7 @@ alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
 alias gnp='git --no-pager'
 # 'git reset date'... set date of top commit to current date. use a single variable
 # in a subshell to avoid committer/author date not exactly matching
-alias grd='(export GIT_COMMITTER_DATE="$(date -R)" git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
-
+alias grd='(GIT_AUTHOR_DATE="$(date -R)"; GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"; git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
 # Other aliases
 # always use system clipboard with xclip yolo
 alias xclip="xclip -selection c"
@@ -149,6 +148,12 @@ function git-plot-loc()	{
 function git-cherry-pit() {
     # remove a commit forever, goodbye (well ok it's still in the reflog if you have regrets)
     git rebase -p --onto $1^ $1
+}
+# reset timestamps of commits
+function git-rebase-time() {
+    local GIT_AUTHOR_DATE="$(date -R)";
+    local GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE";
+    git rebase -x "git commit --amend --reset-author -CHEAD" $@
 }
 # fuzzy search git log
 function git-select() {
