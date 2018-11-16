@@ -1,6 +1,6 @@
 [![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)  [![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)  [![Travis (.com) branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-the-badge)](https://travis-ci.com/noahp/dotfiles)
 
-# Install
+# Install dotfiles
 Run
 ```bash
 ./install
@@ -8,10 +8,14 @@ Run
 That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
 Also run as `./install`
 
-*Note- the below instructions are incomplete + partially incorrect... #4 will fix this up to be more readable! Apologies in the meantime.*
+# Manual steps
+*Note- at the moment deploying this config requires a few manual steps.
+TODO #5 to make this automatic.*
 
-# alacritty
-https://github.com/jwilm/alacritty
+## alacritty
+Fast gpu-accelerated terminal emulator written in rust.
+
+>https://github.com/jwilm/alacritty
 ```bash
 # install cargo
 curl https://sh.rustup.rs -sSf | sh
@@ -23,24 +27,39 @@ cargo install --git https://github.com/jwilm/alacritty
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 ```
 
-# fzf
-https://github.com/junegunn/fzf#using-git
+## fzf
+Neat fuzzy searcher for terminal history and path searching.
 
-# nice gdb
-https://github.com/cyrus-and/gdb-dashboard
+>https://github.com/junegunn/fzf#using-git
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
 
-# oh-myzsh
-zsh first with `sudo apt install zsh`
-https://github.com/robbyrussell/oh-my-zsh
+## oh-myzsh
+Fancy schmancy zsh customization and theme management framework.
+>https://github.com/robbyrussell/oh-my-zsh
 
-# ripgrep
-https://github.com/BurntSushi/ripgrep
+```bash
+# install zsh first
+sudo apt install zsh
+# install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
 
-# spaceship theme
-Featurefull oh-my-zsh theme.
+## ripgrep
+Vastly faster grep replacement written in rust.
+>https://github.com/BurntSushi/ripgrep
+```bash
+cargo install ripgrep
+```
+
+## spaceship theme
+Featurefull oh-my-zsh theme, install oh-my-zsh first!
 >https://github.com/denysdovhan/spaceship-zsh-theme
 
-For async, these instructions:
+For async (speeds up git-status by loading it after populating the prompt),
+follow these instructions:
 ```bash
 # first get spaceship
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
@@ -59,30 +78,41 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 zplug install
 ```
 
-# tpm
-https://github.com/tmux-plugins/tpm
+## tpm
+tmux plugin manager (used in the .tmux.conf in this repo)
+>https://github.com/tmux-plugins/tpm
 
-# urlview
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+## urlview
+Quickly open urls in tmux with /prefix/-u
+
 ```bash
 sudo apt-get install urlview
 https://github.com/insanum/dotfiles/blob/master/urlview
 ```
 
-# virtualenv
+## python virtualenv
+Somewhat tidier python environment management to avoid polluting system python
+with all those rando pypi packages you love so much.
 ```bash
 sudo apt install python-virtualenv
+# set up default env for our ~/.zshrc to activate on new shells
+virtualenv --clear ~/.virtualenvs/default
 ```
 
-# vs code multi cursor
+## vs code multi cursor
 `gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
 
-# ydiff
+## ydiff
 Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
 ```bash
 pip install ydiff
 ```
 
-# zsh autosuggestions
+## zsh autosuggestions
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 ```
@@ -90,7 +120,7 @@ git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/z
 ___
 ___
 
-# watchman
+## watchman
 *Not using this anymore, but here's the instructions*
 
 https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample
@@ -106,3 +136,13 @@ echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches  && echo 999999 
 wget https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample -O .git/hooks/query-watchman && chmod +x .git/hooks/query-watchman
 git config core.fsmonitor .git/hooks/query-watchman
 ```
+
+# Reference
+## nice gdb
+Nice featureful gdb-dashboard. Already checked in to this repo in the `.gdbinit`
+file.
+
+**Note!** if debugging shared libraries in gdb that haven't been loaded yet, be sure
+to run `set confirm off` to allow setting breakpoints on symbols that haven't
+yet loaded.
+>https://github.com/cyrus-and/gdb-dashboard
