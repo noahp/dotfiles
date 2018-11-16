@@ -233,9 +233,6 @@ function hexdump-to-bin {
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
-# cmake path
-export PATH=$PATH:~/cmake-3.8.1-Linux-x86_64/bin
-
 # arcanist path
 export PATH=$PATH:~/arcinstall/arcanist/bin
 
@@ -252,10 +249,6 @@ export PATH=$PATH:~/.local/bin
 if [ -f ~/.invoke-completion.zsh ]; then
   source ~/.invoke-completion.zsh
 fi
-
-# source spaceship!
-SPACESHIP_BATTERY_SHOW=false
-source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 # Conda utils
 if [ -f ~/miniconda2/etc/profile.d/conda.sh ]; then
