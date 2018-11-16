@@ -37,7 +37,27 @@ https://github.com/robbyrussell/oh-my-zsh
 https://github.com/BurntSushi/ripgrep
 
 # spaceship theme
-https://github.com/denysdovhan/spaceship-zsh-theme
+Featurefull oh-my-zsh theme.
+>https://github.com/denysdovhan/spaceship-zsh-theme
+
+For async, these instructions:
+```bash
+# first get spaceship
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+# now switch to the async fork
+cd "$ZSH_CUSTOM/themes/spaceship-prompt"
+git remote add async git@github.com:maximbaz/spaceship-prompt.git
+git fetch async
+git checkout async/master
+
+# next, install zsh-async
+# get zplug first
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+# reload the shell, run:
+zplug install
+```
 
 # tpm
 https://github.com/tmux-plugins/tpm
