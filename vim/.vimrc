@@ -41,12 +41,8 @@ Plug 'rust-lang/rust.vim'                     " rusty vim
 Plug 'ntpeters/vim-better-whitespace'         " highlight trailing whitespace
 Plug 'matze/vim-move'			      " move lines
 Plug 'justinmk/vim-sneak'                     " faster search
-" LSP client
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-
+" LSP
+Plug 'w0rp/ale'                               " language client https://github.com/w0rp/ale
 call plug#end()
 
 set number    " Show line numbers
@@ -70,7 +66,7 @@ set smarttab    " Enable smart-tabs
 set softtabstop=4    " Number of spaces per Tab
 
 " syntax highlighting
-if has("syntax")
+if has('syntax')
     syntax enable
 endif
 
@@ -95,7 +91,7 @@ set clipboard^=unnamedplus
 
 " No backup etc
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 
 " Automatically update a file if it is changed externally
@@ -113,30 +109,24 @@ let g:clang_format#enable_fallback_style='Google'
 " Map control-p to :FZF in normal mode
 map <C-p> :FZF<CR>
 
-" Language server
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-nnoremap <silent> <C-S-i> :call LanguageClient_textDocument_formatting()<CR>
-" not woking >_<
-vmap <silent> <C-S-i> :call LanguageClient_textDocument_rangeFormatting()<CR>
-" let g:LanguageClient_loggingLevel = 'DEBUG'
+" ALE language server client config
+let g:airline#extensions#ale#enabled = 1
 
-" For rls:
-" rustup component add rls-preview rust-analysis rust-src
-"
-" For cquery:
-" https://github.com/cquery-project/cquery/wiki/Getting-started#build-the-language-server
-" Then symlink the cquery binary over to /usr/local/bin
-"
-" For python:
-" pip install python-language server
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
-    \ 'c': ['cquery', '--init={"cacheDirectory": "/tmp/cquery"}'],
-    \ 'cpp': ['cquery', '--init={"cacheDirectory": "/tmp/cquery"}'],
-    \ 'python': ['pyls'],
-    \ }
+" Add language support:
+" c: https://github.com/MaskRay/ccls/wiki/Getting-started , sudo ln -s $(realpath Release/ccls) /usr/bin/ccls
+" markdown: yarn global add prettier
+" python: pip install python-language server
+" rust: rustup component add rls-preview rust-analysis rust-src
+" vim: pip install vim-vint
+
+" Old autozimu/LanguageClient-neovim config, might need the cquery one to
+" auto DB with ale...
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['rls'],
+"     \ 'c': ['cquery', '--init={"cacheDirectory": "/tmp/cquery"}'],
+"     \ 'cpp': ['cquery', '--init={"cacheDirectory": "/tmp/cquery"}'],
+"     \ 'python': ['pyls'],
+"     \ }
 
 " Include local extensions
 try
