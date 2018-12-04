@@ -26,6 +26,11 @@
     - which urlview || sudo apt install -y urlview
     - ls ~/.tmux/plugins/tpm || git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+    # VSCode extension sync
+    # currently this list is manually updated by running:
+    # code --list-extensions > <this repo>/vscode/extensions.list
+    - cat vscode/extensions.list | xargs -L 1 code --install-extension
+
     # TODO below command doesn't work as-is
     # - which cargo || bash <(curl https://sh.rustup.rs -sSf) -y
 
