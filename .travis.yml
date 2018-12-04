@@ -7,4 +7,4 @@ services:
 
 script:
   - docker build -t dotfiles-test .
-  - docker run dotfiles-test
+  - docker run -v"$(pwd):/mnt/workspace" -t "dotfiles-test" /bin/bash -c "/mnt/workspace/install"
