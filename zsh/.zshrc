@@ -242,6 +242,11 @@ export PATH=/usr/lib/ccache:$PATH
 # include ~/.local/bin
 export PATH=$PATH:~/.local/bin
 
+# enable sccache for rust
+if type sccache > /dev/null; then
+  export RUSTC_WRAPPER=sccache
+fi
+
 # add fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
