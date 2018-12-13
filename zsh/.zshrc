@@ -193,7 +193,10 @@ function git-size-packed() {
 | cut -c 1-12,41- \
 | numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
-
+# lines per person
+function git-stats() {
+    git ls-files $1 | grep -v "\.csv\|\.bin\|\.so\|\.dll" | xargs -n1 git blame -w | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -nr
+}
 # print an svg piechart to stdout
 # requires pygal (pip install pygal)
 # ex: piechart "My Chart" "cat 1" 1.25 "cat 2" 3.56 "cat 3" 2.34 > /tmp/out.svg && firefox /tmp/out.svg
