@@ -175,9 +175,9 @@ function git-cherry-pit() {
 }
 # reset timestamps of commits
 function git-rebase-time() {
-    local GIT_AUTHOR_DATE="$(date -R)";
-    local GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE";
-    git rebase -x "git commit --amend --reset-author -CHEAD" $@
+    local datenow="$(date -R)";
+    git rebase -x "GIT_AUTHOR_DATE=\"$datenow\" GIT_COMMITTER_DATE=\"$datenow\" \
+      git commit --amend --reset-author -CHEAD" $@
 }
 # fuzzy search git log
 function git-select() {
