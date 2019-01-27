@@ -6,5 +6,12 @@ services:
   - docker
 
 script:
+  # enforce emojis on commits
+  # test the install script
   - docker build -t dotfiles-test .
-  - docker run -v"$(pwd):/mnt/workspace" -t "dotfiles-test" /bin/bash -c "/mnt/workspace/install"
+  - docker run -v"$(pwd):/mnt/workspace" -t "dotfiles-test" /bin/bash -c
+    "
+      cd /mnt/workspace &&
+      py-commit-checker --emojis &&
+      ./install
+    "

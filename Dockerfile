@@ -6,9 +6,11 @@ RUN apt-get update && apt-get install -y \
     gpg \
     libasound2 \
     python \
+    python-pip \
     sudo
 
-    # apt-transport-https
+# install py-commit-checker
+RUN pip install py-commit-checker==0.0.0
 
 # Install vscode for code extension setup test
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
