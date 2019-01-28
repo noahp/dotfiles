@@ -25,6 +25,9 @@ sudo apt install cmake libfreetype6-dev libfontconfig1-dev xclip
 cargo install --git https://github.com/jwilm/alacritty
 # apply in ubuntu
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
+
+# to also start tmux when starting alacritty:
+gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty -e tmux'
 ```
 
 ## fzf

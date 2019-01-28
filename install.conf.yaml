@@ -18,6 +18,7 @@
     ~/.zshrc: zsh/.zshrc
 
 - shell:
+    # only supports os's that use apt, todo #8 !
     - which sudo || apt install sudo -y
     - which zsh || sudo apt install -y zsh
     # - stat ~/.oh-my-zsh ] || (cd ~ && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)")
