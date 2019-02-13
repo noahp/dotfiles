@@ -263,15 +263,6 @@ if [ -f ~/miniconda2/etc/profile.d/conda.sh ]; then
   source $HOME/miniconda2/etc/profile.d/conda.sh
 fi
 
-# venv launch
-if [ -n "$VIRTUAL_ENV" ]; then
-  source "$VIRTUAL_ENV/bin/activate"
-else
-  if [ -f ~/.virtualenvs/default/bin/activate ]; then
-    source ~/.virtualenvs/default/bin/activate
-  fi
-fi
-
 # Direnv stuff
 if type direnv > /dev/null; then
   export DIRENV_LOG_FORMAT=  # disable logging
@@ -281,4 +272,13 @@ fi
 # Local config, if present
 if [ -f ~/.zshrc_local ]; then
   source ~/.zshrc_local
+fi
+
+# venv launch
+if [ -n "$VIRTUAL_ENV" ]; then
+  source "$VIRTUAL_ENV/bin/activate"
+else
+  if [ -f ~/.virtualenvs/default/bin/activate ]; then
+    source ~/.virtualenvs/default/bin/activate
+  fi
 fi
