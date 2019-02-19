@@ -79,14 +79,21 @@ SPACESHIP_GIT_STATUS_DIVERGED="${SPACESHIP_GIT_STATUS_DIVERGED="⇕"}"
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# Autoload Zsh functions. Just enabling zcalc for now, the others may cause
+# overreliance on zsh!
+# autoload -Uz age
+# autoload -Uz zargs
+autoload -Uz zcalc
+# autoload -Uz zmv
+
+# History configuration
 HISTSIZE=10000000
 SAVEHIST=$HISTSIZE
-setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_DUPS          # Do not record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 # setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_IGNORE_SPACE         # Do not record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write duplicate entries in the history file.
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 # export MANPATH="/usr/local/man:$MANPATH"
