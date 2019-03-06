@@ -1411,6 +1411,17 @@ python Dashboard.start()
 # Disable threads display by default
 dashboard threads
 
+# Add xxd command.
+define xxd
+    dump binary memory dump.bin $arg0 $arg0+$arg1
+    shell xxd dump.bin
+end
+document xxd
+Run xxd on specified memory region. Usage:
+  xxd <object> <length in bytes>
+Must have xxd installed for it to work.
+end
+
 # ------------------------------------------------------------------------------
 # Copyright (c) 2015-2017 Andrea Cardaci <cyrus.and@gmail.com>
 #
