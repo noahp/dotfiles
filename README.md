@@ -2,9 +2,11 @@
 
 # Install dotfiles
 Run
+
 ```bash
 ./install
 ```
+
 That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
 Also run as `./install`
 
@@ -30,10 +32,19 @@ gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty -e tmux'
 ```
 
+## fd
+Fast find replacement that honors .gitignore and hidden files by default. Way
+more user-friendly.
+> https://github.com/sharkdp/fd
+
+```bash
+cargo install fd-find
+```
+
 ## fzf
 Neat fuzzy searcher for terminal history and path searching.
-
 >https://github.com/junegunn/fzf#using-git
+
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
