@@ -43,6 +43,9 @@ Plug 'matze/vim-move'			      " move lines
 Plug 'justinmk/vim-sneak'                     " faster search
 " LSP
 Plug 'w0rp/ale'                               " language client https://github.com/w0rp/ale
+
+Plug 'mzlogin/vim-markdown-toc'		      " markdown table of contents generator
+
 call plug#end()
 
 set number    " Show line numbers
@@ -111,6 +114,9 @@ map <C-p> :FZF<CR>
 
 " ALE language server client config
 let g:airline#extensions#ale#enabled = 1
+
+" Use '-' instead of '*' for markdown TOC leader
+let g:vmt_list_item_char = '-'
 
 " Add language support:
 " c: https://github.com/MaskRay/ccls/wiki/Getting-started , sudo ln -s $(realpath Release/ccls) /usr/bin/ccls
