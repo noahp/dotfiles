@@ -152,6 +152,10 @@ alias gnp='git --no-pager'
 # in a subshell to avoid committer/author date not exactly matching
 alias grd='(GIT_AUTHOR_DATE="$(date -R)"; GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"; git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
 # Other aliases
+
+# tar args are too hard to remember, cheat
+alias targz="tar -czvf"
+
 # always use system clipboard with xclip yolo
 alias xclip="xclip -selection c"
 
