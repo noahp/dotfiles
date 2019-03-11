@@ -1,12 +1,16 @@
 Asuka.insertnumbers
+bungcip.better-toml
 CoenraadS.bracket-pair-colorizer-2
+dan-c-underwood.arm
 DavidAnson.vscode-markdownlint
 eamodio.gitlens
 EugenWiens.bitbake
 ms-python.python
 ms-vscode.cpptools
 PeterJausovec.vscode-docker
+plorefice.devicetree
 rust-lang.rust
 stkb.rewrap
+timonwong.shellcheck
 twxs.cmake
 vector-of-bool.cmake-tools
