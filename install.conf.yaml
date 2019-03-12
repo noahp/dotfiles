@@ -9,10 +9,11 @@
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/nvim/init.vim: vim/.vimrc
     ~/.direnvrc: direnv/.direnvrc
-    ~/.gdb_colorize.py: gdb/.gdb_colorize.py
+    ~/.gdb-cyrus-dashboard: third-party/cyrus-gdb-dashboard/.gdbinit
     ~/.gdbinit: gdb/.gdbinit
     ~/.gitconfig: git/.gitconfig
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
     ~/.urlview: urlview/.urlview
     ~/.vimrc: vim/.vimrc
     ~/.zshrc: zsh/.zshrc
