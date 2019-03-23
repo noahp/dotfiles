@@ -126,9 +126,16 @@ Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
 pip install ydiff
 ```
 
-## zsh autosuggestions
+## zsh-autosuggestions
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+
+## zsh-syntax-highlighting
+https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
 ___
