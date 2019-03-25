@@ -1,6 +1,29 @@
 [![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)  [![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)  [![Travis (.com) branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-the-badge)](https://travis-ci.com/noahp/dotfiles)
 
-# Install dotfiles
+# Dotfiles
+
+<!-- vim-markdown-toc GFM -->
+
+- [Install dotfiles](#install-dotfiles)
+- [Manual steps](#manual-steps)
+    - [alacritty](#alacritty)
+    - [fd](#fd)
+    - [fzf](#fzf)
+    - [oh-myzsh](#oh-myzsh)
+    - [ripgrep](#ripgrep)
+    - [spaceship theme](#spaceship-theme)
+    - [tpm](#tpm)
+    - [urlview](#urlview)
+    - [python virtualenv](#python-virtualenv)
+    - [vs code multi cursor](#vs-code-multi-cursor)
+    - [ydiff](#ydiff)
+    - [watchman](#watchman)
+- [Reference](#reference)
+    - [nice gdb](#nice-gdb)
+
+<!-- vim-markdown-toc -->
+
+## Install dotfiles
 Run
 
 ```bash
@@ -10,11 +33,11 @@ Run
 That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
 Also run as `./install`
 
-# Manual steps
+## Manual steps
 *Note- at the moment deploying this config requires a few manual steps.
 TODO #5 to make this automatic.*
 
-## alacritty
+### alacritty
 Fast gpu-accelerated terminal emulator written in rust.
 
 >https://github.com/jwilm/alacritty
@@ -32,7 +55,7 @@ gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty -e tmux'
 ```
 
-## fd
+### fd
 Fast find replacement that honors .gitignore and hidden files by default. Way
 more user-friendly.
 > https://github.com/sharkdp/fd
@@ -41,7 +64,7 @@ more user-friendly.
 cargo install fd-find
 ```
 
-## fzf
+### fzf
 Neat fuzzy searcher for terminal history and path searching.
 >https://github.com/junegunn/fzf#using-git
 
@@ -50,7 +73,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-## oh-myzsh
+### oh-myzsh
 Fancy schmancy zsh customization and theme management framework.
 >https://github.com/robbyrussell/oh-my-zsh
 
@@ -61,14 +84,14 @@ sudo apt install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-## ripgrep
+### ripgrep
 Vastly faster grep replacement written in rust.
 >https://github.com/BurntSushi/ripgrep
 ```bash
 cargo install ripgrep
 ```
 
-## spaceship theme
+### spaceship theme
 Featurefull oh-my-zsh theme, install oh-my-zsh first!
 >https://github.com/denysdovhan/spaceship-zsh-theme
 
@@ -92,7 +115,7 @@ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/instal
 zplug install
 ```
 
-## tpm
+### tpm
 tmux plugin manager (used in the .tmux.conf in this repo)
 >https://github.com/tmux-plugins/tpm
 
@@ -100,7 +123,7 @@ tmux plugin manager (used in the .tmux.conf in this repo)
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-## urlview
+### urlview
 Quickly open urls in tmux with /prefix/-u
 
 ```bash
@@ -108,7 +131,7 @@ sudo apt-get install urlview
 https://github.com/insanum/dotfiles/blob/master/urlview
 ```
 
-## python virtualenv
+### python virtualenv
 Somewhat tidier python environment management to avoid polluting system python
 with all those rando pypi packages you love so much.
 ```bash
@@ -117,31 +140,18 @@ sudo apt install python-virtualenv
 virtualenv --clear ~/.virtualenvs/default
 ```
 
-## vs code multi cursor
+### vs code multi cursor
 `gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
 
-## ydiff
+### ydiff
 Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
 ```bash
 pip install ydiff
 ```
-
-## zsh-autosuggestions
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-```
-
-## zsh-syntax-highlighting
-https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
-
-```bash
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-```
-
 ___
 ___
 
-## watchman
+### watchman
 *Not using this anymore, but here's the instructions*
 
 https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample
@@ -158,10 +168,9 @@ wget https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor
 git config core.fsmonitor .git/hooks/query-watchman
 ```
 
-# Reference
-## nice gdb
-Nice featureful gdb-dashboard. Already checked in to this repo in the `.gdbinit`
-file.
+## Reference
+### nice gdb
+Nice featureful gdb-dashboard. Tracked as a submodule in this repo.
 
 **Note!** if debugging shared libraries in gdb that haven't been loaded yet, be sure
 to run `set confirm off` to allow setting breakpoints on symbols that haven't
