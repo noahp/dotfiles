@@ -247,6 +247,15 @@ function hexdump-to-bin {
     python -c "import sys; sys.stdout.write(sys.argv[1].decode('hex'))" $1
 }
 
+# weather, from https://wttr.in/:bash.function
+# see also: http://wttr.in/:help
+function wttr {
+  local request="wttr.in/${1-$1}"
+  # if $COLUMNS is less than 125, use the compact form
+  [ "$COLUMNS" -lt 125 ] && request+='?n'
+  curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
