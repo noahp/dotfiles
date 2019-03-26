@@ -136,7 +136,7 @@ let g:vmt_list_item_char = '-'
 
 " Add language support:
 " c: https://github.com/MaskRay/ccls/wiki/Getting-started , sudo ln -s $(realpath Release/ccls) /usr/bin/ccls
-" markdown: yarn global add prettier
+" markdown: sudo npm install -g markdownlint-cli
 " python: pip install python-language server
 " rust: rustup component add rls-preview rust-analysis rust-src
 " vim: pip install vim-vint
