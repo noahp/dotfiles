@@ -273,8 +273,15 @@ if type sccache > /dev/null; then
   export RUSTC_WRAPPER=sccache
 fi
 
-# add fzf
+# add fuzzy search
+# skim.. manual
+#  export PATH="$PATH:$HOME/.skim/bin"
+#  # sk requires inserting this to enable key bindings
+#  source ~/.skim/shell/key-bindings.zsh
+
+# fzf does it all for us
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 
 # Source invoke completion
 if [ -f ~/.invoke-completion.zsh ]; then
