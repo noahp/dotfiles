@@ -6,20 +6,21 @@
 
 - [Install dotfiles](#install-dotfiles)
 - [Manual steps](#manual-steps)
-    - [alacritty](#alacritty)
-    - [fd](#fd)
-    - [fzf](#fzf)
-    - [oh-myzsh](#oh-myzsh)
-    - [ripgrep](#ripgrep)
-    - [spaceship theme](#spaceship-theme)
-    - [tpm](#tpm)
-    - [urlview](#urlview)
-    - [python virtualenv](#python-virtualenv)
-    - [vs code multi cursor](#vs-code-multi-cursor)
-    - [ydiff](#ydiff)
-    - [watchman](#watchman)
+  - [alacritty](#alacritty)
+  - [direnv](#direnv)
+  - [fd](#fd)
+  - [fzf](#fzf)
+  - [oh-myzsh](#oh-myzsh)
+  - [ripgrep](#ripgrep)
+  - [spaceship theme](#spaceship-theme)
+  - [tpm](#tpm)
+  - [urlview](#urlview)
+  - [python virtualenv](#python-virtualenv)
+  - [vs code multi cursor](#vs-code-multi-cursor)
+  - [ydiff](#ydiff)
+  - [watchman](#watchman)
 - [Reference](#reference)
-    - [nice gdb](#nice-gdb)
+  - [nice gdb](#nice-gdb)
 
 <!-- vim-markdown-toc -->
 
@@ -53,6 +54,48 @@ gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 
 # to also start tmux when starting alacritty:
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty -e tmux'
+```
+
+### direnv
+Set your environment when entering a directory, by placing a `.envrc` file into
+that directory.
+>https://github.com/direnv/direnv#setup
+
+I find it useful for controlling the git author name + email for a set of
+projects, vs. setting each one individually, or setting a global one.
+
+I have this structure:
+```bash
+~/dev
+├── github  # github projects
+│   └── .envrc
+└── work  # work projects
+    └── .envrc
+```
+
+And the contents of the `.envrc` files:
+```bash
+➜ cat ~/dev/github/.envrc
+export GIT_AUTHOR_NAME="Noah Pendleton"
+export GIT_AUTHOR_EMAIL=noahp@users.noreply.github.com
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+
+➜ cat ~/dev/work/.envrc
+export GIT_AUTHOR_NAME="Noah Pendleton"
+export GIT_AUTHOR_EMAIL=npendleton@work.com
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+```
+
+Related, for selecting the correct ssh keys for a host, set up `~/.ssh/config`:
+```bash
+# use a non-default ssh key pair for github (id_rsa.github + id_rsa.github.pub)
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa.github
+  IdentitiesOnly yes
 ```
 
 ### fd
