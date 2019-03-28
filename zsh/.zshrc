@@ -222,6 +222,13 @@ function piechart() {
   print pie_chart.render()" "$@"
 }
 
+# time function
+function bash-time() {
+  for i in {1..${2:-255}}; do
+    bash -c "time $1";
+  done 2>&1 | rg "^real"
+}
+
 # haste client
 # Either set env variable HASTE_SERVER to your server base url, eg:
 # HASTE_SERVER=https://hastebin.com
