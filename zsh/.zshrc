@@ -155,6 +155,8 @@ alias grd='(GIT_AUTHOR_DATE="$(date -R)"; GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE";
 
 # tar args are too hard to remember, cheat
 alias targz="tar -czvf"
+# requires pigz, but man is it faster
+alias tarpigz="tar -I pigz -cvf"
 
 # always use system clipboard with xclip yolo
 alias xclip="xclip -selection c"
