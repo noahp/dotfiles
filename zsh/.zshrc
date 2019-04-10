@@ -12,6 +12,7 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context anaconda virtualenv dir_writable dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(ssh status root_indicator background_jobs)
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
+POWERLEVEL9K_VCS_HIDE_TAGS=true
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
