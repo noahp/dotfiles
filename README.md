@@ -11,8 +11,8 @@
   - [fd](#fd)
   - [fzf](#fzf)
   - [oh-myzsh](#oh-myzsh)
+  - [powerline10k](#powerline10k)
   - [ripgrep](#ripgrep)
-  - [spaceship theme](#spaceship-theme)
   - [tpm](#tpm)
   - [urlview](#urlview)
   - [python virtualenv](#python-virtualenv)
@@ -127,35 +127,21 @@ sudo apt install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
+### powerline10k
+_Fast_ oh-my-zsh theme. Really fast.
+>https://github.com/romkatv/powerlevel10k#oh-my-zsh
+
+```bash
+git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+```
+
+_Reference: https://github.com/romkatv/gitstatus_
+
 ### ripgrep
 Vastly faster grep replacement written in rust.
 >https://github.com/BurntSushi/ripgrep
 ```bash
 cargo install ripgrep
-```
-
-### spaceship theme
-Featurefull oh-my-zsh theme, install oh-my-zsh first!
->https://github.com/denysdovhan/spaceship-zsh-theme
-
-For async (speeds up git-status by loading it after populating the prompt),
-follow these instructions:
-```bash
-# first get spaceship
-git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-# now switch to the async fork
-cd "$ZSH_CUSTOM/themes/spaceship-prompt"
-git remote add async git@github.com:maximbaz/spaceship-prompt.git
-git fetch async
-git checkout async/master
-
-# next, install zsh-async
-# get zplug first
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-# reload the shell, run:
-zplug install
 ```
 
 ### tpm
