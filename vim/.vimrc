@@ -131,8 +131,11 @@ imap <C-e> <C-o><C-e>
 
 " ALE language server client config
 let g:airline#extensions#ale#enabled = 1
+
 " Use '-' instead of '*' for markdown TOC leader
 let g:vmt_list_item_char = '-'
+" Indent by two spaces per level
+let g:vmt_list_indent_text = '  '
 
 " Add language support:
 " c: https://github.com/MaskRay/ccls/wiki/Getting-started , sudo ln -s $(realpath Release/ccls) /usr/bin/ccls
