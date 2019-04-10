@@ -53,7 +53,7 @@ set number    " Show line numbers
 set cursorline
 set linebreak    " Break lines at word (requires Wrap lines)
 "set showbreak=+++    " Wrap-broken line prefix
-set colorcolumn=100 " column marker
+set colorcolumn=80,100 " column marker
 set showmatch    " Highlight matching brace
 set visualbell    " Use visual bell (no beeping)
 
