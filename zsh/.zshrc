@@ -9,7 +9,7 @@ export ZSH=~/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context anaconda virtualenv dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context anaconda virtualenv dir_writable dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(ssh status root_indicator background_jobs)
 POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_last
 
