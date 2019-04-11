@@ -8,10 +8,16 @@ export ZSH=~/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Use purepower theme plus a few tweaks
 if [ -f ~/.purepower ]; then
   source ~/.purepower
+  POWERLEVEL9K_VCS_HIDE_TAGS=true
+  typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+    dir_writable dir vcs virtualenv anaconda)
+  typeset -g POWERLEVEL9K_{VIRTUALENV,ANACONDA}_BACKGROUND=none
+  typeset -g POWERLEVEL9K_{VIRTUALENV,ANACONDA}_FOREGROUND='blue'
 fi
-POWERLEVEL9K_VCS_HIDE_TAGS=true
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
