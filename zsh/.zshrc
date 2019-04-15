@@ -184,20 +184,25 @@ function git-plot-loc()	{
     # plot the lines of code in a file per commit
     git log --reverse --oneline -- $1 | cut -d " " -f 1 | xargs -I {} sh -c "git show {}:$1 | wc -l" | gplot
 }
+
+# git chery-pit (remove commit)
 function git-cherry-pit() {
     # remove a commit forever, goodbye (well ok it's still in the reflog if you have regrets)
     git rebase -p --onto $1^ $1
 }
+
 # reset timestamps of commits
 function git-rebase-time() {
     local datenow="$(date -R)";
     git rebase -x "GIT_AUTHOR_DATE=\"$datenow\" GIT_COMMITTER_DATE=\"$datenow\" \
-      git commit --amend --reset-author -CHEAD" $@
+      git commit --amend --reset-author -CHEAD" "$@"
 }
+
 # fuzzy search git log
 function git-select() {
  git log --oneline "$@" | fzf --preview 'git show $(echo {} | cut -d " " -f 1)' | cut -d " " -f 1
 }
+
 # git-size-packed
 # from https://stackoverflow.com/a/42544963
 function git-size-packed() {
@@ -208,10 +213,12 @@ function git-size-packed() {
 | cut -c 1-12,41- \
 | numfmt --field=2 --to=iec-i --suffix=B --padding=7 --round=nearest
 }
-# lines per person
+
+# git lines per person
 function git-stats() {
     git ls-files $1 | grep -v "\.csv\|\.bin\|\.so\|\.dll" | xargs -n1 git blame -w | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -nr
 }
+
 # print an svg piechart to stdout
 # requires pygal (pip install pygal)
 # ex: piechart "My Chart" "cat 1" 1.25 "cat 2" 3.56 "cat 3" 2.34 > /tmp/out.svg && firefox /tmp/out.svg
@@ -252,7 +259,7 @@ function hastebin() {
 # Hex dump to binary python oneliner
 # usage: hexdump-to-bin abcd0123 > out.bin
 function hexdump-to-bin {
-    python -c "import sys; sys.stdout.write(sys.argv[1].decode('hex'))" $1
+    python -c "import sys; sys.stdout.write(sys.argv[1].decode('hex'))" "$1"
 }
 
 # weather, from https://wttr.in/:bash.function
@@ -291,7 +298,7 @@ fi
 
 # Conda utils
 if [ -f ~/miniconda2/etc/profile.d/conda.sh ]; then
-  source $HOME/miniconda2/etc/profile.d/conda.sh
+  source ~/miniconda2/etc/profile.d/conda.sh
 fi
 
 # Direnv stuff
