@@ -1,6 +1,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# Zsh profiler
+if [[ "$ZPROF" = true ]]; then
+  zmodload zsh/zprof
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -62,6 +67,9 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-autosuggestions wd common-aliases)
+
+# Disable checking for insecure completions, to speed up shell load
+ZSH_DISABLE_COMPFIX=true
 
 source $ZSH/oh-my-zsh.sh
 
@@ -164,6 +172,14 @@ alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
 alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 
 # Custom functions
+
+# Profile zsh startup
+function profzsh() {
+  shell=${1-$SHELL}
+  ZPROF=true $shell -i -c exit
+}
+
+# git plot lines-of-code
 function git-plot-loc()	{
     # plot the lines of code in a file per commit
     git log --reverse --oneline -- $1 | cut -d " " -f 1 | xargs -I {} sh -c "git show {}:$1 | wc -l" | gplot
@@ -296,4 +312,8 @@ else
   if [ -f ~/.virtualenvs/default/bin/activate ]; then
     source ~/.virtualenvs/default/bin/activate
   fi
+fi
+
+if [[ "$ZPROF" = true ]]; then
+  zprof
 fi
