@@ -272,6 +272,11 @@ function wttr {
   curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
 }
 
+# gnu build id pretty print from elf section
+function gnuid() {
+  readelf "$1" -x .note.gnu.build-id | awk -v RS="" '{ print $13 $14 $15 $19 }'
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
