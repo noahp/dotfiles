@@ -289,6 +289,9 @@ export PATH=/usr/lib/ccache:$PATH
 # include ~/.local/bin
 export PATH=$PATH:~/.local/bin
 
+# go bins
+[ -d ~/go/bin ] && export PATH=$PATH:~/go/bin
+
 # enable sccache for rust
 if type sccache > /dev/null; then
   export RUSTC_WRAPPER=sccache
