@@ -71,6 +71,9 @@ plugins=(git zsh-autosuggestions wd common-aliases cargo)
 # Disable checking for insecure completions, to speed up shell load
 ZSH_DISABLE_COMPFIX=true
 
+# Load completions
+fpath+=~/.zfunc
+
 source $ZSH/oh-my-zsh.sh
 
 # Autoload Zsh functions. Just enabling zcalc for now, the others may cause
