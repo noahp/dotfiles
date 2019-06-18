@@ -17,6 +17,7 @@
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
     ~/.urlview: urlview/.urlview
     ~/.vimrc: vim/.vimrc
+    ~/.zfunc/_rg: third-party/BurntSushi-ripgrep/complete/_rg
     ~/.zshrc: zsh/.zshrc
 
 - shell:

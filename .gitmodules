@@ -10,3 +10,6 @@
 [submodule "third-party/romkatv-dotfiles-public"]
 	path = third-party/romkatv-dotfiles-public
 	url = ../../romkatv/dotfiles-public.git
+[submodule "third-party/BurntSushi-ripgrep"]
+	path = third-party/BurntSushi-ripgrep
+	url = ../../BurntSushi/ripgrep
