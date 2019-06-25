@@ -47,5 +47,10 @@
         "suppressUpdateNotice": true,
         "suppressWelcomeNotice": false
     },
-    "gitlens.historyExplorer.enabled": true
+    "gitlens.historyExplorer.enabled": true,
+    "python.formatting.blackPath": "/home/noah/.local/bin/black-wrapper",
+    "python.formatting.provider": "black",
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true
 }
