@@ -9,12 +9,13 @@ RUN apt-get update && apt-get install -y \
     git \
     gpg \
     libasound2 \
+    libx11-xcb1 \
     python \
     python-pip \
     sudo
 
 # install py-commit-checker
-RUN pip install py-commit-checker==0.0.0
+RUN pip install py-commit-checker==0.2.1
 
 # Install vscode for code extension setup test
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
@@ -23,6 +24,10 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > mic
 
 RUN sudo apt-get update && sudo apt-get install -y \
     code
+
+# For some reason this is required after installing code, otherwise
+# installing python3.6 (for neovim) will fail
+RUN sudo apt-get update
 
 # Test user, so we're not running the script as root
 RUN useradd -ms /bin/bash testuser && adduser testuser sudo
