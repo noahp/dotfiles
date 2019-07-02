@@ -12,7 +12,7 @@
 	tool = meld
 	colorMoved = dimmed_zebra
 [merge]
-	tool = meld
+	tool = vscode
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -25,3 +25,7 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[mergetool "vscode"]
+	cmd = code --wait $MERGED
+[http]
+	cookiefile = /home/npendleton/.gitcookies
