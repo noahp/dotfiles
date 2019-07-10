@@ -8,6 +8,8 @@
 - [Manual steps](#manual-steps)
   - [alacritty](#alacritty)
   - [direnv](#direnv)
+    - [direnv git](#direnv-git)
+    - [direnv virtualenvs](#direnv-virtualenvs)
   - [fd](#fd)
   - [fzf](#fzf)
   - [oh-myzsh](#oh-myzsh)
@@ -61,6 +63,7 @@ Set your environment when entering a directory, by placing a `.envrc` file into
 that directory.
 >https://github.com/direnv/direnv#setup
 
+#### direnv git
 I find it useful for controlling the git author name + email for a set of
 projects, vs. setting each one individually, or setting a global one.
 
@@ -96,6 +99,21 @@ Host github.com
   User git
   IdentityFile ~/.ssh/id_rsa.github
   IdentitiesOnly yes
+```
+
+#### direnv virtualenvs
+`direnv` can also be used to select a python virtualenv based on directory
+location, which can be useful if you have projects that benefit from a little
+isolation, or require different python interpreters; it can save some
+typing/confusion to have dedicated virtualenvs.
+
+I put my virtualenvs in a folder `~/.virtualenvs`, so this wrapper is useful:
+> https://github.com/direnv/direnv/wiki/Python#virtualenvwrapper
+
+In the individual `.envrc` files, to enter a virtualenv:
+```bash
+# select ~/.virtualenvs/python3
+layout virtualenvwrapper python3
 ```
 
 ### fd
