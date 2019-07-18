@@ -13,6 +13,7 @@
     ~/.gdb-cyrus-dashboard: third-party/cyrus-gdb-dashboard/.gdbinit
     ~/.gdbinit: gdb/.gdbinit
     ~/.gitconfig: git/.gitconfig
+    ~/.local/bin/committime: git/committime.sh
     ~/.purepower: third-party/romkatv-dotfiles-public/.purepower
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
