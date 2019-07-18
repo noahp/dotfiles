@@ -35,7 +35,7 @@
     # VSCode extension sync
     # currently this list is manually updated by running:
     # code --list-extensions > <this repo>/vscode/extensions.list
-    - if type code; then cat vscode/extensions.list | xargs -t -L 1 code --install-extension; fi
+    - if { type code && [[ -n $INSTALL_VSCODE_EXT ]]; }; then cat vscode/extensions.list | xargs -t -L 1 code --install-extension; fi
 
     # TODO below command doesn't work as-is
     # - which cargo || bash <(curl https://sh.rustup.rs -sSf) -y
