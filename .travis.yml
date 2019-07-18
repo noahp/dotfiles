@@ -13,5 +13,5 @@ script:
     "
       cd /mnt/workspace &&
       py-commit-checker --emojis &&
-      ./install
+      INSTALL_VSCODE_EXT=1 ./install
     "
