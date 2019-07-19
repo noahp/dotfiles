@@ -121,8 +121,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Git aliases
-alias gsc='git clean -dxf && git submodule foreach --recursive git clean -dxf'
-alias gscf='git clean -dxff && git submodule foreach --recursive git clean -dxff'
+alias gsc='git clean -dxf && git submodule foreach --recursive "git clean -dxf"'
+alias gscf='git clean -dxff && git submodule foreach --recursive "git clean -dxff"'
 alias gcln='git clean -dxf'
 alias gsu='git submodule update --jobs 6 --init --recursive'
 alias gsd='git submodule deinit -f .'
