@@ -28,4 +28,6 @@
 [mergetool "vscode"]
 	cmd = code --wait $MERGED
 [http]
-	cookiefile = /home/npendleton/.gitcookies
+	cookiefile = ~/.gitcookies
+[include]
+	path = ~/.gitconfig-local
