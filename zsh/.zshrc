@@ -276,6 +276,7 @@ function wttr {
 }
 
 # gnu build id pretty print from elf section
+# note: 'file' command also prints it fwiw
 function gnuid() {
   readelf "$1" -x .note.gnu.build-id | awk -v RS="" '{ print $13 $14 $15 $19 }'
 }
