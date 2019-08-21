@@ -280,6 +280,12 @@ function gnuid() {
   readelf "$1" -x .note.gnu.build-id | awk -v RS="" '{ print $13 $14 $15 $19 }'
 }
 
+# download urls. optionally append second arg to end of urls.
+function get-urls() {
+  # echo to split words
+  for i in $(echo $1); do curl -J -O $i"$2"; done
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
