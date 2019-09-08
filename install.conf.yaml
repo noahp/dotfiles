@@ -14,13 +14,13 @@
     ~/.gdbinit: gdb/.gdbinit
     ~/.gitconfig: git/.gitconfig
     ~/.local/bin/committime: git/committime.sh
-    ~/.purepower: third-party/romkatv-dotfiles-public/.purepower
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
     ~/.urlview: urlview/.urlview
     ~/.vimrc: vim/.vimrc
     ~/.zfunc/_rg: third-party/BurntSushi-ripgrep/complete/_rg
     ~/.zshrc: zsh/.zshrc
+    ~/.p10k.zsh: zsh/.p10k.zsh
 
 - shell:
     # only supports os's that use apt, todo #8 !

@@ -7,9 +7,6 @@
 [submodule "third-party/tromey-gdb-helpers"]
 	path = third-party/tromey-gdb-helpers
 	url = ../../tromey/gdb-helpers.git
-[submodule "third-party/romkatv-dotfiles-public"]
-	path = third-party/romkatv-dotfiles-public
-	url = ../../romkatv/dotfiles-public.git
 [submodule "third-party/BurntSushi-ripgrep"]
 	path = third-party/BurntSushi-ripgrep
 	url = ../../BurntSushi/ripgrep
