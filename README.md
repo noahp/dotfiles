@@ -13,7 +13,7 @@
   - [fd](#fd)
   - [fzf](#fzf)
   - [oh-myzsh](#oh-myzsh)
-  - [powerline10k](#powerline10k)
+  - [powerlevel10k](#powerlevel10k)
   - [ripgrep](#ripgrep)
   - [tpm](#tpm)
   - [urlview](#urlview)
@@ -145,12 +145,15 @@ sudo apt install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-### powerline10k
+### powerlevel10k
 _Fast_ oh-my-zsh theme. Really fast.
 >https://github.com/romkatv/powerlevel10k#oh-my-zsh
 
 ```bash
 git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+
+# update with
+git -C $ZSH_CUSTOM/themes/powerlevel10k/ pull
 ```
 
 _Reference: https://github.com/romkatv/gitstatus_
