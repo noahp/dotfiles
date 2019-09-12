@@ -328,9 +328,9 @@ fi
 if [ -n "$VIRTUAL_ENV" ]; then
   source "$VIRTUAL_ENV/bin/activate"
 else
-  if [ -f ~/.virtualenvs/default/bin/activate ]; then
-    source ~/.virtualenvs/default/bin/activate
-  fi
+if [ -f ~/.virtualenvs/default/bin/activate ]; then
+  source ~/.virtualenvs/default/bin/activate
+fi
 fi
 
 if [[ "$ZPROF" = true ]]; then
