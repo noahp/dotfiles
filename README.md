@@ -13,6 +13,7 @@
   - [fd](#fd)
   - [fzf](#fzf)
   - [oh-myzsh](#oh-myzsh)
+    - [zsh-autosuggestions](#zsh-autosuggestions)
   - [powerlevel10k](#powerlevel10k)
   - [ripgrep](#ripgrep)
   - [tpm](#tpm)
@@ -143,6 +144,14 @@ Fancy schmancy zsh customization and theme management framework.
 sudo apt install zsh
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+#### zsh-autosuggestions
+For zsh autosuggestions (typeahead):
+>https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
 ### powerlevel10k
