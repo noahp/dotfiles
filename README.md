@@ -154,6 +154,13 @@ For zsh autosuggestions (typeahead):
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 ```
 
+#### zsh-z
+Similar to warp directory etc.
+https://github.com/agkozak/zsh-z#for-oh-my-zsh-users
+```bash
+git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
+```
+
 ### powerlevel10k
 _Fast_ oh-my-zsh theme. Really fast.
 >https://github.com/romkatv/powerlevel10k#oh-my-zsh
