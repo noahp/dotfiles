@@ -158,6 +158,15 @@ git -C $ZSH_CUSTOM/themes/powerlevel10k/ pull
 
 _Reference: https://github.com/romkatv/gitstatus_
 
+### oh-my-zsh syntax highlighting
+Syntax highlight your shell. Seems to add about a 13-20ms startup penalty though.
+https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
+${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
 ### ripgrep
 Vastly faster grep replacement written in rust.
 >https://github.com/BurntSushi/ripgrep
