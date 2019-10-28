@@ -66,6 +66,7 @@ plugins=(
     git
     wd
     zsh-autosuggestions
+    zsh-z
 )
 
 # Disable checking for insecure completions, to speed up shell load
