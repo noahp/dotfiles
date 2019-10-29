@@ -31,9 +31,11 @@
 Run
 
 ```bash
+# just set up symlinks
 ./install
 
 # or to also install apt/zsh plugins/vscode extensions
+DOTFILES_INSTALL_ALL=y ./install
 ```
 
 That won't overwrite any existing dotfiles; you'll have to stash them manually
@@ -155,27 +157,16 @@ Vastly faster grep replacement written in rust.
 cargo install ripgrep
 ```
 
-### tpm
-tmux plugin manager (used in the .tmux.conf in this repo)
->https://github.com/tmux-plugins/tpm
-
-```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-### urlview
-Quickly open urls in tmux with /prefix/-u
-
-```bash
-sudo apt-get install urlview
-https://github.com/insanum/dotfiles/blob/master/urlview
-```
-
 ### python virtualenv
 Somewhat tidier python environment management to avoid polluting system python
 with all those rando pypi packages you love so much.
 ```bash
-sudo apt install python-virtualenv
+sudo apt install python-pip
+
+# this adds the virtualenv command to ~/.local/bin . using pip will get the
+# normal virtualenv utility, not the weird debian patched one
+pip install --user virtualenv
+
 # set up default env for our ~/.zshrc to activate on new shells
 virtualenv --clear ~/.virtualenvs/default
 ```
