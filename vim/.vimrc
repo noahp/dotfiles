@@ -45,6 +45,7 @@ Plug 'justinmk/vim-sneak'                     " faster search
 Plug 'w0rp/ale'                               " language client https://github.com/w0rp/ale
 
 Plug 'mzlogin/vim-markdown-toc'		      " markdown table of contents generator
+Plug 'tpope/vim-commentary'		      " comment stuff
 
 call plug#end()
 
@@ -74,7 +75,9 @@ if has('syntax')
 endif
 
 set background=dark
-colorscheme codedark
+
+" disable error if codedark is not installed. need to run PlugUpdate.
+silent! colorscheme codedark
 " let g:solarized_termcolors=256
 
 let g:airline_powerline_fonts = 1
