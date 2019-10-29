@@ -32,14 +32,16 @@ Run
 
 ```bash
 ./install
+
+# or to also install apt/zsh plugins/vscode extensions
 ```
 
-That won't overwrite any existing dotfiles; you'll have to stash them manually before running it if you want to keep them.
-Also run as `./install`
+That won't overwrite any existing dotfiles; you'll have to stash them manually
+before running it if you want to keep them. Also run as `./install`
 
 ## Manual steps
 *Note- at the moment deploying this config requires a few manual steps.
-TODO #5 to make this automatic.*
+TODO #2 to make this more automatic.*
 
 ### alacritty
 Fast gpu-accelerated terminal emulator written in rust.
@@ -139,40 +141,12 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 Fancy schmancy zsh customization and theme management framework.
 >https://github.com/robbyrussell/oh-my-zsh
 
-```bash
-# install zsh first
-sudo apt install zsh
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-```
+This is installed as part of `./install` if the appropriate variable is set, see
+[`install-extras.sh`](install-extras.sh).
 
-#### zsh-autosuggestions
-For zsh autosuggestions (typeahead):
->https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
+That will also set up the [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme, which is a nice fast theme for
+zsh.
 
-```bash
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
-
-#### zsh-z
-Similar to warp directory etc.
-https://github.com/agkozak/zsh-z#for-oh-my-zsh-users
-```bash
-git clone https://github.com/agkozak/zsh-z $ZSH_CUSTOM/plugins/zsh-z
-```
-
-### powerlevel10k
-_Fast_ oh-my-zsh theme. Really fast.
->https://github.com/romkatv/powerlevel10k#oh-my-zsh
-
-```bash
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-
-# update with
-git -C $ZSH_CUSTOM/themes/powerlevel10k/ pull
-```
-
-_Reference: https://github.com/romkatv/gitstatus_
 
 ### ripgrep
 Vastly faster grep replacement written in rust.
