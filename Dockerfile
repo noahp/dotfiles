@@ -29,8 +29,13 @@ RUN sudo apt-get update
 
 # Test user, so we're not running the script as root
 ARG UID=1010
-ARG USERNAME=testuser
-RUN useradd --uid ${UID} --create-home --user-group builder && \
-    echo "${USERNAME}:${USERNAME}" | chpasswd && adduser builder sudo
+ARG UNAME=testuser
+RUN useradd --uid ${UID} --create-home --user-group ${UNAME} && \
+    echo "${UNAME}:${UNAME}" | chpasswd && adduser ${UNAME} sudo
 
-USER ${USERNAME}
+# Enable password-less sudo
+RUN sed -i.bkp -e \
+      's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' \
+      /etc/sudoers
+
+USER ${UNAME}
