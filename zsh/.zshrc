@@ -1,3 +1,6 @@
+#!/usr/bin/env zsh
+# Above hashbang set for shellcheck. This file should be sourced.
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -147,6 +150,9 @@ alias gnp='git --no-pager'
 # 'git reset date'... set date of top commit to current date. use a single variable
 # in a subshell to avoid committer/author date not exactly matching
 alias grd='(GIT_AUTHOR_DATE="$(date -R)"; GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"; git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
+alias gbn='git rev-parse --abbrev-ref HEAD'
+alias gsha='git rev-parse HEAD'
+
 # Other aliases
 
 # tar args are too hard to remember, cheat
@@ -200,7 +206,7 @@ function git-cherry-pit() {
 function git-rebase-time() {
     local datenow="$(date -R)";
     git rebase -x "GIT_AUTHOR_DATE=\"$datenow\" GIT_COMMITTER_DATE=\"$datenow\" \
-      git commit --amend --reset-author -CHEAD" "$@"
+      git commit --amend --reset-author --no-edit -CHEAD" "$@"
 }
 
 # fuzzy search git log
