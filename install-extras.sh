@@ -68,6 +68,7 @@ if [ "$DOTFILES_INSTALL_ZSH_PLUGINS" == "y" ]; then
     fi
 
     # oh-my-zsh plugins; hard-coded to $ZSH install location
+    # TODO #12 , these should probably be specific sha's.
     conditional_git_install "$ZSH/custom/plugins/zsh-z" https://github.com/agkozak/zsh-z
     conditional_git_install "$ZSH/custom/themes/powerlevel10k" https://github.com/romkatv/powerlevel10k.git
     conditional_git_install "$ZSH/custom/plugins/zsh-autosuggestions" https://github.com/zsh-users/zsh-autosuggestions
