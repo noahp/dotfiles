@@ -7,10 +7,12 @@ dbaeumer.vscode-eslint
 eamodio.gitlens
 EugenWiens.bitbake
 geddski.macros
+ionutvmi.path-autocomplete
 jebbs.plantuml
 kalitaalexey.vscode-rust
 kosz78.nim
 lextudio.restructuredtext
+marus25.cortex-debug
 ms-azuretools.vscode-docker
 ms-python.python
 ms-vscode.cpptools
@@ -18,6 +20,7 @@ ms-vscode.Go
 plorefice.devicetree
 rust-lang.rust
 stkb.rewrap
+tiehuis.zig
 timonwong.shellcheck
 twxs.cmake
 vector-of-bool.cmake-tools
