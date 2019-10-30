@@ -353,5 +353,3 @@ fi
 if [[ "$ZPROF" = true ]]; then
   zprof
 fi
-
-source /home/npendleton/.config/broot/launcher/bash/br
