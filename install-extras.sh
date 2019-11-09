@@ -52,6 +52,8 @@ fi
 function conditional_git_install() {
     if [ ! -d "$1" ]; then
         git clone "$2" "$1"
+    else
+        git -C "$1" fetch
     fi
 
     if [ $# -eq 3 ]; then
