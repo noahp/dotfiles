@@ -1,6 +1,11 @@
 #!/usr/bin/env zsh
 # Above hashbang set for shellcheck. This file should be sourced.
 
+# Zsh profiler
+if [[ "$ZPROF" = true ]]; then
+  zmodload zsh/zprof
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -10,11 +15,6 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-# Zsh profiler
-if [[ "$ZPROF" = true ]]; then
-  zmodload zsh/zprof
-fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
