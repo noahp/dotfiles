@@ -65,27 +65,27 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    cargo
-    colored-man-pages
-    common-aliases
-    git
-    wd
-    zsh-autosuggestions
-    zsh-z
-)
-
 # Disable checking for insecure completions, to speed up shell load
 ZSH_DISABLE_COMPFIX=true
 
 # Load completions
 fpath+=~/.zfunc
 
-source $ZSH/oh-my-zsh.sh
+# Antigen managed plugins
+source ~/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle agkozak/zsh-z
+antigen bundle cargo
+antigen bundle colored-man-pages
+antigen bundle common-aliases
+antigen bundle git
+antigen bundle wd
+antigen bundle zsh-users/zsh-autosuggestions
+antigen theme romkatv/powerlevel10k
+
+antigen apply
 
 # Autoload Zsh functions. Just enabling zcalc for now, the others may cause
 # overreliance on zsh!

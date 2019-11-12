@@ -15,3 +15,11 @@ script:
       py-commit-checker --emojis &&
       DOTFILES_INSTALL_ALL=y ./install
     "
+
+  # pr builds, lint the commits
+  - 'if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+    docker run -v"$(pwd):/mnt/workspace" -e TRAVIS_BRANCH -t dotfiles /bin/bash -c
+    "
+      cd /mnt/workspace &&
+      PY_COMMIT_CHECKER_ARGS=--emojis py-commit-checker-branch origin/$TRAVIS_BRANCH
+    "; fi'
