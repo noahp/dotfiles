@@ -6,6 +6,7 @@
 - clean: ['~']
 
 - link:
+    ~/antigen.zsh: third-party/antigen/bin/antigen.zsh
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/git/ignore: git/ignore
     ~/.config/nvim/init.vim: vim/.vimrc

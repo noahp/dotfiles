@@ -74,21 +74,6 @@ if [ "$DOTFILES_INSTALL_ZSH_PLUGINS" == "y" ]; then
             --depth=1 --branch master https://github.com/robbyrussell/oh-my-zsh.git "$ZSH"
     fi
 
-    # oh-my-zsh plugins; hard-coded to $ZSH install location.
-    # specify specific known-working shas to use
-    conditional_git_install \
-        "$ZSH/custom/plugins/zsh-z" \
-        https://github.com/agkozak/zsh-z \
-        99f6ee91187ad6469b2cc3858f5a60c68286a1a5
-    conditional_git_install \
-        "$ZSH/custom/themes/powerlevel10k" \
-        https://github.com/romkatv/powerlevel10k.git \
-        806ec183ffae5829451405b372c5bce37a83dfa3
-    conditional_git_install \
-        "$ZSH/custom/plugins/zsh-autosuggestions" \
-        https://github.com/zsh-users/zsh-autosuggestions \
-        d43c309f888153d6c46d8b6a3a0186f4148680fd
-
     # tmux plugin manager
     conditional_git_install \
         ~/.tmux/plugins/tpm \

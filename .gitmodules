@@ -10,3 +10,6 @@
 [submodule "third-party/BurntSushi-ripgrep"]
 	path = third-party/BurntSushi-ripgrep
 	url = ../../BurntSushi/ripgrep
+[submodule "third-party/antigen"]
+	path = third-party/antigen
+	url = ../../zsh-users/antigen.git
