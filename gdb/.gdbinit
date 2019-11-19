@@ -61,3 +61,34 @@ document armex
 ARMv7 Exception entry behavior.
 xPSR, ReturnAddress, LR (R14), R12, R3, R2, R1, and R0
 end
+
+python
+# crude memory region symbol analysis
+import gdb
+class MemSymbols(gdb.Command):
+    """Print symbols for each word of memory in a specified region.
+       Usage: mem-symbols <start addr> <length>"""
+    def __init__(self):
+        super(MemSymbols, self).__init__('mem-symbols', gdb.COMMAND_NONE)
+
+    def invoke(self, unicode_args, from_tty):
+        del from_tty
+        argv = gdb.string_to_argv(unicode_args)
+        if len(argv) != 2:
+            gdb.GdbError("Please pass 2 args")
+
+        start_addr, length = argv
+
+        # assumes numeric values.. maybe use gdb.parse_and_eval to handle addresses like x/?
+        start_addr = int(start_addr, 0) & 0xFFFFFFFC
+        length = int(length, 0)
+
+        for addr in xrange(start_addr, start_addr + length, 4):
+            symbol_str = str(gdb.execute("info symbol *{}".format(addr), to_string=True))
+            if "No symbol matches" in symbol_str:
+                symbol_str = "-\n"
+            gdb.write("0x{:08x} : {}".format(addr, symbol_str))
+
+MemSymbols()
+
+end
