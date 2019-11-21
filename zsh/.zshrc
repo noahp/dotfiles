@@ -72,18 +72,25 @@ ZSH_DISABLE_COMPFIX=true
 fpath+=~/.zfunc
 
 # Antigen managed plugins
+# see https://github.com/zsh-users/antigen/wiki/Commands
 source ~/antigen.zsh
 
 antigen use oh-my-zsh
 
-antigen bundle agkozak/zsh-z
+# oh-my-zsh included bundles
 antigen bundle cargo
 antigen bundle colored-man-pages
 antigen bundle common-aliases
 antigen bundle git
 antigen bundle wd
-antigen bundle zsh-users/zsh-autosuggestions
-antigen theme romkatv/powerlevel10k
+
+# bundles outside of oh-my-zsh
+# antigen only supports specifying tag or branch, not sha. so hope this doesn't
+# break >_<
+# shas listed just in case i need to manually touch it up
+antigen bundle agkozak/zsh-z #99f6ee91187ad6469b2cc3858f5a60c68286a1a5
+antigen bundle zsh-users/zsh-autosuggestions #d43c309f888153d6c46d8b6a3a0186f4148680fd
+antigen theme romkatv/powerlevel10k #1777bd41a68c99963e009c55a0f500396e485d07
 
 antigen apply
 

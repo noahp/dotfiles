@@ -34,8 +34,27 @@ Run
 DOTFILES_INSTALL_ALL=y ./install
 ```
 
-That won't overwrite any existing dotfiles; you'll have to stash them manually
-before running it if you want to keep them. Also run as `./install`
+That won't overwrite any existing dotfiles. You'll have to relocate any
+collisions manually before running the install script if you want the ones in
+this repo (see [`install.conf.yaml`](install.conf.yaml) for which links are
+added).
+
+## Feature highlight
+This is mostly used for me to sync prompt configuration/plugins and
+.gdbinit/vimrc between computers.
+
+Rough list of features (might not be updated):
+- oh-my-zsh (zsh plugin framework and lots of aliases)
+- powerlevel10k (fast zsh prompt theme)
+- cyrus gdb dashboard (featureful gdb dashboard)
+- tmux config
+- vimrc (I use it with neovim but might work with vim8 no idea)
+
+Probably the most opinionated thing is the powerlevel10k config.. see
+(`zsh/.p10k.zsh`)[zsh/.p10k.zsh] for customizing. That theme also has a
+customization wizard, see https://github.com/romkatv/powerlevel10k . It also
+updates a lot so this might break... definitely make an issue if it fails for
+you!
 
 ## Manual steps
 *Note- at the moment deploying this config requires a few manual steps.
@@ -135,17 +154,6 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-### oh-myzsh
-Fancy schmancy zsh customization and theme management framework.
->https://github.com/robbyrussell/oh-my-zsh
-
-This is installed as part of `./install` if the appropriate variable is set, see
-[`install-extras.sh`](install-extras.sh).
-
-That will also set up the [powerlevel10k](https://github.com/romkatv/powerlevel10k) theme, which is a nice fast theme for
-zsh.
-
-
 ### ripgrep
 Vastly faster grep replacement written in rust.
 >https://github.com/BurntSushi/ripgrep
@@ -178,28 +186,12 @@ pip install ydiff
 ___
 ___
 
-### watchman
-*Not using this anymore, but here's the instructions*
-
-https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample
-```bash
-git clone https://github.com/facebook/watchman.git
-cd watchman
-git checkout v4.9.0
-./autogen.sh && ./configure && make && sudo make install
-# because you know it's right
-echo 999999 | sudo tee -a /proc/sys/fs/inotify/max_user_watches  && echo 999999 | sudo tee -a  /proc/sys/fs/inotify/max_queued_events && echo 999999 | sudo tee  -a /proc/sys/fs/inotify/max_user_instances
-
-# install the hook to whatever repo
-wget https://raw.githubusercontent.com/git/git/master/templates/hooks--fsmonitor-watchman.sample -O .git/hooks/query-watchman && chmod +x .git/hooks/query-watchman
-git config core.fsmonitor .git/hooks/query-watchman
-```
-
 ## Reference
-### nice gdb
-Nice featureful gdb-dashboard. Tracked as a submodule in this repo.
+### cyrus-gdb
+[Nice featureful gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard).
+Tracked as a submodule in this repo.
 
-**Note!** if debugging shared libraries in gdb that haven't been loaded yet, be sure
-to run `set confirm off` to allow setting breakpoints on symbols that haven't
-yet loaded.
+**Note!** if debugging shared libraries in gdb that haven't been loaded yet, be
+sure to run `set confirm off` to allow setting breakpoints on symbols that
+haven't yet loaded.
 >https://github.com/cyrus-and/gdb-dashboard
