@@ -5,6 +5,7 @@
 <!-- vim-markdown-toc GFM -->
 
 - [Install dotfiles](#install-dotfiles)
+- [Feature highlight](#feature-highlight)
 - [Manual steps](#manual-steps)
   - [alacritty](#alacritty)
   - [direnv](#direnv)
@@ -12,14 +13,12 @@
     - [direnv virtualenvs](#direnv-virtualenvs)
   - [fd](#fd)
   - [fzf](#fzf)
-  - [oh-myzsh](#oh-myzsh)
   - [ripgrep](#ripgrep)
   - [python virtualenv](#python-virtualenv)
   - [vs code multi cursor](#vs-code-multi-cursor)
   - [ydiff](#ydiff)
-  - [watchman](#watchman)
 - [Reference](#reference)
-  - [nice gdb](#nice-gdb)
+  - [cyrus-gdb](#cyrus-gdb)
 
 <!-- vim-markdown-toc -->
 
