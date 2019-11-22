@@ -50,7 +50,7 @@ Rough list of features (might not be updated):
 - vimrc (I use it with neovim but might work with vim8 no idea)
 
 Probably the most opinionated thing is the powerlevel10k config.. see
-(`zsh/.p10k.zsh`)[zsh/.p10k.zsh] for customizing. That theme also has a
+[`zsh/.p10k.zsh`](zsh/.p10k.zsh) for customizing. That theme also has a
 customization wizard, see https://github.com/romkatv/powerlevel10k . It also
 updates a lot so this might break... definitely make an issue if it fails for
 you!
