@@ -12,6 +12,7 @@
     - [direnv git](#direnv-git)
     - [direnv virtualenvs](#direnv-virtualenvs)
   - [fd](#fd)
+  - [font](#font)
   - [fzf](#fzf)
   - [ripgrep](#ripgrep)
   - [python virtualenv](#python-virtualenv)
@@ -143,6 +144,14 @@ more user-friendly.
 ```bash
 cargo install fd-find
 ```
+
+### font
+Powerlevel10k suggested font-
+https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
+
+I didn't have immediate success getting kitty to use the Ubuntu Mono Nerd Font
+so I just went for the Meslo font there 🤷.
+
 
 ### fzf
 Neat fuzzy searcher for terminal history and path searching.
