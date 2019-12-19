@@ -52,6 +52,31 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
+# Some extra completion settings. Disabled for now until I test for performance
+# impact
+
+# this group from https://github.com/ehynds/dotfiles/blob/master/.zshrc
+# zstyle ':completion:*' accept-exact '*(N)'
+# zstyle ':completion:*' use-cache on
+# zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# next group from https://unix.stackexchange.com/a/214699
+# # Do menu-driven completion.
+# zstyle ':completion:*' menu select
+
+# # Color completion for some things.
+# # http://linuxshellaccount.blogspot.com/2008/12/color-completion-using-zsh-modules-on.html
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# # formatting and messages
+# # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
+# zstyle ':completion:*' verbose yes
+# zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
+# zstyle ':completion:*:messages' format '%d'
+# zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
+# zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+# zstyle ':completion:*' group-name ''
+
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
