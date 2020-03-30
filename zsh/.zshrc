@@ -325,7 +325,7 @@ function wttr {
 # note: 'file' command also prints it fwiw
 # note: 'readelf' can also dump it with -x .note.gnu.build-id
 function gnuid() {
-  readelf "$1" | tail -n 1 | awk '{ print $3 }'
+  readelf -n "$1" | tail -n 1 | awk '{ print $3 }'
 }
 
 # download urls. optionally append second arg to end of urls.
