@@ -560,7 +560,9 @@
   typeset -g POWERLEVEL9K_ANACONDA_LEFT_DELIMITER='['
   typeset -g POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=']'
   # Custom icon.
-  typeset -g POWERLEVEL9K_ANACONDA_VISUAL_IDENTIFIER_EXPANSION='🇨'
+  # For some reason the '🇨' doesn't play nice with tmux, and ends up stomping
+  # on the pane delimiter. So switch ti to something else 😞
+  typeset -g POWERLEVEL9K_ANACONDA_VISUAL_IDENTIFIER_EXPANSION=🌊
 
   ################[ pyenv: python environment (https://github.com/pyenv/pyenv) ]################
   # Pyenv color.
