@@ -25,6 +25,12 @@ export ZSH=~/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# Some user-specific settings selected before loading the config
+
+# Perform git branch name substitution
+P10K_BRANCH_SUBST_STRING=npendleton
+P10K_BRANCH_SUBST_REPLACE=👴
+
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # Uncomment the following line to use case-sensitive completion.

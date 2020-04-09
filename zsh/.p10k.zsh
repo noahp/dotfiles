@@ -358,6 +358,11 @@
       where=${VCS_STATUS_COMMIT[1,8]}
     fi
 
+    # perform substitution if the user has enabled it
+    if [[ -n $P10K_BRANCH_SUBST_STRING && -n $P10K_BRANCH_SUBST_REPLACE ]]; then
+    where=${where/#$P10K_BRANCH_SUBST_STRING/$P10K_BRANCH_SUBST_REPLACE}
+    fi
+
     # If local branch name or tag is at most 32 characters long, show it in full.
     # Otherwise show the first 12 … the last 12.
     (( $#where > 32 )) && where[13,-13]="…"
