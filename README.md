@@ -1,25 +1,32 @@
-[![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)  [![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)  [![Travis (.com) branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-the-badge)](https://travis-ci.com/noahp/dotfiles)
+[![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)
+[![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)
+[![Travis (.com)
+branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-the-badge)](https://travis-ci.com/noahp/dotfiles)
 
 # Dotfiles
 
 <!-- vim-markdown-toc GFM -->
 
-- [Install dotfiles](#install-dotfiles)
-- [Feature highlight](#feature-highlight)
-- [Manual steps](#manual-steps)
-  - [alacritty](#alacritty)
-  - [direnv](#direnv)
-    - [direnv git](#direnv-git)
-    - [direnv virtualenvs](#direnv-virtualenvs)
-  - [fd](#fd)
-  - [font](#font)
-  - [fzf](#fzf)
-  - [ripgrep](#ripgrep)
-  - [python virtualenv](#python-virtualenv)
-  - [vs code multi cursor](#vs-code-multi-cursor)
-  - [ydiff](#ydiff)
-- [Reference](#reference)
-  - [cyrus-gdb](#cyrus-gdb)
+- [Dotfiles](#dotfiles)
+  - [Install dotfiles](#install-dotfiles)
+  - [Feature highlight](#feature-highlight)
+  - [Customization](#customization)
+    - [`~/.gitconfig` -> `~/.gitconfig-local`](#gitconfig---gitconfig-local)
+    - [`~/.zshrc` -> `~/.zshrc_local`](#zshrc---zshrclocal)
+    - [`~/.ssh/config`](#sshconfig)
+  - [Manual steps](#manual-steps)
+    - [alacritty](#alacritty)
+    - [direnv](#direnv)
+      - [direnv virtualenvs](#direnv-virtualenvs)
+    - [fd](#fd)
+    - [font](#font)
+    - [fzf](#fzf)
+    - [ripgrep](#ripgrep)
+    - [python virtualenv](#python-virtualenv)
+    - [vs code multi cursor](#vs-code-multi-cursor)
+    - [ydiff](#ydiff)
+  - [Reference](#reference)
+    - [cyrus-gdb](#cyrus-gdb)
 
 <!-- vim-markdown-toc -->
 
@@ -56,6 +63,61 @@ customization wizard, see https://github.com/romkatv/powerlevel10k . It also
 updates a lot so this might break... definitely make an issue if it fails for
 you!
 
+## Customization
+
+Fork this repo :grinning: .
+
+There are a few spots where I insert host-specific configs.
+
+### `~/.gitconfig` -> `~/.gitconfig-local`
+
+To specify local host settings, the [`~/.gitconfig`](git/.gitconfig) will
+include `~/.gitconfig-local`. I use this to apply certain user name+email
+settings based on file system location
+(see https://git-scm.com/docs/git-config#_conditional_includes):
+
+```bash
+# in ~/.gitconfig-local:
+[user]
+    name = Noah Pendleton
+
+[includeIf "gitdir:~/dev/work/"]
+    path = ~/dev/work/.gitconfig
+[includeIf "gitdir:~/dev/github/"]
+    path = ~/dev/github/.gitconfig
+
+# in ~/dev/work/.gitconfig:
+[user]
+    email = my-email@work.com
+
+# in ~/dev/github/.gitconfig:
+[user]
+    email = my-email@noreply.github.com
+```
+
+After you set this up, you can verify it with `git config --list`.
+
+### `~/.zshrc` -> `~/.zshrc_local`
+
+The [`~/.zshrc`](zsh/.zshrc) file will source a file `~/.zshrc_local` near the
+end, where I apply host-specific settings.
+
+### `~/.ssh/config`
+
+This file is not tracked in my dotfiles repo, because it's host-specific.
+
+Just documenting what I do here as a reference, for selecting the correct ssh
+keys for a host, set up `~/.ssh/config`:
+
+```bash
+# use a non-default ssh key pair for github (id_rsa.github + id_rsa.github.pub)
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/id_rsa.github
+  IdentitiesOnly yes
+```
+
 ## Manual steps
 *Note- at the moment deploying this config requires a few manual steps.
 TODO #2 to make this more automatic.*
@@ -80,46 +142,9 @@ gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty -e
 
 ### direnv
 Set your environment when entering a directory, by placing a `.envrc` file into
-that directory.
+that directory. I'm not using this as much anymore but it can be helpful.
 >https://github.com/direnv/direnv#setup
 
-#### direnv git
-I find it useful for controlling the git author name + email for a set of
-projects, vs. setting each one individually, or setting a global one.
-
-I have this structure:
-```bash
-~/dev
-├── github  # github projects
-│   └── .envrc
-└── work  # work projects
-    └── .envrc
-```
-
-And the contents of the `.envrc` files:
-```bash
-➜ cat ~/dev/github/.envrc
-export GIT_AUTHOR_NAME="Noah Pendleton"
-export GIT_AUTHOR_EMAIL=noahp@users.noreply.github.com
-export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-
-➜ cat ~/dev/work/.envrc
-export GIT_AUTHOR_NAME="Noah Pendleton"
-export GIT_AUTHOR_EMAIL=npendleton@work.com
-export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-```
-
-Related, for selecting the correct ssh keys for a host, set up `~/.ssh/config`:
-```bash
-# use a non-default ssh key pair for github (id_rsa.github + id_rsa.github.pub)
-Host github.com
-  HostName github.com
-  User git
-  IdentityFile ~/.ssh/id_rsa.github
-  IdentitiesOnly yes
-```
 
 #### direnv virtualenvs
 `direnv` can also be used to select a python virtualenv based on directory
