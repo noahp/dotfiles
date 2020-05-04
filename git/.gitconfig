@@ -8,6 +8,7 @@
 	editor = nvim
 [push]
 	default = current
+	recurseSubmodules = check
 [diff]
 	tool = meld
 	colorMoved = dimmed_zebra
