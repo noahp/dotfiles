@@ -16,6 +16,9 @@ set print pretty on
 set print array-indexes on
 set python print-stack full
 
+# useful in case there's weak refs matching a symbol name
+set multiple-symbols ask
+
 # Disable threads display by default
 dashboard threads
 
