@@ -9,7 +9,11 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
-git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
-git submodule update --init --recursive "${DOTBOT_DIR}"
+# Submodule update in both base repo and dotbot directory
+for dir in "${BASEDIR}" "${DOTBOT_DIR}"; do
+    git -C "$dir" submodule sync --quiet --recursive
+    git submodule update --init --recursive "$dir"
+done
 
+# Run the dotbot tool
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"

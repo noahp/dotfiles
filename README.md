@@ -174,8 +174,8 @@ cargo install fd-find
 Powerlevel10k suggested font-
 https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
 
-I didn't have immediate success getting kitty to use the Ubuntu Mono Nerd Font
-so I just went for the Meslo font there 🤷.
+I didn't have immediate success getting alacritty to use the Ubuntu Mono Nerd
+Font so I just went for the Meslo font there 🤷.
 
 
 ### fzf

@@ -7,6 +7,7 @@
 
 - link:
     ~/antigen.zsh: third-party/antigen/bin/antigen.zsh
+    ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/git/ignore: git/ignore
     ~/.config/nvim/init.vim: vim/.vimrc
