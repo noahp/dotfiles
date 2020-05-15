@@ -188,9 +188,9 @@ alias gddd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
-alias gdd='git diff origin/$(git rev-parse --abbrev-ref HEAD)'
-alias gddo='git difftool --dir-diff origin/$(git rev-parse --abbrev-ref HEAD)'
-alias gro='git reset origin/$(git rev-parse --abbrev-ref HEAD)'
+alias gdd='git diff @{u}'
+alias gddo='git difftool --dir-diff @{u}'
+alias gro='git reset @{u}'
 alias gnp='git --no-pager'
 # 'git reset date'... set date of top commit to current date. use a single variable
 # in a subshell to avoid committer/author date not exactly matching
