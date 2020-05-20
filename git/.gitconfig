@@ -32,3 +32,5 @@
 	cookiefile = ~/.gitcookies
 [include]
 	path = ~/.gitconfig-local
+[fetch]
+	parallel = 4
