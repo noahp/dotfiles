@@ -130,14 +130,16 @@ Fast gpu-accelerated terminal emulator written in rust.
 # install cargo
 curl https://sh.rustup.rs -sSf | sh
 # install dependencies
-sudo apt install cmake libfreetype6-dev libfontconfig1-dev xclip
+sudo apt install cmake libfreetype6-dev libfontconfig1-dev xclip \
+    libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev
+
 # install alacritty
 cargo install --git https://github.com/jwilm/alacritty
 # apply in ubuntu
 gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
 
 # to also start tmux when starting alacritty:
-gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty -e tmux'
+gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty --command tmux'
 ```
 
 ### direnv
