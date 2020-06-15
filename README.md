@@ -1,7 +1,7 @@
 [![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)
 [![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)
-[![Travis (.com)
-branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-the-badge)](https://travis-ci.com/noahp/dotfiles)
+[![GitHub Workflow
+Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
 
 # Dotfiles
 
@@ -12,7 +12,7 @@ branch](https://img.shields.io/travis/com/noahp/dotfiles/master.svg?style=for-th
   - [Feature highlight](#feature-highlight)
   - [Customization](#customization)
     - [`~/.gitconfig` -> `~/.gitconfig-local`](#gitconfig---gitconfig-local)
-    - [`~/.zshrc` -> `~/.zshrc_local`](#zshrc---zshrclocal)
+    - [`~/.zshrc` -> `~/.zshrc_local`](#zshrc---zshrc_local)
     - [`~/.ssh/config`](#sshconfig)
   - [Manual steps](#manual-steps)
     - [alacritty](#alacritty)
