@@ -127,10 +127,10 @@ command! -bang Emoj
       \ 'options': '--preview ''emoji-fzf get --name {1}''',
       \ 'sink': function('InsertEmoji')
       \ })
-" Ctrl-e in normal and insert mode will open the emoji picker.
+" Ctrl-k in normal and insert mode will open the emoji picker.
 " Unfortunately doesn't bring you back to insert mode 😕
-map <C-e> :Emoj<CR>
-imap <C-e> <C-o><C-e>
+map <C-k> :Emoj<CR>
+imap <C-k> <C-o><C-k>
 
 " ALE language server client config
 let g:airline#extensions#ale#enabled = 1
