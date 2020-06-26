@@ -197,6 +197,8 @@ alias gnp='git --no-pager'
 alias grd='(GIT_AUTHOR_DATE="$(date -R)"; GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"; git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
 alias gbn='git rev-parse --abbrev-ref HEAD'
 alias gsha='git rev-parse HEAD'
+alias gct='git checkout trunk'
+alias gcmn='git checkout main'
 
 # Other aliases
 
