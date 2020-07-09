@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# run inv lint. on failure, prompt if the user wants to push anyway
+echo -e '\e[1mRunning linter...\e[0m'
+
+# enable tty
+exec < /dev/tty
+
+if ! inv lint; then
+    read -p "Lint failed, push anyway (y/N)? " answer
+    case ${answer:0:1} in
+        y|Y )
+        exit 0
+    ;;
+    * )
+        exit 1
+    ;;
+    esac
+fi
+
+exit 0
