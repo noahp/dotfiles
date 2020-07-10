@@ -39,3 +39,5 @@ RUN sed -i.bkp -e \
       /etc/sudoers
 
 USER ${UNAME}
+
+WORKDIR /mnt/workspace
