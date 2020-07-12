@@ -35,3 +35,5 @@
 	path = ~/.gitconfig-local
 [fetch]
 	parallel = 4
+[rebase]
+	autoStash = true
