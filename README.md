@@ -1,7 +1,5 @@
-[![awesome](https://img.shields.io/badge/awesome-yes-ff69b4.svg?style=for-the-badge)](https://github.com/twitter/twemoji)
-[![useful](https://img.shields.io/badge/useful-nope-blue.svg?style=for-the-badge)](https://badssl.com/)
-[![GitHub Workflow
-Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
+[![GitHub](https://img.shields.io/badge/GitHub-noahp/dotfiles-8da0cb?style=for-the-badge&logo=github)](https://github.com/noahp/dotfiles)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
 
 # Dotfiles
 
