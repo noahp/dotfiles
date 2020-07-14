@@ -2,6 +2,7 @@
 	indent = 4
 [alias]
 	tree = !sh -c \"~/dev/github/git-status-tree/bin/git-status-tree\"
+	cherry-pit = "!f() { git rebase --rebase-merges --onto $1^ $1; }; f"
 [color]
 	ui = true
 [core]
