@@ -38,3 +38,5 @@
 	parallel = 4
 [rebase]
 	autoStash = true
+[grep]
+	extendedRegexp = true
