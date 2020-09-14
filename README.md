@@ -10,6 +10,7 @@
   - [Feature highlight](#feature-highlight)
   - [Customization](#customization)
     - [`~/.gitconfig` -> `~/.gitconfig-local`](#gitconfig---gitconfig-local)
+    - [Multiple github ssh keys](#multiple-github-ssh-keys)
     - [`~/.zshrc` -> `~/.zshrc_local`](#zshrc---zshrc_local)
     - [`~/.ssh/config`](#sshconfig)
   - [Manual steps](#manual-steps)
@@ -94,6 +95,33 @@ settings based on file system location
 ```
 
 After you set this up, you can verify it with `git config --list`.
+
+### Multiple github ssh keys
+
+If you want to use a separate key for git operations to a github organization,
+this is one way to do it:
+
+1. add this to `~/.ssh/config`. note that the host field is arbitrary. assuming
+  `~/.ssh/id_rsa.yolo` is the private key you want to use for this
+  organization:
+
+   ```ini
+   host yolo.github.com
+       hostname github.com
+       identityfile ~/.ssh/id_rsa.yolo
+   ```
+
+2. now add this url substitutor to git config (eg `~/.gitconfig-local`):
+
+   ```ini
+   [url "git@yolo.github.com:MyOrganization"]
+   insteadOf = git@github.com:MyOrganization
+   # if you want to also swap https for ssh
+   insteadOf = https://github.com/MyOrganization
+   ```
+
+Full details from here:
+https://www.lutro.me/posts/different-ssh-keys-per-github-organisation
 
 ### `~/.zshrc` -> `~/.zshrc_local`
 
