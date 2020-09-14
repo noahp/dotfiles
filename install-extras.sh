@@ -86,7 +86,7 @@ if [ "$DOTFILES_INSTALL_VSCODE_EXTS" == "y" ]; then
     # currently this list is manually updated by running:
     # code --list-extensions > ./vscode/extensions.list
     if command_exists code ; then
-        xargs -t -L 1 bash -c "code --install-extension || exit 255" < vscode/extensions.list
+        xargs -t -L 1 -I % bash -c "code --install-extension % || exit 255" < vscode/extensions.list
     fi
 fi
 
