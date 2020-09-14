@@ -5,7 +5,10 @@ RUN apt-get update && apt-get install -y \
     git \
     gpg \
     libasound2 \
+    libdrm2 \
+    libgbm-dev \
     libx11-xcb1 \
+    libxcb-dri3-0 \
     python \
     python-pip \
     sudo
