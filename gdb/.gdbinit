@@ -25,7 +25,7 @@ dashboard threads
 # Add xxd command.
 define xxd
     dump binary memory dump.bin $arg0 $arg0+$arg1
-    shell xxd dump.bin
+    eval "shell xxd -o %d dump.bin", (char *) $arg0
 end
 document xxd
 Run xxd on specified memory region. Usage:
