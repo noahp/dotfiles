@@ -40,3 +40,5 @@
 	autoStash = true
 [grep]
 	extendedRegexp = true
+[pull]
+	rebase = true
