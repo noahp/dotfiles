@@ -215,6 +215,16 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
+### git-status-tree
+
+Git status tree view.
+
+```bash
+sudo apt install -y ruby
+# my configs assume this repo is located at ~/dev/github/git-status-tree
+git clone https://github.com/knugie/git-status-tree.git
+```
+
 ### ripgrep
 Vastly faster grep replacement written in rust.
 >https://github.com/BurntSushi/ripgrep
