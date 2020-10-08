@@ -157,7 +157,7 @@ Fast gpu-accelerated terminal emulator written in rust.
 curl https://sh.rustup.rs -sSf | sh
 # install dependencies
 sudo apt install cmake libfreetype6-dev libfontconfig1-dev xclip \
-    libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev
+    libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev
 
 # install alacritty
 cargo install --git https://github.com/jwilm/alacritty
