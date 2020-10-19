@@ -20,6 +20,7 @@
     - [fd](#fd)
     - [font](#font)
     - [fzf](#fzf)
+    - [git-status-tree](#git-status-tree)
     - [ripgrep](#ripgrep)
     - [python virtualenv](#python-virtualenv)
     - [vs code multi cursor](#vs-code-multi-cursor)
