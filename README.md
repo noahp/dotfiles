@@ -99,29 +99,18 @@ After you set this up, you can verify it with `git config --list`.
 ### Multiple github ssh keys
 
 If you want to use a separate key for git operations to a github organization,
-this is one way to do it:
+this is one way to do it; override the ssh command for a particular directory.
 
-1. add this to `~/.ssh/config`. note that the host field is arbitrary. assuming
-  `~/.ssh/id_rsa.yolo` is the private key you want to use for this
-  organization:
+In the work-specific directory's gitconfig (eg `~/dev/work/.gitconfig`):
 
-   ```ini
-   host yolo.github.com
-       hostname github.com
-       identityfile ~/.ssh/id_rsa.yolo
-   ```
+```bash
+[core]
+    sshCommand = "ssh -i ~/.ssh/id_rsa.work"
+```
 
-2. now add this url substitutor to git config (eg `~/.gitconfig-local`):
-
-   ```ini
-   [url "git@yolo.github.com:MyOrganization"]
-   insteadOf = git@github.com:MyOrganization
-   # if you want to also swap https for ssh
-   insteadOf = https://github.com/MyOrganization
-   ```
-
-Full details from here:
-https://www.lutro.me/posts/different-ssh-keys-per-github-organisation
+Note that if you use `GIT_SSH_COMMAND` to enable debug etc. you'll also need to
+provide the key argument. And this won't help with cloning outside of that
+directory 😕.
 
 ### `~/.zshrc` -> `~/.zshrc_local`
 
