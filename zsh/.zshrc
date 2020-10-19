@@ -342,6 +342,25 @@ function get-urls() {
   for i in $(echo $1); do curl -J -O $i"$2"; done
 }
 
+# check files in the directory tree, printing any with mismatched executable
+# flag vs hashbang line
+function check-hashbang() {
+  # burtally slow with gnu find -_-
+  HASHBANG_BUT_NOT_X=$(fd -t f --exec bash -c "if ((head -n1 {} | rg '#!' > /dev/null) && !(test -x {}) ); then echo {}; fi")
+
+  if [ -n "$HASHBANG_BUT_NOT_X" ]; then
+    echo "HASHBANG_BUT_NOT_X"
+    echo "$HASHBANG_BUT_NOT_X"
+  fi
+
+  X_BUT_NOT_HASHBANG=$(fd -t f --exec bash -c "if (test -x {} && !(head -n1 {} | rg '#!' > /dev/null)); then echo {}; fi")
+
+  if [ -n "$X_BUT_NOT_HASHBANG" ]; then
+    echo "X_BUT_NOT_HASHBANG"
+    echo "$X_BUT_NOT_HASHBANG"
+  fi
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
