@@ -64,3 +64,11 @@ document armex
 ARMv7 Exception entry behavior.
 xPSR, ReturnAddress, LR (R14), R12, R3, R2, R1, and R0
 end
+
+define iregs
+  info registers
+end
+
+document iregs
+Run 'info registers'
+end
