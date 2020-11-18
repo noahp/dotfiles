@@ -361,6 +361,18 @@ function check-hashbang() {
   fi
 }
 
+function in-this-house() {
+  echo "┏┓
+┃┃╱╲ in
+┃╱╱╲╲ this
+╱╱╭╮╲╲house
+▔▏┗┛▕▔ we
+╱▔▔▔▔▔▔▔▔▔▔╲"
+echo $*
+echo "╱╱┏┳┓╭╮┏┳┓ ╲╲
+▔▏┗┻┛┃┃┗┻┛▕▔"
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
