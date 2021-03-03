@@ -1,9 +1,7 @@
-[![GitHub](https://img.shields.io/badge/GitHub-noahp/dotfiles-8da0cb?style=for-the-badge&logo=github)](https://github.com/noahp/dotfiles)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
-
 # Dotfiles
 
-<!-- vim-markdown-toc GFM -->
+[![GitHub](https://img.shields.io/badge/GitHub-noahp/dotfiles-8da0cb?style=for-the-badge&logo=github)](https://github.com/noahp/dotfiles)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
 
 - [Dotfiles](#dotfiles)
   - [Install dotfiles](#install-dotfiles)
@@ -28,9 +26,8 @@
   - [Reference](#reference)
     - [cyrus-gdb](#cyrus-gdb)
 
-<!-- vim-markdown-toc -->
-
 ## Install dotfiles
+
 Run
 
 ```bash
@@ -47,10 +44,12 @@ this repo (see [`install.conf.yaml`](install.conf.yaml) for which links are
 added).
 
 ## Feature highlight
+
 This is mostly used for me to sync prompt configuration/plugins and
 .gdbinit/vimrc between computers.
 
 Rough list of features (might not be updated):
+
 - oh-my-zsh (zsh plugin framework and lots of aliases)
 - powerlevel10k (fast zsh prompt theme)
 - cyrus gdb dashboard (featureful gdb dashboard)
@@ -135,13 +134,16 @@ Host github.com
 ```
 
 ## Manual steps
+
 *Note- at the moment deploying this config requires a few manual steps.
 TODO #2 to make this more automatic.*
 
 ### alacritty
+
 Fast gpu-accelerated terminal emulator written in rust.
 
 >https://github.com/jwilm/alacritty
+
 ```bash
 # install cargo
 curl https://sh.rustup.rs -sSf | sh
@@ -159,12 +161,13 @@ gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty --
 ```
 
 ### direnv
+
 Set your environment when entering a directory, by placing a `.envrc` file into
 that directory. I'm not using this as much anymore but it can be helpful.
 >https://github.com/direnv/direnv#setup
 
-
 #### direnv virtualenvs
+
 `direnv` can also be used to select a python virtualenv based on directory
 location, which can be useful if you have projects that benefit from a little
 isolation, or require different python interpreters; it can save some
@@ -174,12 +177,14 @@ I put my virtualenvs in a folder `~/.virtualenvs`, so this wrapper is useful:
 > https://github.com/direnv/direnv/wiki/Python#virtualenvwrapper
 
 In the individual `.envrc` files, to enter a virtualenv:
+
 ```bash
 # select ~/.virtualenvs/python3
 layout virtualenvwrapper python3
 ```
 
 ### fd
+
 Fast find replacement that honors .gitignore and hidden files by default. Way
 more user-friendly.
 > https://github.com/sharkdp/fd
@@ -189,14 +194,15 @@ cargo install fd-find
 ```
 
 ### font
+
 Powerlevel10k suggested font-
 https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
 
 I didn't have immediate success getting alacritty to use the Ubuntu Mono Nerd
 Font so I just went for the Meslo font there 🤷.
 
-
 ### fzf
+
 Neat fuzzy searcher for terminal history and path searching.
 >https://github.com/junegunn/fzf#using-git
 
@@ -216,15 +222,19 @@ git clone https://github.com/knugie/git-status-tree.git
 ```
 
 ### ripgrep
+
 Vastly faster grep replacement written in rust.
 >https://github.com/BurntSushi/ripgrep
+
 ```bash
 cargo install ripgrep
 ```
 
 ### python virtualenv
+
 Somewhat tidier python environment management to avoid polluting system python
 with all those rando pypi packages you love so much.
+
 ```bash
 sudo apt install python-pip
 
@@ -237,18 +247,24 @@ virtualenv --clear ~/.virtualenvs/default
 ```
 
 ### vs code multi cursor
+
 `gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
 
 ### ydiff
+
 Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
+
 ```bash
 pip install ydiff
 ```
+
 ___
 ___
 
 ## Reference
+
 ### cyrus-gdb
+
 [Nice featureful gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard).
 Tracked as a submodule in this repo.
 
