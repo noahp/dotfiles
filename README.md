@@ -105,12 +105,26 @@ In the work-specific directory's gitconfig (eg `~/dev/work/.gitconfig`):
 
 ```bash
 [core]
-    sshCommand = "ssh -i ~/.ssh/id_rsa.work"
+    sshCommand = "ssh -i ~/.ssh/id_rsa.work.pub"
 ```
 
-Note that if you use `GIT_SSH_COMMAND` to enable debug etc. you'll also need to
-provide the key argument. And this won't help with cloning outside of that
-directory 😕.
+*Note* that we need to use the public part of the identity file to have
+ssh-agent properly select it with the `-i` argument to ssh. By default, `-i`
+will just add the extra file to the keys ssh-agent tries when connecting to the
+remote, but what we want is to select a specific key only, since other keys may
+allow the ssh connection to github but not be on the correct account for the
+repo in question. If we use `IdentitiesOnly` it requires typing the passphrase
+(if present) on each operation, because that bypasses ssh-agent. Using the
+public key seems to have ssh-agent try it first (`explicit agent`). Generate a
+public key from a private key with:
+
+```bash
+ssh-keygen -y -f ~/.ssh/id_rsa.work > ~/.ssh/id_rsa.work.pub
+```
+
+Also note that if you use `GIT_SSH_COMMAND` to enable debug etc. you'll also
+need to provide the key argument. And this won't help with cloning outside of
+that directory 😕.
 
 ### `~/.zshrc` -> `~/.zshrc_local`
 
