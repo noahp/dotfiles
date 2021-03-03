@@ -288,6 +288,14 @@ function piechart() {
   print pie_chart.render()" "$@"
 }
 
+# log_2 distribution of file sizes in cwd
+function filesizes() {
+  find . -type f -print0 | \
+    xargs -0 ls -l | \
+    awk '{size[int(log($5)/log(2))]++}END{for (i in size) printf("%10d %3d\n", 2^i, size[i])}' | \
+    sort -n
+}
+
 # time function
 function bash-time() {
   for i in {1..${2:-255}}; do
