@@ -222,8 +222,6 @@ alias v=nvim
 
 # no safe cp for me
 unalias rm cp mv
-# this gets added somewhere, but I'd rather have https://github.com/sharkdp/fd
-unalias fd
 
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
