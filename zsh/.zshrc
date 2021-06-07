@@ -407,11 +407,6 @@ if [ -f ~/.invoke-completion.zsh ]; then
   source ~/.invoke-completion.zsh
 fi
 
-# Conda utils
-if [ -f ~/miniconda2/etc/profile.d/conda.sh ]; then
-  source ~/miniconda2/etc/profile.d/conda.sh
-fi
-
 # Direnv stuff
 if type direnv > /dev/null; then
   export DIRENV_LOG_FORMAT=  # disable logging
