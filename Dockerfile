@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     libxcb-dri3-0 \
     python \
     python-pip \
-    sudo
+    sudo \
+    libxshmfence1
 
 # install py-commit-checker
 RUN pip install py-commit-checker==0.3.0
