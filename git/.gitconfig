@@ -46,3 +46,18 @@
 	defaultBranch = main
 [blame]
 	ignoreRevsFile = .git-blame-ignore-revs
+[stgit]
+    # always pass `--keep` to commands like `stg pop` and `stg push`.
+    # `--keep` will "keep local changes".
+    # ref: https://stacked-git.github.io/man/stg-push/
+    autokeep = yes
+    # enable rename detection on diffs
+    # ref: https://git-scm.com/docs/git-diff#Documentation/git-diff.txt---find-renamesltngt
+    diff-opts = -M
+    # full documentation for config options: https://github.com/stacked-git/stgit/blob/master/examples/gitconfig
+[stgit "color"]
+    # Specify output colors for series commands
+    applied = cyan_foreground
+    current = green_foreground
+    unapplied = white_foreground
+    hidden = red_foreground
