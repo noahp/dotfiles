@@ -35,7 +35,7 @@ Run
 ./install
 
 # or to also install apt/zsh plugins/vscode extensions
-DOTFILES_INSTALL_ALL=y ./install
+./install-all
 ```
 
 That won't overwrite any existing dotfiles. You'll have to relocate any
@@ -189,9 +189,6 @@ cargo install fd-find
 
 Powerlevel10k suggested font-
 https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
-
-I didn't have immediate success getting alacritty to use the Ubuntu Mono Nerd
-Font so I just went for the Meslo font there 🤷.
 
 ### fzf
 
