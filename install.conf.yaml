@@ -7,7 +7,8 @@
 
 - link:
     ~/antigen.zsh: third-party/antigen/bin/antigen.zsh
-    ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
+    ~/.config/kitty/kitty.conf: kitty/kitty.conf
+    ~/.local/share/applications/kitty-tmux.desktop: kitty/kitty-tmux.desktop
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/git/ignore: git/ignore
     ~/.config/nvim/init.vim: vim/.vimrc

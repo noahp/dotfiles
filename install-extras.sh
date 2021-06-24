@@ -43,6 +43,7 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     command_exists urlview || sudo apt install -y urlview
     command_exists tmux || sudo apt install -y tmux
     command_exists zsh || sudo apt install -y zsh
+    command_exists kitty || sudo apt install -y kitty
 fi
 
 # conditionally fetch a git plugin
@@ -96,7 +97,6 @@ if [ "$DOTFILES_INSTALL_RUSTY_STUFF" == "y" ]; then
     # command_exists cargo || bash <(curl https://sh.rustup.rs -sSf) -y
 
     # TODO disable rust utils install... takes forever!
-    # command_exists alacritty || (sudo apt install -y cmake libfreetype6-dev libfontconfig1-dev xclip && cargo install --git https://github.com/jwilm/alacritty)
     # command_exists rg || cargo install --git https://github.com/BurntSushi/ripgrep
     # command_exists fd || cargo install --git https://github.com/sharkdp/fd
     # command_exists bat || cargo install --git https://github.com/sharkdp/bat

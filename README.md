@@ -12,13 +12,13 @@
     - [`~/.zshrc` -> `~/.zshrc_local`](#zshrc---zshrc_local)
     - [`~/.ssh/config`](#sshconfig)
   - [Manual steps](#manual-steps)
-    - [alacritty](#alacritty)
     - [direnv](#direnv)
       - [direnv virtualenvs](#direnv-virtualenvs)
     - [fd](#fd)
     - [font](#font)
     - [fzf](#fzf)
     - [git-status-tree](#git-status-tree)
+    - [kitty](#kitty)
     - [ripgrep](#ripgrep)
     - [python virtualenv](#python-virtualenv)
     - [vs code multi cursor](#vs-code-multi-cursor)
@@ -152,28 +152,6 @@ Host github.com
 *Note- at the moment deploying this config requires a few manual steps.
 TODO #2 to make this more automatic.*
 
-### alacritty
-
-Fast gpu-accelerated terminal emulator written in rust.
-
->https://github.com/jwilm/alacritty
-
-```bash
-# install cargo
-curl https://sh.rustup.rs -sSf | sh
-# install dependencies
-sudo apt install cmake libfreetype6-dev libfontconfig1-dev xclip \
-    libxcb-render-util0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev
-
-# install alacritty
-cargo install --git https://github.com/jwilm/alacritty
-# apply in ubuntu
-gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty'
-
-# to also start tmux when starting alacritty:
-gsettings set org.gnome.desktop.default-applications.terminal exec 'alacritty --command tmux'
-```
-
 ### direnv
 
 Set your environment when entering a directory, by placing a `.envrc` file into
@@ -233,6 +211,23 @@ Git status tree view.
 sudo apt install -y ruby
 # my configs assume this repo is located at ~/dev/github/git-status-tree
 git clone https://github.com/knugie/git-status-tree.git
+```
+
+### kitty
+
+If you want to use kitty + tmux as default terminal in gnome (eg via
+`ctrl+alt+t` keyboard binding), set it via:
+
+```bash
+gsettings set org.gnome.desktop.default-applications.terminal exec 'gtk-launch kitty-tmux'
+```
+
+The appropriate .desktop file and kitty.conf are installed as part of
+`./install` . If the key binding isn't working, try running this to see any
+error message:
+
+```bash
+journalctl -f _UID=$(id --user)
 ```
 
 ### ripgrep
