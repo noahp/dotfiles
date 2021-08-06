@@ -1,5 +1,6 @@
-FROM ubuntu:bionic
+FROM ubuntu:hirsute
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
     curl \
     git \
@@ -9,8 +10,8 @@ RUN apt-get update && apt-get install -y \
     libgbm-dev \
     libx11-xcb1 \
     libxcb-dri3-0 \
-    python \
-    python-pip \
+    python3 \
+    python3-pip \
     sudo \
     libxshmfence1
 
