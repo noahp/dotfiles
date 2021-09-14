@@ -39,7 +39,13 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     command_exists sudo || apt install sudo -y
 
     command_exists curl || sudo apt install -y curl
-    command_exists nvim || (sudo apt install -y neovim && nvim +PlugUpdate +qall)
+    # install latest neovim
+    command_exists nvim || \
+        (\
+         curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim.appimage > ~/.local/bin/nvim \
+         && chmod +x ~/.local/bin/nvim \
+         && APPIMAGE_EXTRACT_AND_RUN=1 ~/.local/bin/nvim +PlugUpdate +qall\
+        )
     command_exists urlview || sudo apt install -y urlview
     command_exists tmux || sudo apt install -y tmux
     command_exists zsh || sudo apt install -y zsh

@@ -19,7 +19,8 @@ DOCKER_BUILDKIT=1 docker build -t "$DOCKER_IMAGE_NAME" --build-arg "UID=$(id -u)
 
 # enforce emojis on commits
 # test the install script
-docker run --rm -v "$(pwd)":/mnt/workspace -t "$DOCKER_IMAGE_NAME" bash -c "
-    py-commit-checker &&
-    DOTFILES_INSTALL_ALL=y ./install
-"
+docker run --rm \
+    -v "$(pwd)":/mnt/workspace \
+    -t "$DOCKER_IMAGE_NAME" bash -c "
+        ./install-all
+    "
