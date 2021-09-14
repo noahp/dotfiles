@@ -147,13 +147,6 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -390,6 +383,13 @@ export PATH=/usr/lib/ccache:$PATH
 
 # include ~/.local/bin
 export PATH=$PATH:~/.local/bin
+
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR="$(which nvim)"
+fi
 
 # go bins
 [ -d ~/go/bin ] && export PATH=$PATH:~/go/bin
