@@ -52,5 +52,5 @@
     "python.formatting.provider": "black",
     "C_Cpp.clang_format_fallbackStyle": "Google",
     "gitlens.views.fileHistory.enabled": true,
-    "gitlens.views.lineHistory.enabled": true
+    "editor.bracketPairColorization.enabled": true
 }
