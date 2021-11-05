@@ -210,6 +210,20 @@ sudo apt install -y ruby
 git clone https://github.com/knugie/git-status-tree.git
 ```
 
+### gnome-weather in top bar
+
+Requires either configuration in the gnome-weather application or enabling
+location in gnome.
+
+>https://ubuntuhandbook.org/index.php/2020/08/weather-clock-menu-ubuntu-20-04/
+
+```bash
+sudo apt install gnome-weather chrome-gnome-shell
+
+# enable toggle here
+xdg-open https://extensions.gnome.org/extension/1380/weather-in-the-clock/
+```
+
 ### kitty
 
 If you want to use kitty + tmux as default terminal in gnome (eg via
