@@ -42,5 +42,26 @@
     "python.formatting.provider": "black",
     "C_Cpp.clang_format_fallbackStyle": "Google",
     "gitlens.views.fileHistory.enabled": true,
-    "editor.bracketPairColorization.enabled": true
+    "editor.bracketPairColorization.enabled": true,
+    "gitlens.remotes": [
+        {
+            // git://sourceware.org/git/binutils-gdb.git
+            "regex": "git:\\/\\/(sourceware\\.org)\\/git\\/(.+)\\.git",
+            "domain": "sourceware.org",
+            "type": "Custom",
+            "name": "gnu",
+            "protocol": "https",
+            "urls": {
+                "repository": "binutils-gdb",
+                "branches": "https://sourceware.org/git/?p=${repo}.git;a=summary",
+                "branch": "https://sourceware.org/git/?p=${repo}.git;a=history;hb=${branch}",
+                "commit": "https://sourceware.org/git/?p=${repo}.git;a=commit;h=${id}",
+                "file": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file}",
+                "fileInBranch": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file};hb=${branch}${line}",
+                "fileInCommit": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file};hb=${id}${line}",
+                "fileLine": "#l${line}",
+                "fileRange": "#l${start}"
+            }
+        }
+    ],
 }
