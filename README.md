@@ -108,7 +108,7 @@ In the work-specific directory's gitconfig (eg `~/dev/work/.gitconfig`):
     sshCommand = "ssh -i ~/.ssh/id_rsa.work.pub"
 ```
 
-*Note* that we need to use the public part of the identity file to have
+_Note_ that we need to use the public part of the identity file to have
 ssh-agent properly select it with the `-i` argument to ssh. By default, `-i`
 will just add the extra file to the keys ssh-agent tries when connecting to the
 remote, but what we want is to select a specific key only, since other keys may
@@ -149,14 +149,15 @@ Host github.com
 
 ## Manual steps
 
-*Note- at the moment deploying this config requires a few manual steps.
-TODO #2 to make this more automatic.*
+_Note- at the moment deploying this config requires a few manual steps.
+TODO #2 to make this more automatic._
 
 ### direnv
 
 Set your environment when entering a directory, by placing a `.envrc` file into
 that directory. I'm not using this as much anymore but it can be helpful.
->https://github.com/direnv/direnv#setup
+
+> https://github.com/direnv/direnv#setup
 
 #### direnv virtualenvs
 
@@ -166,6 +167,7 @@ isolation, or require different python interpreters; it can save some
 typing/confusion to have dedicated virtualenvs.
 
 I put my virtualenvs in a folder `~/.virtualenvs`, so this wrapper is useful:
+
 > https://github.com/direnv/direnv/wiki/Python#virtualenvwrapper
 
 In the individual `.envrc` files, to enter a virtualenv:
@@ -179,6 +181,7 @@ layout virtualenvwrapper python3
 
 Fast find replacement that honors .gitignore and hidden files by default. Way
 more user-friendly.
+
 > https://github.com/sharkdp/fd
 
 ```bash
@@ -193,7 +196,8 @@ https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-fo
 ### fzf
 
 Neat fuzzy searcher for terminal history and path searching.
->https://github.com/junegunn/fzf#using-git
+
+> https://github.com/junegunn/fzf#using-git
 
 ```bash
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -215,7 +219,7 @@ git clone https://github.com/knugie/git-status-tree.git
 Requires either configuration in the gnome-weather application or enabling
 location in gnome.
 
->https://ubuntuhandbook.org/index.php/2020/08/weather-clock-menu-ubuntu-20-04/
+> https://ubuntuhandbook.org/index.php/2020/08/weather-clock-menu-ubuntu-20-04/
 
 ```bash
 sudo apt install gnome-weather chrome-gnome-shell
@@ -244,7 +248,8 @@ journalctl -f _UID=$(id --user)
 ### ripgrep
 
 Vastly faster grep replacement written in rust.
->https://github.com/BurntSushi/ripgrep
+
+> https://github.com/BurntSushi/ripgrep
 
 ```bash
 cargo install ripgrep
@@ -278,8 +283,9 @@ Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
 pip install ydiff
 ```
 
-___
-___
+---
+
+---
 
 ## Reference
 
@@ -291,4 +297,5 @@ Tracked as a submodule in this repo.
 **Note!** if debugging shared libraries in gdb that haven't been loaded yet, be
 sure to run `set confirm off` to allow setting breakpoints on symbols that
 haven't yet loaded.
->https://github.com/cyrus-and/gdb-dashboard
+
+> https://github.com/cyrus-and/gdb-dashboard
