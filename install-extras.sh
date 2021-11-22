@@ -109,10 +109,8 @@ if [ "$DOTFILES_INSTALL_VSCODE_EXTS" == "y" ]; then
 fi
 
 if [ "$DOTFILES_INSTALL_RUSTY_STUFF" == "y" ]; then
-    echo "DOTFILES_INSTALL_RUSTY_STUFF disabled for now"
-
-    # TODO disable rust utils install... takes forever!
-    # command_exists rg || cargo install --git https://github.com/BurntSushi/ripgrep
-    # command_exists fd || cargo install --git https://github.com/sharkdp/fd
-    # command_exists bat || cargo install --git https://github.com/sharkdp/bat
+    # assumes cargo is installed and on path
+    command_exists rg || cargo install ripgrep
+    command_exists fd || cargo install fd-find
+    command_exists dua || cargo install dua-cli
 fi
