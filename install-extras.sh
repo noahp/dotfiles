@@ -110,6 +110,7 @@ fi
 
 if [ "$DOTFILES_INSTALL_RUSTY_STUFF" == "y" ]; then
     # assumes cargo is installed and on path
+    command_exists sccache || cargo install sccache
     command_exists rg || cargo install ripgrep
     command_exists fd || cargo install fd-find
     command_exists dua || cargo install dua-cli
