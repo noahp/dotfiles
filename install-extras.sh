@@ -39,17 +39,28 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     command_exists sudo || apt install sudo -y
 
     command_exists curl || sudo apt install -y curl
+
     # install latest neovim
+    export APPIMAGE_EXTRACT_AND_RUN=1  # since we're in docker, set this
     command_exists nvim || \
         (\
          curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim.appimage > ~/.local/bin/nvim \
-         && chmod +x ~/.local/bin/nvim \
-         && APPIMAGE_EXTRACT_AND_RUN=1 ~/.local/bin/nvim +PlugUpdate +qall\
+         && chmod +x ~/.local/bin/nvim
         )
+    export PATH="$HOME/.local/bin:$PATH"
+    ln -s ~/.local/bin/nvim ~/.local/bin/neovim
+
     command_exists urlview || sudo apt install -y urlview
     command_exists tmux || sudo apt install -y tmux
     command_exists zsh || sudo apt install -y zsh
     command_exists kitty || sudo apt install -y kitty
+
+    # lunarvim needs a lot of stuff
+    command_exists cargo || bash <(curl https://sh.rustup.rs -sSf) -y
+    export PATH="$HOME/.cargo/bin:$PATH"
+    export NPM_CONFIG_PREFIX=~/.npm-global
+    export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
+    command_exists lvim || yes | bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/0.6.1/utils/installer/install.sh)
 fi
 
 # conditionally fetch a git plugin
@@ -99,8 +110,6 @@ fi
 
 if [ "$DOTFILES_INSTALL_RUSTY_STUFF" == "y" ]; then
     echo "DOTFILES_INSTALL_RUSTY_STUFF disabled for now"
-    # TODO below command doesn't work as-is?
-    # command_exists cargo || bash <(curl https://sh.rustup.rs -sSf) -y
 
     # TODO disable rust utils install... takes forever!
     # command_exists rg || cargo install --git https://github.com/BurntSushi/ripgrep

@@ -209,10 +209,6 @@ alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m
 # emoji picker, uses https://github.com/noahp/emoji-fzf
 alias emoj="emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
-# alias vim to nvim
-alias vim=nvim
-alias v=nvim
-
 # no safe cp for me
 unalias rm cp mv
 
@@ -388,8 +384,15 @@ export PATH=$PATH:~/.local/bin
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR="$(which nvim)"
+  # alias vim to nvim
+  if command -v lvim > /dev/null; then
+    export EDITOR='lvim'
+  else
+    export EDITOR='nvim'
+  fi
 fi
+alias vim=${EDITOR}
+alias v=${EDITOR}
 
 # go bins
 [ -d ~/go/bin ] && export PATH=$PATH:~/go/bin

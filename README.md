@@ -46,7 +46,7 @@ added).
 ## Feature highlight
 
 This is mostly used for me to sync prompt configuration/plugins and
-.gdbinit/vimrc between computers.
+.gdbinit/vim config between computers.
 
 Rough list of features (might not be updated):
 
@@ -54,7 +54,7 @@ Rough list of features (might not be updated):
 - powerlevel10k (fast zsh prompt theme)
 - cyrus gdb dashboard (featureful gdb dashboard)
 - tmux config
-- vimrc (I use it with neovim but might work with vim8 no idea)
+- LunarVim config
 
 Probably the most opinionated thing is the powerlevel10k config.. see
 [`zsh/.p10k.zsh`](zsh/.p10k.zsh) for customizing. That theme also has a
