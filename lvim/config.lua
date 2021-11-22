@@ -11,7 +11,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 vim.opt.timeoutlen = 1000
--- lvim.format_on_save = true  -- disabled for now
+lvim.format_on_save = false  -- disabled for now
 lvim.colorscheme = "onedarker"
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -41,6 +41,9 @@ lvim.keys.insert_mode["jj"] = "<Esc>"
 --     ["<C-k>"] = actions.move_selection_previous,
 --   },
 -- }
+
+-- Add a range format command
+vim.cmd([[command! -range RangeFormat lua vim.lsp.buf.range_formatting()]])
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
