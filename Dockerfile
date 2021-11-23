@@ -8,10 +8,12 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libdrm2 \
     libgbm-dev \
+    libssl-dev \
     libx11-xcb1 \
     libxcb-dri3-0 \
     nodejs \
     npm \
+    pkg-config \
     python3 \
     python3-pip \
     sudo \
