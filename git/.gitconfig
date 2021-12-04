@@ -6,7 +6,6 @@
 [color]
 	ui = true
 [core]
-	editor = nvim
 	excludesfile = ~/.gitignore
 [push]
 	default = current
