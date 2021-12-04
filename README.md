@@ -18,6 +18,7 @@
     - [font](#font)
     - [fzf](#fzf)
     - [git-status-tree](#git-status-tree)
+    - [gnome-weather in top bar](#gnome-weather-in-top-bar)
     - [kitty](#kitty)
     - [ripgrep](#ripgrep)
     - [python virtualenv](#python-virtualenv)
@@ -61,6 +62,8 @@ Probably the most opinionated thing is the powerlevel10k config.. see
 customization wizard, see https://github.com/romkatv/powerlevel10k . It also
 updates a lot so this might break... definitely make an issue if it fails for
 you!
+
+[![.assets/pics/kitty-tmux-example.png](.assets/pics/kitty-tmux-example.png)](.assets/pics/kitty-tmux-example.png)
 
 ## Customization
 
