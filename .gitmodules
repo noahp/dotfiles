@@ -13,3 +13,6 @@
 [submodule "third-party/antigen"]
 	path = third-party/antigen
 	url = ../../zsh-users/antigen.git
+[submodule "third-party/ziglang-shell-completions"]
+	path = third-party/ziglang-shell-completions
+	url = ../../ziglang/shell-completions.git

@@ -425,10 +425,6 @@ if [ -f ~/.zshrc_local ]; then
   source ~/.zshrc_local
 fi
 
-if ! command -v zig 2> /dev/null; then
-  alias zig='python -m ziglang'
-fi
-
 # venv launch
 if [ -f ~/.virtualenvs/default/bin/activate ]; then
   source ~/.virtualenvs/default/bin/activate
