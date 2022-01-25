@@ -109,7 +109,7 @@ source ~/antigen.zsh
 antigen use oh-my-zsh
 
 # oh-my-zsh included bundles
-antigen bundle cargo
+antigen bundle rust
 antigen bundle colored-man-pages
 antigen bundle common-aliases
 antigen bundle git
