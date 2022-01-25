@@ -72,3 +72,11 @@ end
 document iregs
 Run 'info registers'
 end
+
+# Only source the local gdbinit file if it exists
+python
+import os
+gdbinit_local = os.path.expanduser("~/.gdbinit-local")
+if os.path.exists(gdbinit_local):
+  gdb.execute("source {}".format(gdbinit_local))
+end
