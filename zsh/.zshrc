@@ -216,6 +216,9 @@ unalias rm cp mv
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
 alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 
+# lazgit shortcut
+alias lg=lazygit
+
 # Custom functions
 
 # Profile zsh startup
