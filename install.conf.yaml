@@ -17,6 +17,7 @@
     ~/.gitconfig: git/.gitconfig
     ~/.local/bin/committime: git/committime.sh
     ~/.local/bin/inotify-consumers: scripts/inotify-consumers
+    ~/.local/bin/wa: scripts/wa
     ~/.local/bin/zig: zig/zig
     ~/.tmux.conf: tmux/.tmux.conf
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
