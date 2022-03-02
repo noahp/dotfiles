@@ -236,7 +236,7 @@ function git-plot-loc()	{
 # git chery-pit (remove commit)
 function git-cherry-pit() {
     # remove a commit forever, goodbye (well ok it's still in the reflog if you have regrets)
-    git rebase -p --onto $1^ $1
+    git rebase -r --onto $1^ $1
 }
 
 # reset timestamps of commits
