@@ -1,0 +1,2 @@
+# suppress splash screen on startup
+set startup-quietly on
