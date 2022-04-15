@@ -1,8 +1,7 @@
 # Import Cyrus gdb dashboard
 source ~/.gdb-cyrus-dashboard
 
-# Bring in backtrace colorize and typeof
-source ~/.tromey-gdb-helpers/gdbhelpers/colorize.py
+# Bring in typeof
 source ~/.tromey-gdb-helpers/gdbhelpers/typeof.py
 
 # Tweak some defaults
