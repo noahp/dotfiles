@@ -1,0 +1,12 @@
+# https://github.com/cheshirekow/cmake_format
+
+_help_format: Options affecting formatting.
+format:
+  _help_max_pargs_hwrap:
+  - If a positional argument group contains more than this many
+  - arguments, then force it to a vertical layout.
+  max_pargs_hwrap: 1
+  _help_dangle_parens:
+  - If a statement is wrapped to more than one line, than dangle
+  - the closing parenthesis on its own line.
+  dangle_parens: true
