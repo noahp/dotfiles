@@ -64,4 +64,5 @@
             }
         }
     ],
+    "workbench.editor.wrapTabs": true,
 }
