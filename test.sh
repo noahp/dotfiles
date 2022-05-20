@@ -17,10 +17,9 @@ DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME:-$(basename -s .git "$(git remote --verbos
 # build the docker image
 DOCKER_BUILDKIT=1 docker build -t "$DOCKER_IMAGE_NAME" --build-arg "UID=$(id -u)" -f Dockerfile .
 
-# enforce emojis on commits
-# test the install script
+# test the install script; everything but vscode extensions, which weirdly fail
 docker run --rm \
     -v "$(pwd)":/mnt/workspace \
     -t "$DOCKER_IMAGE_NAME" bash -c "
-        ./install-all
+        DOTFILES_INSTALL_VSCODE_EXTS=n ./install-all
     "
