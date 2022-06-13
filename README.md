@@ -233,16 +233,15 @@ xdg-open https://extensions.gnome.org/extension/1380/weather-in-the-clock/
 
 ### kitty
 
-If you want to use kitty + tmux as default terminal in gnome (eg via
-`ctrl+alt+t` keyboard binding), set it via:
+If you want to use kitty as default terminal in gnome (eg via `ctrl+alt+t`
+keyboard binding), set it via:
 
 ```bash
-gsettings set org.gnome.desktop.default-applications.terminal exec 'gtk-launch kitty-tmux'
+gsettings set org.gnome.desktop.default-applications.terminal exec "$HOME/.local/kitty.app/bin/kitty"
 ```
 
-The appropriate .desktop file and kitty.conf are installed as part of
-`./install` . If the key binding isn't working, try running this to see any
-error message:
+kitty.conf is installed as part of `./install` . If the key binding isn't
+working, try running this to see any error message:
 
 ```bash
 journalctl -f _UID=$(id --user)

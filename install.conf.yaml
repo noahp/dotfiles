@@ -8,7 +8,6 @@
 - link:
     ~/antigen.zsh: third-party/antigen/bin/antigen.zsh
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
-    ~/.local/share/applications/kitty-tmux.desktop: kitty/kitty-tmux.desktop
     ~/.cmake-format.yaml: cmake-format/.cmake-format.yaml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/git/ignore: git/ignore
