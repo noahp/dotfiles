@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+BLACK_ARGS=
+
+# hacky way to have repository-local setting
+if git config --get black.preview > /dev/null 2>&1; then
+    BLACK_ARGS="--preview"
+fi
+
+# use pipx installed black
+/home/noah/.local/bin/black ${BLACK_ARGS} "$@"
