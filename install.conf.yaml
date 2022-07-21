@@ -25,6 +25,7 @@
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
     ~/.urlview: urlview/.urlview
     ~/.config/lvim/config.lua: lvim/config.lua
+    ~/.tiorc: tio/.tiorc
     ~/.zfunc/_rg: third-party/BurntSushi-ripgrep/complete/_rg
     ~/.zfunc/_zig: third-party/ziglang-shell-completions/_zig
     ~/.zshrc: zsh/.zshrc

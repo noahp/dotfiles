@@ -1,0 +1,3 @@
+[acm]
+pattern = acm([0-9]*)
+tty = /dev/ttyACM%s
