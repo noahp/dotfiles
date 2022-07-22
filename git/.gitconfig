@@ -60,3 +60,5 @@
     current = green_foreground
     unapplied = white_foreground
     hidden = red_foreground
+[gc]
+	auto = 0
