@@ -197,6 +197,7 @@ alias gbn='git rev-parse --abbrev-ref HEAD'
 alias gsha='git rev-parse HEAD'
 alias gct='git checkout trunk'
 alias gcmn='git checkout main'
+alias ghprdesc='gh pr edit --title "$(git log -n1 --format="%s")" --body "$(git log -n1 --format="%b")"'
 
 # Other aliases
 
@@ -375,6 +376,12 @@ echo $*
 echo "╱╱┏┳┓╭╮┏┳┓ ╲╲
 ▔▏┗┻┛┃┃┗┻┛▕▔"
 }
+
+function ghrbm() {( set -e        # Fail early
+  local DEFAULT_BRANCH_=$(gh api repos/{owner}/{repo} --jq ".default_branch")
+  git fetch origin
+  git rebase origin/${DEFAULT_BRANCH_} "$@"
+)}
 
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
