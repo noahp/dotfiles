@@ -79,3 +79,42 @@ gdbinit_local = os.path.expanduser("~/.gdbinit-local")
 if os.path.exists(gdbinit_local):
   gdb.execute("source {}".format(gdbinit_local))
 end
+
+python
+class NvicInfo(gdb.Command):
+    """Pretty print out interesting ARMv7m NVIC registers"""
+
+    def __init__(self):
+        super(NvicInfo, self).__init__(
+            "nvicinfo", gdb.COMMAND_USER
+        )
+
+    def invoke(self, args, from_tty):
+        del args
+        del from_tty
+
+        # deets: https://developer.arm.com/documentation/ddi0439/b/Nested-Vectored-Interrupt-Controller/NVIC-programmers-model
+        # 7 of each of these
+        nvic_regs = {
+            "ISER" : 0xE000E100,
+            "ISPR" : 0xE000E200,
+            "IABR" : 0xE000E300,
+        }
+
+        for name, address in nvic_regs.items():
+            active = []
+            for i in range(7):
+                bit = 0
+                val = self._read32(address + i * 4)
+                val = format(val, '032b')
+                active.extend([(j + i*32) for j, ltr in enumerate(val) if ltr == '1'])
+            print("{} :\n\t{}".format(name, "\n\t".join(active)))
+
+    @staticmethod
+    def _read32(address):
+      """read 32 bit val from memory address"""
+      value = gdb.selected_inferior().read_memory(address, 4)
+      return struct.unpack_from("<I", value)[0]
+
+NvicInfo()
+end
