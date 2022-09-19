@@ -18,6 +18,7 @@
     ~/.gitconfig: git/.gitconfig
     ~/.local/bin/black-preview: scripts/black-preview
     ~/.local/bin/committime: git/committime.sh
+    ~/.local/bin/maxminvers.py: scripts/maxminvers.py
     ~/.local/bin/inotify-consumers: scripts/inotify-consumers
     ~/.local/bin/wa: scripts/wa
     ~/.local/bin/zig: zig/zig
