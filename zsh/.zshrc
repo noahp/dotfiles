@@ -107,6 +107,17 @@ ZSH_DISABLE_COMPFIX=true
 # Load completions
 fpath+=~/.zfunc
 
+# History configuration
+HISTFILE=~/.zsh_history.noah     # set an explicit history file, to prevent it getting clobbered
+HISTSIZE=                        # unlimited history
+SAVEHIST=$HISTSIZE
+setopt HIST_IGNORE_DUPS          # Do not record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+# setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Do not record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+
 # Antigen managed plugins
 # see https://github.com/zsh-users/antigen/wiki/Commands
 source ~/antigen.zsh
@@ -136,16 +147,6 @@ antigen apply
 # autoload -Uz zargs
 autoload -Uz zcalc
 # autoload -Uz zmv
-
-# History configuration
-HISTSIZE=10000000
-SAVEHIST=$HISTSIZE
-setopt HIST_IGNORE_DUPS          # Do not record an entry that was just recorded again.
-setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
-# setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
-setopt HIST_IGNORE_SPACE         # Do not record an entry starting with a space.
-setopt HIST_SAVE_NO_DUPS         # Do not write duplicate entries in the history file.
-setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
