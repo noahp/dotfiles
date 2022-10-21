@@ -384,6 +384,10 @@ function ghrbm() {( set -e        # Fail early
   git rebase origin/${DEFAULT_BRANCH_} "$@"
 )}
 
+function git-long-commit-messages() {
+  git log --pretty='%H' | xargs -I {} bash -c 'echo $(git log {} -n1 --pretty="format:%B" | wc --bytes) $(git log {} -n1 --pretty="format:%h %cI %an %s")' | sort --key=1 --reverse --numeric-sort
+}
+
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
