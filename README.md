@@ -3,6 +3,8 @@
 [![GitHub](https://img.shields.io/badge/GitHub-noahp/dotfiles-8da0cb?style=for-the-badge&logo=github)](https://github.com/noahp/dotfiles)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
 
+<!-- markdown-toc-cli -->
+
 - [Dotfiles](#dotfiles)
   - [Install dotfiles](#install-dotfiles)
   - [Feature highlight](#feature-highlight)
@@ -26,6 +28,8 @@
     - [ydiff](#ydiff)
   - [Reference](#reference)
     - [cyrus-gdb](#cyrus-gdb)
+
+<!-- markdown-toc-cli-end -->
 
 ## Install dotfiles
 
