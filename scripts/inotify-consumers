@@ -36,7 +36,7 @@ if [ "$1" = "--limits" -o "$1" = "-l" ]; then
 fi
 
 if [ "$1" = "--help" -o "$1" = "-h" ]; then
-    usage 
+    usage
     exit 0
 fi
 
@@ -89,6 +89,6 @@ generateData
 if [ -n "$PRINT_INSTANCES" ]; then
     FIL=$(mktemp)
     for foo in /proc/\*/fd/*; do readlink -f $foo; done |grep '^/proc/.*inotify' |cut -d/ -f3 | xargs -I '{}' -- ps --no-headers -o '%p %U %a' -p '{}' |uniq -c |sort -n > $FIL
-    cat $FIL 
+    cat $FIL
     cat "TOTAL = $(total=0 cat ut | cut -f7 -d' ' | { while read num; do let total+=$num; done; echo $total; })"
 fi

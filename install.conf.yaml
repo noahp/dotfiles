@@ -3,7 +3,7 @@
       create: true
       relink: true
 
-- clean: ['~']
+- clean: ["~"]
 
 - link:
     ~/antigen.zsh: third-party/antigen/bin/antigen.zsh
@@ -34,8 +34,7 @@
 
 - shell:
     # see the script for optional behavior. by default no action taken
-      -
-        command: bash install-extras.sh
-        stdout: true
-        stderr: true
-        description: Install extras. By default no action, set DOTFILE_INSTALL_ALL=y to install all!
+    - command: bash install-extras.sh
+      stdout: true
+      stderr: true
+      description: Install extras. By default no action, set DOTFILE_INSTALL_ALL=y to install all!

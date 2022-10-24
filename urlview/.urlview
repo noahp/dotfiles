@@ -29,4 +29,3 @@ COMMAND nohup google-chrome %s >/dev/null 2>&1 &
 #COMMAND url_handler.sh
 #COMMAND firefox %s
 #COMMAND chromium %s
-
