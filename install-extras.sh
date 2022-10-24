@@ -50,10 +50,10 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     export PATH="$HOME/.local/bin:$PATH"
     ln -s ~/.local/bin/nvim ~/.local/bin/neovim
 
-    command_exists urlview || sudo apt install -y urlview
-    command_exists tmux || sudo apt install -y tmux
-    command_exists zsh || sudo apt install -y zsh
-    command_exists kitty || sudo apt install -y kitty
+    command_exists urlview || (sudo apt update && sudo apt install -y urlview)
+    command_exists tmux || (sudo apt update && sudo apt install -y tmux)
+    command_exists zsh || (sudo apt update && sudo apt install -y zsh)
+    command_exists kitty || (curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin)
 
     # lunarvim needs a lot of stuff
     command_exists cargo || bash <(curl https://sh.rustup.rs -sSf) -y

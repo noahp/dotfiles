@@ -1,7 +1,8 @@
 FROM ubuntu:hirsute
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -y \
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
     git \
     gpg \
@@ -17,24 +18,27 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     sudo \
-    libxshmfence1
+    libxshmfence1 \
+    \
+    && rm -rf /var/lib/apt/lists/*
 
 # install py-commit-checker
-RUN pip install py-commit-checker==0.3.0
+RUN pip install --no-cache-dir py-commit-checker==0.3.0
+
+SHELL ["/bin/bash", "-c", "-o", "pipefail"]
 
 # Install vscode for code extension setup test
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
-    sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/ && \
-    sudo sh -c \
+    install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/ && \
+    sh -c \
     'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > \
     /etc/apt/sources.list.d/vscode.list'
 
-RUN sudo apt-get update && sudo apt-get install -y \
-    code
-
-# For some reason this is required after installing code, otherwise
-# installing python3.6 (for neovim) will fail
-RUN sudo apt-get update
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    code \
+    \
+    && rm -rf /var/lib/apt/lists/*
 
 # Test user, so we're not running the script as root
 ARG UID=1010
