@@ -13,20 +13,36 @@
 # 4.3.1
 # 4.4.1
 
+
 import sys
+from dataclasses import dataclass
+from typing import Generator, List
 
 import semver
 
 
-def main():
-    versions = [x.strip().strip("v") for x in sys.stdin.readlines()]
+@dataclass
+class RawAndParsedVersion:
+    """
+    Save raw and parsed versions in a single object
+    """
 
-    def verparse(versions):
+    raw: str
+    parsed: semver.VersionInfo
+
+    def __str__(self):
+        return self.raw
+
+
+def main():
+    versions = [x.strip() for x in sys.stdin.readlines()]
+
+    def verparse(versions: List[str]) -> Generator[RawAndParsedVersion]:
         for ver in versions:
             try:
-                version = semver.VersionInfo.parse(ver)
+                version = semver.VersionInfo.parse(ver.strip("v"))
                 if not version.prerelease:
-                    yield version
+                    yield RawAndParsedVersion(ver, version)
             except ValueError:
                 pass
 
@@ -36,10 +52,13 @@ def main():
     max_minor_releases = []
     cursor = sorted_versions[0]
     for version in sorted_versions[1:]:
-        if version.major > cursor.major or version.minor > cursor.minor:
+        if (
+            version.parsed.major > cursor.parsed.major
+            or version.parsed.minor > cursor.parsed.minor
+        ):
             max_minor_releases.append(cursor)
             cursor = version
-        elif version.patch > cursor.patch:
+        elif version.parsed.patch > cursor.parsed.patch:
             cursor = version
 
     max_minor_releases.append(cursor)
