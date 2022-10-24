@@ -1,8 +1,9 @@
-FROM ubuntu:hirsute
+FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 # hadolint ignore=DL3008
 RUN apt-get update && apt-get install --no-install-recommends -y \
+    build-essential \
     curl \
     git \
     gpg \
@@ -12,13 +13,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libssl-dev \
     libx11-xcb1 \
     libxcb-dri3-0 \
+    libxshmfence1 \
     nodejs \
     npm \
     pkg-config \
     python3 \
     python3-pip \
     sudo \
-    libxshmfence1 \
+    xz-utils \
     \
     && rm -rf /var/lib/apt/lists/*
 
