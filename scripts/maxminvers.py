@@ -16,7 +16,7 @@
 
 import sys
 from dataclasses import dataclass
-from typing import Generator, List
+from typing import Iterable, List
 
 import semver
 
@@ -37,7 +37,7 @@ class RawAndParsedVersion:
 def main():
     versions = [x.strip() for x in sys.stdin.readlines()]
 
-    def verparse(versions: List[str]) -> Generator[RawAndParsedVersion]:
+    def verparse(versions: List[str]) -> Iterable[RawAndParsedVersion]:
         for ver in versions:
             try:
                 version = semver.VersionInfo.parse(ver.strip("v"))
