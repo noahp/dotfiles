@@ -46,7 +46,7 @@ def main():
             except ValueError:
                 pass
 
-    sorted_versions = list(verparse(versions))
+    sorted_versions = sorted(list(verparse(versions)), key=lambda x: x.parsed)
     # print([str(x) for x in sorted_versions])
 
     max_minor_releases = []
