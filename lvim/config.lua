@@ -150,3 +150,8 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- lvim.autocommands.custom_groups = {
 --   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
 -- }
+
+-- Sad workaround for https://github.com/neovim/neovim/issues/4867#issuecomment-291249173
+-- It doesn't really work; fixes it only for the current pane, and is hard-coded.
+-- Splitting a new pane or window ends up with the box cursor again
+vim.cmd('autocmd VimLeave,VimSuspend * set guicursor=a:ver90-blinkon500') -- Beam
