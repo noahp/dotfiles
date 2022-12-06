@@ -34,17 +34,24 @@ class RawAndParsedVersion:
         return self.raw
 
 
+def verparse(versions: List[str]) -> Iterable[RawAndParsedVersion]:
+    """Parse a list of versions, yielding RawAndParsedVersion objects"""
+    for ver in versions:
+        try:
+            version = semver.VersionInfo.parse(ver.strip("v"))
+        except ValueError:
+            try:
+                # some tags are not valid semver, but missing a patch number.
+                # try adding it
+                version = semver.VersionInfo.parse(ver.strip("v") + ".0")
+            except ValueError:
+                continue
+        if not version.prerelease:
+            yield RawAndParsedVersion(ver, version)
+
+
 def main():
     versions = [x.strip() for x in sys.stdin.readlines()]
-
-    def verparse(versions: List[str]) -> Iterable[RawAndParsedVersion]:
-        for ver in versions:
-            try:
-                version = semver.VersionInfo.parse(ver.strip("v"))
-                if not version.prerelease:
-                    yield RawAndParsedVersion(ver, version)
-            except ValueError:
-                pass
 
     sorted_versions = sorted(list(verparse(versions)), key=lambda x: x.parsed)
     # print([str(x) for x in sorted_versions])
