@@ -274,6 +274,14 @@ function git-stats() {
     git ls-files $1 | grep -v "\.csv\|\.bin\|\.so\|\.dll" | xargs -n1 git blame -w | perl -n -e '/^.*?\((.*?)\s+[\d]{4}/; print $1,"\n"' | sort -f | uniq -c | sort -nr
 }
 
+# which tags contain a particular committish?
+function git-tags-contain() {
+    local _hash="$1"
+    (
+        git tag --sort=creatordate | xargs -I % bash -c "git merge-base --is-ancestor ${_hash} % && echo % has ${_hash}"
+    ) | sort -V
+}
+
 # print an svg piechart to stdout
 # requires pygal (pip install pygal)
 # ex: piechart "My Chart" "cat 1" 1.25 "cat 2" 3.56 "cat 3" 2.34 > /tmp/out.svg && firefox /tmp/out.svg
