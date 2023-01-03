@@ -79,10 +79,13 @@ function full_image() {
 if ${FORCE_IMAGE}; then
      full_image
 else
-RESPONSE=$(curl -s "https://api.wolframalpha.com/v1/result?appid=$APPID&units=metric&" --data-urlencode "i=$ARG1" | tee /dev/tty)
+     RESPONSE=$(curl -s "https://api.wolframalpha.com/v1/result?appid=$APPID&units=metric&" --data-urlencode "i=$ARG1" | tee /dev/tty)
+     # extra echo for newline
+     echo
 
-# Remove next if you are fine with text only api, and don't want to see any images
-test "No short answer available" = "$RESPONSE"\
-     && echo ", downloading full answer..."\
-     && full_image
+     # Remove next if you are fine with text only api, and don't want to see any images
+     if [ "No short answer available" = "$RESPONSE" ]; then
+          echo "Downloading full answer..."
+          full_image
+     fi
 fi
