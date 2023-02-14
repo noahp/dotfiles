@@ -141,6 +141,10 @@ antigen theme romkatv/powerlevel10k #1777bd41a68c99963e009c55a0f500396e485d07
 
 antigen apply
 
+# Disable auto-escaping urls in wget/curl. This actually doesn't work to disable
+# that behavior, unfortunately 😩. Leaving it for reference
+zstyle ':urlglobber' url-other-schema
+
 # Autoload Zsh functions. Just enabling zcalc for now, the others may cause
 # overreliance on zsh!
 # autoload -Uz age
