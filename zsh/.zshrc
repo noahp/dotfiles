@@ -108,7 +108,13 @@ ZSH_DISABLE_COMPFIX=true
 fpath+=~/.zfunc
 
 # History configuration
-HISTFILE=~/.zsh_history.noah     # set an explicit history file, to prevent it getting clobbered
+# set an explicit history file, to prevent it getting clobbered. if the
+# synced history file is present, use it, otherwise use the local history file.
+if [ -f ~/dev/github/zsh-history/.zsh_history.noah ]; then
+HISTFILE=~/dev/github/zsh-history/.zsh_history.noah
+else
+HISTFILE=~/.zsh_history.noah
+fi
 HISTSIZE=                        # unlimited history
 SAVEHIST=$HISTSIZE
 setopt HIST_IGNORE_DUPS          # Do not record an entry that was just recorded again.
