@@ -11,6 +11,7 @@
     ~/.cmake-format.yaml: cmake-format/.cmake-format.yaml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/.config/git/ignore: git/ignore
+    ~/.ipython/profile_default/ipython_config.py: ipython/ipython_config.py
     ~/.direnvrc: direnv/.direnvrc
     ~/.gdb-cyrus-dashboard: third-party/cyrus-gdb-dashboard/.gdbinit
     ~/.gdbinit: gdb/.gdbinit
