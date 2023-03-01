@@ -292,6 +292,19 @@ function git-tags-contain() {
     ) | sort -V
 }
 
+# ratio of commit contents to total commit size
+function git-commit-message-ratio() {
+  local _commitish=${1:-HEAD}
+  local total_size=$(git cat-file -s $_commitish)
+  local message_size=$(git show --log-size | head -n2 | tail -n1 | cut -d' ' -f3)
+  local contents_size=$(($total_size - $message_size))
+  local ratio=$(echo "scale=3; $contents_size / $total_size" | bc)
+  echo "total size: $total_size"
+  echo "message size: $message_size"
+  echo "contents size: $contents_size"
+  echo "  ratio: $contents_size / $total_size = $ratio"
+}
+
 # print an svg piechart to stdout
 # requires pygal (pip install pygal)
 # ex: piechart "My Chart" "cat 1" 1.25 "cat 2" 3.56 "cat 3" 2.34 > /tmp/out.svg && firefox /tmp/out.svg
