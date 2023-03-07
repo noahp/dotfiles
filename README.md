@@ -1,7 +1,7 @@
 # Dotfiles
 
 [![GitHub](https://img.shields.io/badge/GitHub-noahp/dotfiles-8da0cb?style=for-the-badge&logo=github)](https://github.com/noahp/dotfiles)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/noahp/dotfiles/main-ci?logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/noahp/dotfiles/main.yml?branch=main&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
 
 <!-- markdown-toc-cli -->
 
@@ -9,9 +9,9 @@
   - [Install dotfiles](#install-dotfiles)
   - [Feature highlight](#feature-highlight)
   - [Customization](#customization)
-    - [`~/.gitconfig` -> `~/.gitconfig-local`](#gitconfig---gitconfig-local)
+    - [`~/.gitconfig` -\> `~/.gitconfig-local`](#gitconfig---gitconfig-local)
     - [Multiple github ssh keys](#multiple-github-ssh-keys)
-    - [`~/.zshrc` -> `~/.zshrc_local`](#zshrc---zshrc_local)
+    - [`~/.zshrc` -\> `~/.zshrc_local`](#zshrc---zshrc_local)
     - [`~/.ssh/config`](#sshconfig)
   - [Manual steps](#manual-steps)
     - [direnv](#direnv)
