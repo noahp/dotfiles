@@ -54,20 +54,6 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     command_exists tmux || (sudo apt update && sudo apt install -y tmux)
     command_exists zsh || (sudo apt update && sudo apt install -y zsh)
     command_exists kitty || (curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin)
-
-    # lunarvim needs a lot of stuff
-    command_exists cargo || bash <(curl https://sh.rustup.rs -sSf) -y
-    export PATH="$HOME/.cargo/bin:$PATH"
-    export NPM_CONFIG_PREFIX=~/.npm-global
-    export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-    # stash lunarvim config symlink, the installer overwrites it
-    if [[ -f ~/.config/lvim/config.lua ]]; then
-        mv ~/.config/lvim/config.lua ~/.config/lvim/config.lua.bak
-    fi
-    command_exists lvim || yes | bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/0.6.1/utils/installer/install.sh)
-    if [[ -f ~/.config/lvim/config.lua.bak ]]; then
-        mv ~/.config/lvim/config.lua.bak ~/.config/lvim/config.lua
-    fi
 fi
 
 # conditionally fetch a git plugin
