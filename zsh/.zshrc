@@ -441,6 +441,15 @@ fi
 alias vim=${EDITOR}
 alias v=${EDITOR}
 
+# If available, make use of the bfs binary and search directories
+# breadth-first instead of the default depth-first.
+#
+# Find bfs here: https://github.com/tavianator/bfs
+
+if [ -x "$(command -v bfs)" ]; then
+  export FZF_ALT_C_COMMAND="bfs -type d -nohidden 2> /dev/null"
+fi
+
 # go bins
 [ -d ~/go/bin ] && export PATH=$PATH:~/go/bin
 
