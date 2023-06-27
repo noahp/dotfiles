@@ -38,7 +38,7 @@ def verparse(versions: List[str]) -> Iterable[RawAndParsedVersion]:
     """Parse a list of versions, yielding RawAndParsedVersion objects"""
     for ver in versions:
         try:
-            version = semver.VersionInfo.parse(ver.strip("v"))
+            version = semver.VersionInfo.parse(ver.strip("vV"))
         except ValueError:
             try:
                 # some tags are not valid semver, but missing a patch number.
