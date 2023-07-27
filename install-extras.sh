@@ -48,7 +48,7 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
          && chmod +x ~/.local/bin/nvim
         )
     export PATH="$HOME/.local/bin:$PATH"
-    ln -s ~/.local/bin/nvim ~/.local/bin/neovim
+    ln -sf ~/.local/bin/nvim ~/.local/bin/neovim
 
     command_exists urlview || (sudo apt update && sudo apt install -y urlview)
     command_exists tmux || (sudo apt update && sudo apt install -y tmux)
