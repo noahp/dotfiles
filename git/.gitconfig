@@ -62,3 +62,5 @@
 	hidden = red_foreground
 [gc]
 	auto = 0
+[protocol "file"]
+	allow = always
