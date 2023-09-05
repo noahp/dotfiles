@@ -1,2 +1,4 @@
 # suppress splash screen on startup
 set startup-quietly on
+# don't ask about debuginfod
+set debuginfod enabled off
