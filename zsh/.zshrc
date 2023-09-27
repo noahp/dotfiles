@@ -13,7 +13,7 @@ fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block, everything else may go below.
+# confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -43,7 +43,7 @@ P10K_BRANCH_SUBST_REPLACE=👴
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -62,31 +62,6 @@ DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
-
-# Some extra completion settings. Disabled for now until I test for performance
-# impact
-
-# this group from https://github.com/ehynds/dotfiles/blob/master/.zshrc
-# zstyle ':completion:*' accept-exact '*(N)'
-# zstyle ':completion:*' use-cache on
-# zstyle ':completion:*' cache-path ~/.zsh/cache
-
-# next group from https://unix.stackexchange.com/a/214699
-# # Do menu-driven completion.
-# zstyle ':completion:*' menu select
-
-# # Color completion for some things.
-# # http://linuxshellaccount.blogspot.com/2008/12/color-completion-using-zsh-modules-on.html
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# # formatting and messages
-# # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
-# zstyle ':completion:*' verbose yes
-# zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
-# zstyle ':completion:*:messages' format '%d'
-# zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
-# zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
-# zstyle ':completion:*' group-name ''
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -157,6 +132,32 @@ zstyle ':urlglobber' url-other-schema
 # autoload -Uz zargs
 autoload -Uz zcalc
 # autoload -Uz zmv
+
+# Some extra completion settings. Disabled for now until I test for performance
+# impact
+
+# this group from https://github.com/ehynds/dotfiles/blob/master/.zshrc
+# zstyle ':completion:*' accept-exact '*(N)'
+# zstyle ':completion:*' use-cache on
+# zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# next group from https://unix.stackexchange.com/a/214699
+# # Do menu-driven completion.
+# zstyle ':completion:*' menu select
+
+# Color completion for some things; match ls colors
+# http://linuxshellaccount.blogspot.com/2008/12/color-completion-using-zsh-modules-on.html
+eval "$(dircolors -b)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# # formatting and messages
+# # http://www.masterzen.fr/2009/04/19/in-love-with-zsh-part-one/
+# zstyle ':completion:*' verbose yes
+# zstyle ':completion:*:descriptions' format "$fg[yellow]%B--- %d%b"
+# zstyle ':completion:*:messages' format '%d'
+# zstyle ':completion:*:warnings' format "$fg[red]No matches for:$reset_color %d"
+# zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
+# zstyle ':completion:*' group-name ''
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
