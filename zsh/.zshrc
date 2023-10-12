@@ -237,6 +237,9 @@ alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 # lazgit shortcut
 alias lg=lazygit
 
+# quick serial port
+alias sp='tio $(fd -1 . /dev/serial/by-id/)'
+
 # Custom functions
 
 # Profile zsh startup
