@@ -28,7 +28,7 @@ if __name__ == "__main__":
             if line:
                 count, date = line.strip().split()
                 x.append(date.strip())
-                y.append(count.strip())
+                y.append(int(count.strip()))
         # convert the date array to a numpy datetime object
         x = np.array(x, dtype="datetime64[m]")
         fig = px.line(
