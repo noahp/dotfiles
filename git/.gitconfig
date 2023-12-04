@@ -7,7 +7,6 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
-	commentChar = auto
 [push]
 	default = current
 	recurseSubmodules = check
