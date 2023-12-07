@@ -210,6 +210,10 @@ alias gsha='git rev-parse HEAD'
 alias gct='git checkout trunk'
 alias gcmn='git checkout main'
 alias ghprdesc='gh pr edit --title "$(git log -n1 --format="%s")" --body "$(git log -n1 --format="%b")"'
+# run 'gh pr create --fill'
+alias ghprfill='gh pr create --fill'
+# get the gh pr url for the current branch
+alias ghprurl='gh pr view --json url | jq -r .url'
 
 # Other aliases
 
@@ -238,7 +242,7 @@ alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 alias lg=lazygit
 
 # quick serial port
-alias sp='tio $(fd -1 . /dev/serial/by-id/)'
+alias sp='tio $(fd . /dev/serial/by-id/ | head -n 1)'
 
 # Custom functions
 
