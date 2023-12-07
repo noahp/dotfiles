@@ -55,4 +55,7 @@ RUN sed -i.bkp -e \
 
 USER ${UNAME}
 
+# Install rust + cargo
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y --default-toolchain stable
+
 WORKDIR /mnt/workspace

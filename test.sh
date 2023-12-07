@@ -20,6 +20,7 @@ DOCKER_BUILDKIT=1 docker build -t "$DOCKER_IMAGE_NAME" --build-arg "UID=$(id -u)
 # test the install script; everything but vscode extensions, which weirdly fail
 docker run --rm \
     -v "$(pwd)":/mnt/workspace \
-    -t "$DOCKER_IMAGE_NAME" bash -c "
+    -t "$DOCKER_IMAGE_NAME" bash -c ' \
+        PATH=~/.cargo/bin:$PATH \
         DOTFILES_INSTALL_VSCODE_EXTS=n ./install-all
-    "
+    '
