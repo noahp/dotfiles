@@ -1,68 +1,121 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "C_Cpp.clang_format_path": "/usr/local/bin/clang-format",
-    "window.enableMenuBarMnemonics": false,
-    "window.menuBarVisibility": "hidden",
-    "gitlens.keymap": "alternate",
-    "gitlens.codeLens.enabled": false,
-    "C_Cpp.dimInactiveRegions": false,
-    // for snippets
-    "editor.tabCompletion": "onlySnippets",
-    "editor.renderWhitespace": "all",
-    // remove trailing on save
-    "files.trimTrailingWhitespace": true,
-    // no minimap plz
-    "editor.minimap.enabled": false,
-    // ruler at 80 and 100
-    "editor.rulers": [
-        80,
-        100
-    ],
-    "editor.guides.bracketPairs": true,
-    "workbench.welcome.enabled": false,
-    "window.zoomLevel": 0,
-    "rust.rustup": {
-        "toolchain": "nightly-2017-08-01-x86_64-unknown-linux-gnu",
-        "nightlyToolchain": "nightly-2017-08-01-x86_64-unknown-linux-gnu"
-    },
-    "rust.mode": "rls",
-    "rust.rls": {
-        "useRustfmt": true
-    },
-    "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-    },
-    "gitlens.historyExplorer.enabled": true,
-    "python.formatting.blackPath": "/home/noah/.local/bin/black-wrapper",
-    "python.formatting.provider": "black",
-    "C_Cpp.clang_format_fallbackStyle": "Google",
-    "gitlens.views.fileHistory.enabled": true,
-    "editor.bracketPairColorization.enabled": true,
-    "gitlens.remotes": [
-        {
-            // git://sourceware.org/git/binutils-gdb.git
-            "regex": "git:\\/\\/(sourceware\\.org)\\/git\\/(.+)\\.git",
-            "domain": "sourceware.org",
-            "type": "Custom",
-            "name": "gnu",
-            "protocol": "https",
-            "urls": {
-                "repository": "binutils-gdb",
-                "branches": "https://sourceware.org/git/?p=${repo}.git;a=summary",
-                "branch": "https://sourceware.org/git/?p=${repo}.git;a=history;hb=${branch}",
-                "commit": "https://sourceware.org/git/?p=${repo}.git;a=commit;h=${id}",
-                "file": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file}",
-                "fileInBranch": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file};hb=${branch}${line}",
-                "fileInCommit": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file};hb=${id}${line}",
-                "fileLine": "#l${line}",
-                "fileRange": "#l${start}"
-            }
-        }
-    ],
-    "workbench.editor.wrapTabs": true,
+  "window.enableMenuBarMnemonics": false,
+  "window.menuBarVisibility": "hidden",
+  "gitlens.keymap": "alternate",
+  "gitlens.codeLens.enabled": false,
+  "C_Cpp.dimInactiveRegions": false,
+  // for snippets
+  "editor.tabCompletion": "onlySnippets",
+  "editor.renderWhitespace": "all",
+  // remove trailing on save
+  "files.trimTrailingWhitespace": true,
+  // no minimap plz
+  "editor.minimap.enabled": false,
+  // ruler at 80 and 100
+  "editor.rulers": [80, 100],
+  "editor.guides.bracketPairs": true,
+  "workbench.welcome.enabled": false,
+  "rust.mode": "rls",
+  "rust.rls": {
+    "useRustfmt": true
+  },
+  "gitlens.advanced.messages": {
+    "suppressCommitHasNoPreviousCommitWarning": false,
+    "suppressCommitNotFoundWarning": false,
+    "suppressFileNotUnderSourceControlWarning": false,
+    "suppressGitVersionWarning": false,
+    "suppressLineUncommittedWarning": false,
+    "suppressNoRepositoryWarning": false
+  },
+  "gitlens.historyExplorer.enabled": true,
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "C_Cpp.clang_format_fallbackStyle": "Google",
+  "gitlens.views.fileHistory.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "gitlens.remotes": [
+    {
+      // git://sourceware.org/git/binutils-gdb.git
+      "regex": "git:\\/\\/(sourceware\\.org)\\/git\\/(.+)\\.git",
+      "domain": "sourceware.org",
+      "type": "Custom",
+      "name": "gnu",
+      "protocol": "https",
+      "urls": {
+        "repository": "binutils-gdb",
+        "branches": "https://sourceware.org/git/?p=${repo}.git;a=summary",
+        "branch": "https://sourceware.org/git/?p=${repo}.git;a=history;hb=${branch}",
+        "commit": "https://sourceware.org/git/?p=${repo}.git;a=commit;h=${id}",
+        "file": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file}",
+        "fileInBranch": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file};hb=${branch}${line}",
+        "fileInCommit": "https://sourceware.org/git/?p=${repo}.git;a=blob;f=${file};hb=${id}${line}",
+        "fileLine": "#l${line}",
+        "fileRange": "#l${start}"
+      }
+    }
+  ],
+  "workbench.editor.wrapTabs": true,
+  "editor.inlineSuggest.enabled": true,
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.associations": {
+    "*.mdx": "markdown"
+  },
+  "[cmake]": {
+    "editor.defaultFormatter": "cheshirekow.cmake-format"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+    "yaml": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "nrf-connect.welcome.showOnStartup": false,
+  "nrf-connect.enableTelemetry": false,
+  "nrf-connect.toolchain.path": "PATH",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "cmsis-csolution.coreTools.address": "localhost:9999",
+  "keil-studio.silenceLicensingNotifications": true,
+  "cmsis-csolution.offerMicroVisionConversion": false,
+  "vcpkg.activateOnWorkspaceOpen": false,
+  "mcuxpresso.sdks": [],
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.stickyScroll.enabled": true,
+  "zig.path": "",
+  "zig.zls.path": "/home/noah/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
+  "zig.initialSetupDone": true,
+  "workbench.tree.enableStickyScroll": true
 }
