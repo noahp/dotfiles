@@ -36,5 +36,6 @@ if __name__ == "__main__":
             y=y,
             labels={"x": "date", "y": "count"},
             title="Commit History per Month",
+            markers=True,
         )
         fig.write_html("commit_count_per_month.html", auto_open=True)
