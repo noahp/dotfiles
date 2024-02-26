@@ -17,6 +17,7 @@
 	algorithm = histogram
 [merge]
 	tool = vscode
+	conflictstyle = zdiff3
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
@@ -64,3 +65,7 @@
 	auto = 0
 [protocol "file"]
 	allow = always
+[commit]
+	cleanup = scissors
+[help]
+	autocorrect = prompt
