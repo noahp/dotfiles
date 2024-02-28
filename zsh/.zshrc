@@ -449,6 +449,10 @@ fi
 alias vim=${EDITOR}
 alias v=${EDITOR}
 
+# extremely sad, meld is not compatible with ubuntu 23.10's version
+# of gtk+? i dunno. this works though.
+alias meld='flatpak run org.gnome.meld'
+
 # If available, make use of the bfs binary and search directories
 # breadth-first instead of the default depth-first.
 #
