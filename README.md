@@ -232,8 +232,15 @@ location in gnome.
 sudo apt install gnome-weather chrome-gnome-shell
 
 # enable toggle here
-xdg-open https://extensions.gnome.org/extension/1380/weather-in-the-clock/
+open https://extensions.gnome.org/extension/5470/weather-oclock/
 ```
+
+### gnome-clipboard-indicator
+
+Best gnome clipboard manager I've found. Pano doesn't work well with latest
+ubuntu versions.
+
+https://extensions.gnome.org/extension/779/clipboard-indicator/
 
 ### kitty
 
