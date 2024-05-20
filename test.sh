@@ -15,12 +15,13 @@ fi
 DOCKER_IMAGE_NAME=${DOCKER_IMAGE_NAME:-$(basename -s .git "$(git remote --verbose | awk 'NR==1 { print tolower($2) }')")}
 
 # build the docker image
-DOCKER_BUILDKIT=1 docker build -t "$DOCKER_IMAGE_NAME" --build-arg "UID=$(id -u)" -f Dockerfile .
+DOCKER_BUILDKIT=1 docker build -t "$DOCKER_IMAGE_NAME" -f Dockerfile .
 
 # test the install script; everything but vscode extensions, which weirdly fail
 docker run --rm \
     -v "$(pwd)":/mnt/workspace \
     -t "$DOCKER_IMAGE_NAME" bash -c ' \
+        DOTBOT_NO_SUBMODULE_UPDATE=1 \
         PATH=~/.cargo/bin:$PATH \
         DOTFILES_INSTALL_VSCODE_EXTS=n ./install-all
     '
