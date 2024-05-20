@@ -9,11 +9,14 @@ DOTBOT_BIN="bin/dotbot"
 BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${BASEDIR}"
+# skip submodule update if the user set DOTBOT_NO_SUBMODULE_UPDATE env var
+if [ -z "${DOTBOT_NO_SUBMODULE_UPDATE}" ]; then
 # Submodule update in both base repo and dotbot directory
 for dir in "${BASEDIR}" "${DOTBOT_DIR}"; do
     git -C "$dir" submodule sync --quiet --recursive
     git submodule update --init --recursive "$dir"
 done
+fi
 
 # Run the dotbot tool
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"

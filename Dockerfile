@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
     git \
     gpg \
-    libasound2 \
     libdrm2 \
     libgbm-dev \
     libssl-dev \
@@ -23,9 +22,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     xz-utils \
     \
     && rm -rf /var/lib/apt/lists/*
-
-# install py-commit-checker
-RUN pip install --no-cache-dir py-commit-checker==0.3.0
 
 SHELL ["/bin/bash", "-c", "-o", "pipefail"]
 
