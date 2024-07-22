@@ -90,7 +90,7 @@ HISTFILE=~/dev/github/zsh-history/.zsh_history.noah
 else
 HISTFILE=~/.zsh_history.noah
 fi
-HISTSIZE=                        # unlimited history
+HISTSIZE=10000000                # large history? unlimited doesn't seem to work correctly
 SAVEHIST=$HISTSIZE
 setopt HIST_IGNORE_DUPS          # Do not record an entry that was just recorded again.
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
@@ -214,6 +214,8 @@ alias ghprdesc='gh pr edit --title "$(git log -n1 --format="%s")" --body "$(git 
 alias ghprfill='gh pr create --fill'
 # get the gh pr url for the current branch
 alias ghprurl='gh pr view --json url | jq -r .url'
+# open pr in browser
+alias ghpropen='gh pr view --web'
 
 # Other aliases
 
@@ -295,9 +297,7 @@ function git-stats() {
 # which tags contain a particular committish?
 function git-tags-contain() {
     local _hash="$1"
-    (
-        git tag --sort=creatordate | xargs -I % bash -c "git merge-base --is-ancestor ${_hash} % && echo % has ${_hash}"
-    ) | sort -V
+    git tag --contains $_hash
 }
 
 # ratio of commit contents to total commit size
@@ -450,8 +450,9 @@ alias vim=${EDITOR}
 alias v=${EDITOR}
 
 # extremely sad, meld is not compatible with ubuntu 23.10's version
-# of gtk+? i dunno. this works though.
-alias meld='flatpak run org.gnome.meld'
+# of gtk+?
+# UPDATE now working, but keep this around just in case
+# alias meld='flatpak run org.gnome.meld'
 
 # If available, make use of the bfs binary and search directories
 # breadth-first instead of the default depth-first.
