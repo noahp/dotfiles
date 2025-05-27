@@ -63,13 +63,14 @@
   "workbench.editor.wrapTabs": true,
   "editor.inlineSuggest.enabled": true,
   "[c]": {
-    "editor.defaultFormatter": "xaver.clang-format"
+    "editor.defaultFormatter": "ms-vscode.cpptools"
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.associations": {
-    "*.mdx": "markdown"
+    "*.mdx": "markdown",
+    "*.def": "c"
   },
   "[cmake]": {
     "editor.defaultFormatter": "cheshirekow.cmake-format"
