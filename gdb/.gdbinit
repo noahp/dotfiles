@@ -4,6 +4,8 @@ source ~/.gdb-cyrus-dashboard
 # Bring in typeof
 source ~/.tromey-gdb-helpers/gdbhelpers/typeof.py
 
+set auto-load safe-path /
+
 # Tweak some defaults
 set history save on
 set history size 10000
@@ -149,4 +151,51 @@ class PrintEnumCmd(gdb.Command):
       print(f.name, "=", f.enumval)
 
 PrintEnumCmd()
+end
+
+python
+import gdb
+
+class StackDeltaCommand(gdb.Command):
+    """Compute and display the stack delta for each frame in the backtrace."""
+
+    def __init__(self):
+        super(StackDeltaCommand, self).__init__("stack-deltas", gdb.COMMAND_USER)
+
+    def invoke(self, arg, from_tty):
+        # Get the newest (currently selected) frame
+        frame = gdb.newest_frame()
+
+        if frame is None:
+            print("No stack frames found.")
+            return
+
+        deltas = []
+        sp_values = []
+
+        # Traverse frames and collect $sp values
+        while frame is not None:
+            try:
+                sp_val = int(frame.read_register("sp"))
+                sp_values.append((frame, sp_val))
+            except ValueError:
+                print(f"Could not read $sp for frame: {frame.name()}")
+                break
+            frame = frame.older()
+
+        # Compute deltas between adjacent frames
+        print("Stack deltas (in bytes):")
+        for i in range(len(sp_values) - 1):
+            frame, sp = sp_values[i]
+            _, next_sp = sp_values[i + 1]
+            delta = sp - next_sp
+            print(f"Frame {i} ({frame.name()}): delta = {delta}")
+
+        # Print the last frame (no delta)
+        if sp_values:
+            last_frame, _ = sp_values[-1]
+            print(f"Frame {len(sp_values)-1} ({last_frame.name()}): delta = N/A")
+
+
+StackDeltaCommand()
 end
