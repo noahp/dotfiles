@@ -108,7 +108,7 @@ antigen use oh-my-zsh
 # oh-my-zsh included bundles
 antigen bundle rust
 antigen bundle colored-man-pages
-antigen bundle common-aliases
+#antigen bundle common-aliases
 antigen bundle git
 antigen bundle wd
 
@@ -234,7 +234,9 @@ alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m
 alias emoj="uvx emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
 
 # no safe cp for me
-unalias rm cp mv
+(( $+aliases[rm] )) && unalias rm
+(( $+aliases[cp] )) && unalias cp
+(( $+aliases[mv] )) && unalias mv
 
 # pipe data to gnuplot
 alias gplot='gnuplot -e "set terminal dumb; plot '"'"'-'"'"' notitle"'
