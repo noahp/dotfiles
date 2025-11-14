@@ -110,6 +110,7 @@ source <(antidote init)
 antidote bundle mattmc3/ez-compinit  # required for completions like antigen did
 
 # oh-my-zsh included bundles
+antidote bundle ohmyzsh/ohmyzsh path:lib
 antidote bundle ohmyzsh/ohmyzsh path:plugins/rust
 antidote bundle ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 #antidote bundle ohmyzsh/ohmyzsh path:plugins/common-aliases
