@@ -107,6 +107,8 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 source ~/antidote.zsh
 source <(antidote init)
 
+antidote bundle mattmc3/ez-compinit  # required for completions like antigen did
+
 # oh-my-zsh included bundles
 antidote bundle ohmyzsh/ohmyzsh path:plugins/rust
 antidote bundle ohmyzsh/ohmyzsh path:plugins/colored-man-pages
