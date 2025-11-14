@@ -16,3 +16,6 @@
 [submodule "third-party/ziglang-shell-completions"]
 	path = third-party/ziglang-shell-completions
 	url = ../../ziglang/shell-completions.git
+[submodule "third-party/antidote"]
+	path = third-party/antidote
+	url = ../../mattmc3/antidote

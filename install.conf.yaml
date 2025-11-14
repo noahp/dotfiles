@@ -6,7 +6,7 @@
 - clean: ["~"]
 
 - link:
-    ~/antigen.zsh: third-party/antigen/bin/antigen.zsh
+    ~/antidote.zsh: third-party/antidote/antidote.zsh
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/nvim/init.vim: vim/.vimrc
     ~/.cmake-format.yaml: cmake-format/.cmake-format.yaml
