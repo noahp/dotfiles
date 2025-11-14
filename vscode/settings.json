@@ -118,5 +118,18 @@
   "zig.path": "",
   "zig.zls.path": "/home/noah/.config/Code/User/globalStorage/ziglang.vscode-zig/zls_install/zls",
   "zig.initialSetupDone": true,
-  "workbench.tree.enableStickyScroll": true
+  "workbench.tree.enableStickyScroll": true,
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.automaticReconfigure": false,
+  "cmake.configureOnEdit": false,
+  "cmake.configureOnOpen": false,
+  "cmake.enableAutomaticKitScan": false,
+  "cmake.exportCompileCommandsFile": false,
+  "cmake.autoSelectActiveFolder": false,
+  "remote.defaultExtensionsIfInstalledLocally": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "GitHub.vscode-pull-request-github"
+  ],
+  "github.copilot.nextEditSuggestions.enabled": true,
 }
