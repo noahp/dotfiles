@@ -468,10 +468,6 @@ fi
 # go bins
 [ -d ~/go/bin ] && export PATH=$PATH:~/go/bin
 
-# make npm global install to user path
-export NPM_CONFIG_PREFIX=~/.npm-global
-export PATH=$PATH:$NPM_CONFIG_PREFIX/bin
-
 # enable sccache for rust
 if type sccache > /dev/null; then
   export RUSTC_WRAPPER=sccache
