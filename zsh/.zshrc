@@ -76,6 +76,9 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Disable magic url pasting stuff, better to just enclose in '' plz
+DISABLE_MAGIC_FUNCTIONS=true
+
 # Disable checking for insecure completions, to speed up shell load
 ZSH_DISABLE_COMPFIX=true
 
