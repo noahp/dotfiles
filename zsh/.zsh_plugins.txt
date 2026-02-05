@@ -1,0 +1,9 @@
+mattmc3/ez-compinit
+ohmyzsh/ohmyzsh path:lib
+ohmyzsh/ohmyzsh path:plugins/rust
+ohmyzsh/ohmyzsh path:plugins/colored-man-pages
+ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/wd
+agkozak/zsh-z
+zsh-users/zsh-autosuggestions
+romkatv/powerlevel10k

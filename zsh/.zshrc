@@ -108,23 +108,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 # Antidote managed plugins
 # see https://antidote.sh/
 source ~/antidote.zsh
-source <(antidote init)
-
-antidote bundle mattmc3/ez-compinit  # required for completions like antigen did
-
-# oh-my-zsh included bundles
-antidote bundle ohmyzsh/ohmyzsh path:lib
-antidote bundle ohmyzsh/ohmyzsh path:plugins/rust
-antidote bundle ohmyzsh/ohmyzsh path:plugins/colored-man-pages
-#antidote bundle ohmyzsh/ohmyzsh path:plugins/common-aliases
-antidote bundle ohmyzsh/ohmyzsh path:plugins/git
-antidote bundle ohmyzsh/ohmyzsh path:plugins/wd
-
-# bundles outside of oh-my-zsh
-# shas listed just in case i need to manually touch it up
-antidote bundle agkozak/zsh-z #99f6ee91187ad6469b2cc3858f5a60c68286a1a5
-antidote bundle zsh-users/zsh-autosuggestions #d43c309f888153d6c46d8b6a3a0186f4148680fd
-antidote bundle romkatv/powerlevel10k #1777bd41a68c99963e009c55a0f500396e485d07
+antidote load
 
 # Disable auto-escaping urls in wget/curl. This actually doesn't work to disable
 # that behavior, unfortunately 😩. Leaving it for reference
