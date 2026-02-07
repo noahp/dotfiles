@@ -33,6 +33,7 @@
     ~/.zfunc/_rg: third-party/BurntSushi-ripgrep/complete/_rg
     ~/.zfunc/_zig: third-party/ziglang-shell-completions/_zig
     ~/.zshrc: zsh/.zshrc
+    ~/.zsh_plugins.txt: zsh/.zsh_plugins.txt
     ~/.p10k.zsh: zsh/.p10k.zsh
 
 - shell:
