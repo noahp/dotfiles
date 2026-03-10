@@ -363,9 +363,10 @@
     where=${where/#$P10K_BRANCH_SUBST_STRING/$P10K_BRANCH_SUBST_REPLACE}
     fi
 
-    # If local branch name or tag is at most 32 characters long, show it in full.
-    # Otherwise show the first 12 … the last 12.
-    (( $#where > 32 )) && where[13,-13]="…"
+    # NP- always show full branch name
+    # # If local branch name or tag is at most 32 characters long, show it in full.
+    # # Otherwise show the first 12 … the last 12.
+    # (( $#where > 32 )) && where[13,-13]="…"
     res+="${clean}${where//\%/%%}"  # escape %
 
     # Show tracking branch name if it differs from local branch.
