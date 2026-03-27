@@ -9,6 +9,7 @@
     ~/antidote.zsh: third-party/antidote/antidote.zsh
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/nvim/init.vim: vim/.vimrc
+    ~/.claude/CLAUDE.md: ai/AGENTS.md
     ~/.cmake-format.yaml: cmake-format/.cmake-format.yaml
     ~/.config/Code/User/settings.json: vscode/settings.json
     ~/AGENTS.md: ai/AGENTS.md
