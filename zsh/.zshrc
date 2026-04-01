@@ -429,6 +429,10 @@ export PATH=/usr/lib/ccache:$PATH
 # include ~/.local/bin
 export PATH=$PATH:~/.local/bin
 
+# slop machine settings
+export CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1
+export COPILOT_CUSTOM_INSTRUCTIONS_DIRS=$HOME
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
