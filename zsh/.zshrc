@@ -204,6 +204,8 @@ alias ghprfill='gh pr create --fill'
 alias ghprurl='gh pr view --json url | jq -r .url'
 # open pr in browser
 alias ghpropen='gh pr view --web'
+# get repo url
+alias ghrepourl='gh repo view --json url | jq -r .url'
 
 # Other aliases
 
