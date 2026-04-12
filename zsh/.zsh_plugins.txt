@@ -7,3 +7,4 @@ ohmyzsh/ohmyzsh path:plugins/wd
 agkozak/zsh-z
 zsh-users/zsh-autosuggestions
 romkatv/powerlevel10k
+wbingli/zsh-claudecode-completion
