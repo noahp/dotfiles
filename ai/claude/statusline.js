@@ -84,6 +84,17 @@ try {
     sections.push({ text: `${percent}%`, bgColor, color });
   }
 
+  // Rate limit usage
+  const rateLimits = input.rate_limits;
+  if (rateLimits?.five_hour && rateLimits?.seven_day) {
+    const fiveH = Math.round(rateLimits.five_hour.used_percentage);
+    const sevenD = Math.round(rateLimits.seven_day.used_percentage);
+    const maxPct = Math.max(fiveH, sevenD);
+    const bgColor = maxPct > 75 ? "rgb(226, 0, 0)" : maxPct > 50 ? "rgb(217, 119, 87)" : "rgb(68, 68, 68)";
+    const color = maxPct > 50 ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)";
+    sections.push({ text: `5h:${fiveH}% 7d:${sevenD}%`, bgColor, color });
+  }
+
   console.log(formatSections(sections));
 } catch (error) {
   console.error('Error:', error.message);
