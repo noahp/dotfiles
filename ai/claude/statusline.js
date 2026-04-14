@@ -90,8 +90,8 @@ try {
     const fiveH = Math.round(rateLimits.five_hour.used_percentage);
     const sevenD = Math.round(rateLimits.seven_day.used_percentage);
     const maxPct = Math.max(fiveH, sevenD);
-    const bgColor = maxPct > 75 ? "rgb(226, 0, 0)" : maxPct > 50 ? "rgb(217, 119, 87)" : "rgb(68, 68, 68)";
-    const color = maxPct > 50 ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)";
+    const bgColor = maxPct > 75 ? "rgb(226, 0, 0)" : maxPct > 50 ? "rgb(217, 119, 87)" : "rgb(70, 107, 62)";
+    const color = "rgb(255, 255, 255)";
     sections.push({ text: `5h:${fiveH}% 7d:${sevenD}%`, bgColor, color });
   }
 
