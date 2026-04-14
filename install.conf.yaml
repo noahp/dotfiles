@@ -27,6 +27,7 @@
     ~/.local/bin/commit-count-per-month.py: scripts/commit-count-per-month.py
     ~/.local/bin/maxminvers.py: scripts/maxminvers.py
     ~/.local/bin/inotify-consumers: scripts/inotify-consumers
+    ~/.local/bin/dsync: scripts/dsync
     ~/.local/bin/wa: scripts/wa
     ~/.local/bin/zig: zig/zig
     ~/.tmux.conf: tmux/.tmux.conf

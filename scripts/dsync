@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# dsync - dotfiles sync
+#
+# - pulls dotfiles repo (if on main) and runs ./install
+# - pulls or sets up the private skills repo linked at ~/.claude/skills
+
+set -uo pipefail
+
+SKILLS_REPO_URL="git@github.com:noahp/noahp-private-skills.git"
+SKILLS_REPO_NAME="noahp-private-skills"
+
+# Resolve the dotfiles repo root from this script's real location
+SCRIPT_REAL="$(readlink -f "${BASH_SOURCE[0]}")"
+DOTFILES_DIR="$(cd "$(dirname "$SCRIPT_REAL")/.." && pwd)"
+
+info()  { echo "  $*"; }
+warn()  { echo "  [warn] $*"; }
+skip()  { echo "  [skip] $*"; }
+step()  { echo "==> $*"; }
+
+# Pull dotfiles repo and re-run install
+sync_dotfiles() {
+    step "Syncing dotfiles ($DOTFILES_DIR)..."
+
+    local branch
+    branch=$(git -C "$DOTFILES_DIR" branch --show-current 2>/dev/null)
+
+    if [[ "$branch" != "main" ]]; then
+        skip "Not on main (on '$branch')"
+        return
+    fi
+
+    git -C "$DOTFILES_DIR" pull
+    "$DOTFILES_DIR/install"
+}
+
+# Pull or set up the private skills repo
+sync_skills() {
+    step "Checking ~/.claude/skills..."
+
+    local skills_path="$HOME/.claude/skills"
+
+    # Case 1: symlink — find the git repo root and pull if on main
+    if [[ -L "$skills_path" ]]; then
+        local target git_root branch
+        target="$(readlink -f "$skills_path")"
+        git_root="$(git -C "$target" rev-parse --show-toplevel 2>/dev/null || true)"
+
+        if [[ -z "$git_root" ]]; then
+            warn "~/.claude/skills is a symlink but not inside a git repo, skipping"
+            return
+        fi
+
+        branch=$(git -C "$git_root" branch --show-current 2>/dev/null)
+        if [[ "$branch" != "main" ]]; then
+            skip "Skills repo not on main (on '$branch')"
+            return
+        fi
+
+        info "Pulling skills repo ($git_root)..."
+        git -C "$git_root" pull
+        return
+    fi
+
+    # Case 2: doesn't exist or is empty — clone and symlink
+    if [[ ! -e "$skills_path" ]] || [[ -z "$(ls -A "$skills_path" 2>/dev/null)" ]]; then
+        local skills_repo_dir
+        skills_repo_dir="$(cd "$DOTFILES_DIR/.." && pwd)/$SKILLS_REPO_NAME"
+
+        if [[ ! -d "$skills_repo_dir" ]]; then
+            info "Cloning $SKILLS_REPO_URL -> $skills_repo_dir..."
+            git clone "$SKILLS_REPO_URL" "$skills_repo_dir"
+        fi
+
+        info "Symlinking ~/.claude/skills -> $skills_repo_dir/skills"
+        [[ -e "$skills_path" ]] && rm -rf "$skills_path"
+        ln -s "$skills_repo_dir/skills" "$skills_path"
+        return
+    fi
+
+    # Case 3: exists, not a symlink, not empty
+    warn "~/.claude/skills exists and is not a symlink — not touching it"
+}
+
+sync_dotfiles
+sync_skills
+step "Done."
