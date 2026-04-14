@@ -354,8 +354,17 @@
       res+="${meta}#"
       where=${(V)VCS_STATUS_TAG}
     else
-      res+="${meta}@"
-      where=${VCS_STATUS_COMMIT[1,8]}
+      # gitstatusd can't resolve tags in git worktrees (reads from worktree
+      # gitdir instead of commondir). Fall back to git describe.
+      local _tag
+      _tag=$(git describe --tags --exact-match HEAD 2>/dev/null)
+      if [[ -n $_tag ]]; then
+        res+="${meta}#"
+        where=${(V)_tag}
+      else
+        res+="${meta}@"
+        where=${VCS_STATUS_COMMIT[1,8]}
+      fi
     fi
 
     # perform substitution if the user has enabled it
