@@ -206,6 +206,12 @@ alias ghprurl='gh pr view --json url | jq -r .url'
 alias ghpropen='gh pr view --web'
 # get repo url
 alias ghrepourl='gh repo view --json url | jq -r .url'
+# get github commit url for HEAD or a given rev
+function ghcommiturl() {
+  local sha
+  sha=$(git rev-parse "${1:-HEAD}") || return 1
+  echo "$(gh repo view --json url -q .url)/commit/${sha}"
+}
 
 # Other aliases
 
