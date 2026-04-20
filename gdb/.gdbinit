@@ -21,7 +21,7 @@ set python print-stack full
 set multiple-symbols ask
 
 # Disable threads display by default
-dashboard threads
+python gdb.execute("dashboard threads", to_string=True)
 
 # Add xxd command.
 define xxd
