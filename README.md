@@ -3,37 +3,7 @@
 [![GitHub](https://img.shields.io/badge/GitHub-noahp/dotfiles-8da0cb?style=for-the-badge&logo=github)](https://github.com/noahp/dotfiles)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/noahp/dotfiles/main.yml?branch=main&logo=github-actions&logoColor=white&style=for-the-badge)](https://github.com/noahp/dotfiles/actions)
 
-<!-- markdown-toc-cli -->
-
-- [Dotfiles](#dotfiles)
-  - [Install dotfiles](#install-dotfiles)
-  - [Feature highlight](#feature-highlight)
-  - [Customization](#customization)
-    - [`~/.gitconfig` -\> `~/.gitconfig-local`](#gitconfig---gitconfig-local)
-    - [Multiple github ssh keys](#multiple-github-ssh-keys)
-    - [`~/.zshrc` -\> `~/.zshrc_local`](#zshrc---zshrc_local)
-    - [`~/.ssh/config`](#sshconfig)
-  - [Manual steps](#manual-steps)
-    - [direnv](#direnv)
-      - [direnv virtualenvs](#direnv-virtualenvs)
-    - [fd](#fd)
-    - [font](#font)
-    - [fzf](#fzf)
-    - [git-status-tree](#git-status-tree)
-    - [gnome-weather in top bar](#gnome-weather-in-top-bar)
-    - [kitty](#kitty)
-    - [ripgrep](#ripgrep)
-    - [python virtualenv](#python-virtualenv)
-    - [vs code multi cursor](#vs-code-multi-cursor)
-    - [ydiff](#ydiff)
-  - [Reference](#reference)
-    - [cyrus-gdb](#cyrus-gdb)
-
-<!-- markdown-toc-cli-end -->
-
 ## Install dotfiles
-
-Run
 
 ```bash
 # just set up symlinks
@@ -43,43 +13,37 @@ Run
 ./install-all
 ```
 
-That won't overwrite any existing dotfiles. You'll have to relocate any
-collisions manually before running the install script if you want the ones in
-this repo (see [`install.conf.yaml`](install.conf.yaml) for which links are
-added).
+That won't overwrite any existing dotfiles. Relocate any collisions manually
+before running the install script if you want the ones in this repo (see
+[`install.conf.yaml`](install.conf.yaml) for which links are added).
 
 ## Feature highlight
-
-This is mostly used for me to sync prompt configuration/plugins and
-.gdbinit/vim config between computers.
-
-Rough list of features (might not be updated):
 
 - oh-my-zsh (zsh plugin framework and lots of aliases)
 - powerlevel10k (fast zsh prompt theme)
 - cyrus gdb dashboard (featureful gdb dashboard)
 - tmux config
-- LunarVim config
+- Neovim config (`vim/.vimrc` → `~/.config/nvim/init.vim`)
 
-Probably the most opinionated thing is the powerlevel10k config.. see
+> A LunarVim config is still tracked in [`lvim/config.lua`](lvim/config.lua)
+> if you want it, but it's not the main setup.
+
+Probably the most opinionated thing is the powerlevel10k config - see
 [`zsh/.p10k.zsh`](zsh/.p10k.zsh) for customizing. That theme also has a
-customization wizard, see https://github.com/romkatv/powerlevel10k . It also
-updates a lot so this might break... definitely make an issue if it fails for
-you!
+customization wizard, see https://github.com/romkatv/powerlevel10k.
 
 [![.assets/pics/kitty-tmux-example.png](.assets/pics/kitty-tmux-example.png)](.assets/pics/kitty-tmux-example.png)
 
 ## Customization
 
-Fork this repo :grinning: .
+Fork this repo.
 
 There are a few spots where I insert host-specific configs.
 
 ### `~/.gitconfig` -> `~/.gitconfig-local`
 
-To specify local host settings, the [`~/.gitconfig`](git/.gitconfig) will
-include `~/.gitconfig-local`. I use this to apply certain user name+email
-settings based on file system location
+The [`~/.gitconfig`](git/.gitconfig) will include `~/.gitconfig-local`. I use
+this to apply user name/email settings based on filesystem location
 (see https://git-scm.com/docs/git-config#_conditional_includes):
 
 ```bash
@@ -101,52 +65,37 @@ settings based on file system location
     email = my-email@noreply.github.com
 ```
 
-After you set this up, you can verify it with `git config --list`.
+After you set this up, verify with `git config --list`.
 
-### Multiple github ssh keys
+### Multiple GitHub SSH keys
 
-If you want to use a separate key for git operations to a github organization,
-this is one way to do it; override the ssh command for a particular directory.
-
-In the work-specific directory's gitconfig (eg `~/dev/work/.gitconfig`):
+To use a separate key for a particular directory, override the ssh command in
+that directory's gitconfig (e.g. `~/dev/work/.gitconfig`):
 
 ```bash
 [core]
     sshCommand = "ssh -i ~/.ssh/id_rsa.work.pub"
 ```
 
-_Note_ that we need to use the public part of the identity file to have
-ssh-agent properly select it with the `-i` argument to ssh. By default, `-i`
-will just add the extra file to the keys ssh-agent tries when connecting to the
-remote, but what we want is to select a specific key only, since other keys may
-allow the ssh connection to github but not be on the correct account for the
-repo in question. If we use `IdentitiesOnly` it requires typing the passphrase
-(if present) on each operation, because that bypasses ssh-agent. Using the
-public key seems to have ssh-agent try it first (`explicit agent`). Generate a
+Using the public key file lets ssh-agent select it first without bypassing the
+agent (which would require re-entering the passphrase each time). Generate a
 public key from a private key with:
 
 ```bash
 ssh-keygen -y -f ~/.ssh/id_rsa.work > ~/.ssh/id_rsa.work.pub
 ```
 
-Also note that if you use `GIT_SSH_COMMAND` to enable debug etc. you'll also
-need to provide the key argument. And this won't help with cloning outside of
-that directory 😕.
-
 ### `~/.zshrc` -> `~/.zshrc_local`
 
-The [`~/.zshrc`](zsh/.zshrc) file will source a file `~/.zshrc_local` near the
-end, where I apply host-specific settings.
+The [`~/.zshrc`](zsh/.zshrc) file will source `~/.zshrc_local` near the end,
+for host-specific settings.
 
 ### `~/.ssh/config`
 
-This file is not tracked in my dotfiles repo, because it's host-specific.
-
-Just documenting what I do here as a reference, for selecting the correct ssh
-keys for a host, set up `~/.ssh/config`:
+Not tracked in the repo (host-specific). Example for selecting the correct SSH
+key for GitHub:
 
 ```bash
-# use a non-default ssh key pair for github (id_rsa.github + id_rsa.github.pub)
 Host github.com
   HostName github.com
   User git
@@ -156,38 +105,11 @@ Host github.com
 
 ## Manual steps
 
-_Note- at the moment deploying this config requires a few manual steps.
-TODO #2 to make this more automatic._
+### CLI tools
 
-### direnv
+#### fd
 
-Set your environment when entering a directory, by placing a `.envrc` file into
-that directory. I'm not using this as much anymore but it can be helpful.
-
-> https://github.com/direnv/direnv#setup
-
-#### direnv virtualenvs
-
-`direnv` can also be used to select a python virtualenv based on directory
-location, which can be useful if you have projects that benefit from a little
-isolation, or require different python interpreters; it can save some
-typing/confusion to have dedicated virtualenvs.
-
-I put my virtualenvs in a folder `~/.virtualenvs`, so this wrapper is useful:
-
-> https://github.com/direnv/direnv/wiki/Python#virtualenvwrapper
-
-In the individual `.envrc` files, to enter a virtualenv:
-
-```bash
-# select ~/.virtualenvs/python3
-layout virtualenvwrapper python3
-```
-
-### fd
-
-Fast find replacement that honors .gitignore and hidden files by default. Way
-more user-friendly.
+Fast find replacement that honors `.gitignore` by default.
 
 > https://github.com/sharkdp/fd
 
@@ -195,14 +117,9 @@ more user-friendly.
 cargo install fd-find
 ```
 
-### font
+#### fzf
 
-Powerlevel10k suggested font-
-https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
-
-### fzf
-
-Neat fuzzy searcher for terminal history and path searching.
+Fuzzy searcher for terminal history and path searching.
 
 > https://github.com/junegunn/fzf#using-git
 
@@ -211,56 +128,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-### git-status-tree
+#### ripgrep
 
-Git status tree view.
-
-```bash
-sudo apt install -y ruby
-# my configs assume this repo is located at ~/dev/github/git-status-tree
-git clone https://github.com/knugie/git-status-tree.git
-```
-
-### gnome-weather in top bar
-
-Requires either configuration in the gnome-weather application or enabling
-location in gnome.
-
-> https://ubuntuhandbook.org/index.php/2020/08/weather-clock-menu-ubuntu-20-04/
-
-```bash
-sudo apt install gnome-weather chrome-gnome-shell
-
-# enable toggle here
-open https://extensions.gnome.org/extension/5470/weather-oclock/
-```
-
-### gnome-clipboard-indicator
-
-Best gnome clipboard manager I've found. Pano doesn't work well with latest
-ubuntu versions.
-
-https://extensions.gnome.org/extension/779/clipboard-indicator/
-
-### kitty
-
-If you want to use kitty as default terminal in gnome (eg via `ctrl+alt+t`
-keyboard binding), set it via:
-
-```bash
-gsettings set org.gnome.desktop.default-applications.terminal exec "$HOME/.local/kitty.app/bin/kitty"
-```
-
-kitty.conf is installed as part of `./install` . If the key binding isn't
-working, try running this to see any error message:
-
-```bash
-journalctl -f _UID=$(id --user)
-```
-
-### ripgrep
-
-Vastly faster grep replacement written in rust.
+Vastly faster grep replacement written in Rust.
 
 > https://github.com/BurntSushi/ripgrep
 
@@ -268,35 +138,84 @@ Vastly faster grep replacement written in rust.
 cargo install ripgrep
 ```
 
-### python virtualenv
+#### uv
 
-Somewhat tidier python environment management to avoid polluting system python
-with all those rando pypi packages you love so much.
+Fast Python package and project manager.
 
-```bash
-sudo apt install python-pip
-
-# this adds the virtualenv command to ~/.local/bin . using pip will get the
-# normal virtualenv utility, not the weird debian patched one
-pip install --user virtualenv
-
-# set up default env for our ~/.zshrc to activate on new shells
-virtualenv --clear ~/.virtualenvs/default
-```
-
-### vs code multi cursor
-
-`gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"`
-
-### ydiff
-
-Somewhat nicer diffs, eg `diff -du <file1> <file2> | ydiff`
+> https://docs.astral.sh/uv/
 
 ```bash
-pip install ydiff
+curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
----
+#### ydiff
+
+Nicer diffs, e.g. `diff -du <file1> <file2> | ydiff`.
+
+```bash
+uv tool install ydiff
+```
+
+#### direnv
+
+Set your environment when entering a directory, by placing a `.envrc` file into
+that directory.
+
+> https://github.com/direnv/direnv#setup
+
+To activate a `uv`-managed virtualenv automatically:
+
+```bash
+# .envrc
+uv venv && source .venv/bin/activate
+```
+
+### Terminal / editor
+
+#### font
+
+Powerlevel10k recommended font:
+https://github.com/romkatv/powerlevel10k/#recommended-meslo-nerd-font-patched-for-powerlevel10k
+
+#### kitty
+
+`kitty.conf` is installed as part of `./install`.
+
+To use kitty as the default terminal in GNOME (e.g. via `ctrl+alt+t`):
+
+```bash
+gsettings set org.gnome.desktop.default-applications.terminal exec "$HOME/.local/kitty.app/bin/kitty"
+```
+
+If the key binding isn't working, check for errors with:
+
+```bash
+journalctl -f _UID=$(id --user)
+```
+
+### Desktop (GNOME)
+
+#### gnome-weather in top bar
+
+Requires either configuration in the gnome-weather application or enabling
+location in GNOME.
+
+```bash
+sudo apt install gnome-weather chrome-gnome-shell
+
+# enable the extension
+open https://extensions.gnome.org/extension/5470/weather-oclock/
+```
+
+#### gnome-clipboard-indicator
+
+https://extensions.gnome.org/extension/779/clipboard-indicator/
+
+#### VS Code multi cursor
+
+```bash
+gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "<Super>"
+```
 
 ---
 
@@ -307,8 +226,7 @@ pip install ydiff
 [Nice featureful gdb-dashboard](https://github.com/cyrus-and/gdb-dashboard).
 Tracked as a submodule in this repo.
 
-**Note!** if debugging shared libraries in gdb that haven't been loaded yet, be
-sure to run `set confirm off` to allow setting breakpoints on symbols that
-haven't yet loaded.
+**Note:** if debugging shared libraries that haven't been loaded yet, run
+`set confirm off` to allow setting breakpoints on symbols that haven't loaded.
 
 > https://github.com/cyrus-and/gdb-dashboard
