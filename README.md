@@ -25,9 +25,6 @@ before running the install script if you want the ones in this repo (see
 - tmux config
 - Neovim config (`vim/.vimrc` → `~/.config/nvim/init.vim`)
 
-> A LunarVim config is still tracked in [`lvim/config.lua`](lvim/config.lua)
-> if you want it, but it's not the main setup.
-
 Probably the most opinionated thing is the powerlevel10k config - see
 [`zsh/.p10k.zsh`](zsh/.p10k.zsh) for customizing. That theme also has a
 customization wizard, see https://github.com/romkatv/powerlevel10k.
