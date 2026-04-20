@@ -1,5 +1,9 @@
 # Agent Instructions
 
+## General
+
+- ALWAYS ask before pushing git changes to remotes
+
 ## Tools
 
 - Always use `rg` (ripgrep) instead of `grep` for searching file contents.
