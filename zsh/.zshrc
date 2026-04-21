@@ -242,7 +242,7 @@ alias gplotp='gnuplot -e "plot '"'"'-'"'"' notitle" -persist'
 alias lg=lazygit
 
 # quick serial port
-alias sp='tio $(fd . /dev/serial/by-id/ | head -n 1)'
+alias sp='tio $(fd . /dev/serial/by-id/ | fzf)'
 
 # sickos.jpeg
 alias c=claude
