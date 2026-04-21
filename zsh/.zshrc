@@ -244,6 +244,9 @@ alias lg=lazygit
 # quick serial port
 alias sp='tio $(fd . /dev/serial/by-id/ | head -n 1)'
 
+# sickos.jpeg
+alias c=claude
+
 # Custom functions
 
 # Profile zsh startup
