@@ -31,6 +31,7 @@ sync_dotfiles() {
     fi
 
     git -C "$DOTFILES_DIR" pull
+    git -C "$DOTFILES_DIR" submodule update --init --recursive
     "$DOTFILES_DIR/install"
 }
 
@@ -59,6 +60,7 @@ sync_skills() {
 
         info "Pulling skills repo ($git_root)..."
         git -C "$git_root" pull
+        git -C "$git_root" submodule update --init --recursive
         return
     fi
 
