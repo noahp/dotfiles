@@ -96,6 +96,11 @@ try {
   }
 
   console.log(formatSections(sections));
+
+  const sessionName = input.session_name;
+  if (sessionName) {
+    console.log(formatSections([{ text: sessionName, bgColor: "rgb(160, 60, 140)" }]));
+  }
 } catch (error) {
   console.error('Error:', error.message);
   process.exit(1);
