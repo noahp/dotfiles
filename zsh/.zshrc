@@ -198,6 +198,18 @@ alias gsha='git rev-parse HEAD'
 alias gct='git checkout trunk'
 alias gcmn='git checkout main'
 alias ghprdesc='gh pr edit --title "$(git log -n1 --format="%s")" --body "$(git log -n1 --format="%b")"'
+# sync-down: amend HEAD commit message from the current PR title/body
+function ghprdescpull() {
+  local pr_json title body
+  pr_json=$(gh pr view --json title,body) || return 1
+  title=$(jq -r .title <<< "$pr_json")
+  body=$(jq -r .body <<< "$pr_json")
+  if [[ -n "$body" ]]; then
+    git commit --amend -m "$title" -m "$body"
+  else
+    git commit --amend -m "$title"
+  fi
+}
 # run 'gh pr create --fill'
 alias ghprfill='gh pr create --fill'
 # get the gh pr url for the current branch
