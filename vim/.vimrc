@@ -156,6 +156,9 @@ let g:vmt_list_indent_text = '  '
 "     \ 'python': ['pyls'],
 "     \ }
 
+" Replace em-dashes with hyphens across the file
+nnoremap <Leader>- :%s/—/-/g<CR>
+
 " Include local extensions
 try
     source ~/.vimrc-extensions
