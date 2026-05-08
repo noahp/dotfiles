@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+# Upload a clipboard image/video (or file) to GitHub and output/copy the markdown snippet.
+# Usage: gh-paste-image [--repo owner/repo] [file]
+set -euo pipefail
+
+REPO=""
+FILE=""
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --repo) REPO="$2"; shift 2 ;;
+        -*) echo "Usage: gh-paste-image [--repo owner/repo] [file]" >&2; exit 1 ;;
+        *) FILE="$1"; shift ;;
+    esac
+done
+
+if [[ -z "$REPO" ]]; then
+    REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null) || {
+        echo "Error: not in a GitHub repo — run from a git checkout or pass --repo owner/repo" >&2
+        exit 1
+    }
+fi
+
+TOKEN=$(gh auth token)
+TMPFILE=""
+
+if [[ -n "$FILE" ]]; then
+    MIME=$(file --mime-type -b "$FILE")
+    TMPFILE="$FILE"
+    OWN_TMP=0
+else
+    # Pick the best type available in the clipboard (images + video)
+    MIME=$(wl-paste --list-types 2>/dev/null \
+        | grep -E '^(image/(png|jpeg|gif|webp)|video/mp4)' \
+        | head -1)
+
+    if [[ -z "$MIME" ]]; then
+        echo "Error: no supported image/video found in clipboard" >&2
+        echo "Available types: $(wl-paste --list-types 2>/dev/null | tr '\n' ' ')" >&2
+        exit 1
+    fi
+
+    EXT="${MIME#*/}"
+    [[ "$EXT" == "jpeg" ]] && EXT="jpg"
+    TMPFILE=$(mktemp --suffix=".$EXT")
+    OWN_TMP=1
+    trap '[[ "$OWN_TMP" == 1 ]] && rm -f "$TMPFILE"' EXIT
+
+    wl-paste --type "$MIME" > "$TMPFILE"
+
+    if [[ ! -s "$TMPFILE" ]]; then
+        echo "Error: clipboard content is empty" >&2
+        exit 1
+    fi
+fi
+
+echo "Uploading $MIME ($(du -h "$TMPFILE" | cut -f1)) to $REPO..." >&2
+
+RESPONSE=$(curl -s \
+    -X POST \
+    -H "Authorization: token $TOKEN" \
+    -F "data=@$TMPFILE;type=$MIME" \
+    "https://uploads.github.com/repos/$REPO/issues/assets")
+
+URL=$(echo "$RESPONSE" | jq -r '.href // empty')
+
+if [[ -z "$URL" ]]; then
+    echo "Error: upload failed" >&2
+    echo "Response: $RESPONSE" >&2
+    exit 1
+fi
+
+# Format output to match what GitHub's web UI produces
+case "$MIME" in
+    image/png|image/jpeg)
+        DIMS=$(python3 - "$TMPFILE" <<'EOF'
+import struct, sys
+
+path = sys.argv[1]
+with open(path, 'rb') as f:
+    header = f.read(24)
+
+# PNG: 8-byte sig, then IHDR: 4 len + 4 type + 4 width + 4 height
+if header[:8] == b'\x89PNG\r\n\x1a\n':
+    w, h = struct.unpack('>II', header[16:24])
+    print(f"{w} {h}")
+    sys.exit(0)
+
+# JPEG: scan for SOF0/SOF2 marker (0xFF 0xC0 or 0xFF 0xC2)
+with open(path, 'rb') as f:
+    data = f.read()
+for marker in (b'\xff\xc0', b'\xff\xc2'):
+    i = data.find(marker)
+    if i != -1 and i + 9 <= len(data):
+        h, w = struct.unpack('>HH', data[i+5:i+9])
+        print(f"{w} {h}")
+        sys.exit(0)
+
+sys.exit(1)
+EOF
+        2>/dev/null) || true
+
+        if [[ -n "$DIMS" ]]; then
+            W=$(echo "$DIMS" | cut -d' ' -f1)
+            H=$(echo "$DIMS" | cut -d' ' -f2)
+            MARKDOWN="<img width=\"$W\" height=\"$H\" alt=\"image\" src=\"$URL\" />"
+        else
+            MARKDOWN="![image]($URL)"
+        fi
+        ;;
+    video/*)
+        MARKDOWN="$URL"
+        ;;
+    *)
+        MARKDOWN="![image]($URL)"
+        ;;
+esac
+
+printf '%s\n' "$MARKDOWN"
+printf '%s' "$MARKDOWN" | wl-copy
+echo "(copied to clipboard)" >&2
