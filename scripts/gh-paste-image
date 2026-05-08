@@ -1,120 +1,147 @@
-#!/usr/bin/env bash
-# Upload a clipboard image/video (or file) to GitHub and output/copy the markdown snippet.
-# Usage: gh-paste-image [--repo owner/repo] [file]
-set -euo pipefail
+#!/usr/bin/env python3
+"""Upload a clipboard image/video (or file) to a GitHub assets repo and copy the markdown snippet.
 
-REPO=""
-FILE=""
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        --repo) REPO="$2"; shift 2 ;;
-        -*) echo "Usage: gh-paste-image [--repo owner/repo] [file]" >&2; exit 1 ;;
-        *) FILE="$1"; shift ;;
-    esac
-done
+The image is committed to a public GitHub repo via the Contents API so the URL
+is publicly accessible. Set GITHUB_PASTE_REPO=owner/repo to override the default
+(which is <your-gh-username>/gh-paste-uploads).
 
-if [[ -z "$REPO" ]]; then
-    REPO=$(gh repo view --json nameWithOwner -q .nameWithOwner 2>/dev/null) || {
-        echo "Error: not in a GitHub repo — run from a git checkout or pass --repo owner/repo" >&2
-        exit 1
-    }
-fi
+Usage: gh-paste-image [--assets-repo owner/repo] [file]
+"""
+import argparse
+import base64
+import os
+import struct
+import subprocess
+import sys
+import time
 
-TOKEN=$(gh auth token)
-TMPFILE=""
+import requests
 
-if [[ -n "$FILE" ]]; then
-    MIME=$(file --mime-type -b "$FILE")
-    TMPFILE="$FILE"
-    OWN_TMP=0
-else
-    # Pick the best type available in the clipboard (images + video)
-    MIME=$(wl-paste --list-types 2>/dev/null \
-        | grep -E '^(image/(png|jpeg|gif|webp)|video/mp4)' \
-        | head -1)
 
-    if [[ -z "$MIME" ]]; then
-        echo "Error: no supported image/video found in clipboard" >&2
-        echo "Available types: $(wl-paste --list-types 2>/dev/null | tr '\n' ' ')" >&2
-        exit 1
-    fi
+def run(cmd):
+    return subprocess.check_output(cmd).decode().strip()
 
-    EXT="${MIME#*/}"
-    [[ "$EXT" == "jpeg" ]] && EXT="jpg"
-    TMPFILE=$(mktemp --suffix=".$EXT")
-    OWN_TMP=1
-    trap '[[ "$OWN_TMP" == 1 ]] && rm -f "$TMPFILE"' EXIT
 
-    wl-paste --type "$MIME" > "$TMPFILE"
+def get_token():
+    return run(["gh", "auth", "token"])
 
-    if [[ ! -s "$TMPFILE" ]]; then
-        echo "Error: clipboard content is empty" >&2
-        exit 1
-    fi
-fi
 
-echo "Uploading $MIME ($(du -h "$TMPFILE" | cut -f1)) to $REPO..." >&2
+def get_github_user(token):
+    return run(["gh", "api", "/user", "--jq", ".login"])
 
-RESPONSE=$(curl -s \
-    -X POST \
-    -H "Authorization: token $TOKEN" \
-    -F "data=@$TMPFILE;type=$MIME" \
-    "https://uploads.github.com/repos/$REPO/issues/assets")
 
-URL=$(echo "$RESPONSE" | jq -r '.href // empty')
+def ensure_repo_exists(repo, token):
+    """Create the assets repo if it doesn't exist yet."""
+    owner, name = repo.split("/", 1)
+    resp = requests.get(
+        f"https://api.github.com/repos/{repo}",
+        headers={"Authorization": f"token {token}", "Accept": "application/vnd.github+json"},
+    )
+    if resp.status_code == 404:
+        print(f"Creating public assets repo {repo}...", file=sys.stderr)
+        create_resp = requests.post(
+            "https://api.github.com/user/repos",
+            headers={"Authorization": f"token {token}", "Accept": "application/vnd.github+json"},
+            json={"name": name, "private": False, "description": "GitHub paste image uploads", "auto_init": True},
+        )
+        if not create_resp.ok:
+            sys.exit(f"Error: could not create repo {repo}: {create_resp.text[:200]}")
+    elif not resp.ok:
+        sys.exit(f"Error: could not access repo {repo}: {resp.text[:200]}")
 
-if [[ -z "$URL" ]]; then
-    echo "Error: upload failed" >&2
-    echo "Response: $RESPONSE" >&2
-    exit 1
-fi
 
-# Format output to match what GitHub's web UI produces
-case "$MIME" in
-    image/png|image/jpeg)
-        DIMS=$(python3 - "$TMPFILE" <<'EOF'
-import struct, sys
+def upload_to_repo(repo, token, filename, data, mime):
+    """Commit the file to the assets repo; return the raw URL."""
+    ts = int(time.time())
+    ext = filename.rsplit(".", 1)[-1] if "." in filename else "bin"
+    path = f"uploads/{ts}-{filename}"
+    content_b64 = base64.b64encode(data).decode()
 
-path = sys.argv[1]
-with open(path, 'rb') as f:
-    header = f.read(24)
+    resp = requests.put(
+        f"https://api.github.com/repos/{repo}/contents/{path}",
+        headers={"Authorization": f"token {token}", "Accept": "application/vnd.github+json"},
+        json={
+            "message": f"upload: {filename}",
+            "content": content_b64,
+        },
+    )
+    if not resp.ok:
+        sys.exit(f"Error: upload failed {resp.status_code}: {resp.text[:200]}")
+    return resp.json()["content"]["download_url"]
 
-# PNG: 8-byte sig, then IHDR: 4 len + 4 type + 4 width + 4 height
-if header[:8] == b'\x89PNG\r\n\x1a\n':
-    w, h = struct.unpack('>II', header[16:24])
-    print(f"{w} {h}")
-    sys.exit(0)
 
-# JPEG: scan for SOF0/SOF2 marker (0xFF 0xC0 or 0xFF 0xC2)
-with open(path, 'rb') as f:
-    data = f.read()
-for marker in (b'\xff\xc0', b'\xff\xc2'):
-    i = data.find(marker)
-    if i != -1 and i + 9 <= len(data):
-        h, w = struct.unpack('>HH', data[i+5:i+9])
-        print(f"{w} {h}")
-        sys.exit(0)
+def clipboard_image():
+    result = subprocess.run(["wl-paste", "--list-types"], capture_output=True, text=True)
+    if result.returncode != 0:
+        sys.exit("Error: wl-paste not available")
+    import re
+    supported = re.findall(r'^(image/(?:png|jpeg|gif|webp)|video/mp4)$', result.stdout, re.MULTILINE)
+    if not supported:
+        sys.exit(f"Error: no supported image/video in clipboard. Available: {result.stdout.strip()}")
+    mime = supported[0]
+    ext = mime.split("/")[1].replace("jpeg", "jpg")
+    data = subprocess.check_output(["wl-paste", "--type", mime])
+    if not data:
+        sys.exit("Error: clipboard content is empty")
+    return data, mime, f"image.{ext}"
 
-sys.exit(1)
-EOF
-        2>/dev/null) || true
 
-        if [[ -n "$DIMS" ]]; then
-            W=$(echo "$DIMS" | cut -d' ' -f1)
-            H=$(echo "$DIMS" | cut -d' ' -f2)
-            MARKDOWN="<img width=\"$W\" height=\"$H\" alt=\"image\" src=\"$URL\" />"
-        else
-            MARKDOWN="![image]($URL)"
-        fi
-        ;;
-    video/*)
-        MARKDOWN="$URL"
-        ;;
-    *)
-        MARKDOWN="![image]($URL)"
-        ;;
-esac
+def image_dims(data, mime):
+    try:
+        if mime == "image/png" and data[:8] == b'\x89PNG\r\n\x1a\n':
+            w, h = struct.unpack('>II', data[16:24])
+            return w, h
+        elif mime == "image/jpeg":
+            for marker in (b'\xff\xc0', b'\xff\xc2'):
+                i = data.find(marker)
+                if i != -1 and i + 9 <= len(data):
+                    h, w = struct.unpack('>HH', data[i+5:i+9])
+                    return w, h
+    except Exception:
+        pass
+    return None, None
 
-printf '%s\n' "$MARKDOWN"
-printf '%s' "$MARKDOWN" | wl-copy
-echo "(copied to clipboard)" >&2
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--assets-repo", default=os.environ.get("GITHUB_PASTE_REPO", ""))
+    parser.add_argument("file", nargs="?", default="")
+    args = parser.parse_args()
+
+    token = get_token()
+
+    if not args.assets_repo:
+        user = get_github_user(token)
+        args.assets_repo = f"{user}/gh-paste-uploads"
+
+    if args.file:
+        with open(args.file, "rb") as f:
+            data = f.read()
+        mime = subprocess.check_output(["file", "--mime-type", "-b", args.file]).decode().strip()
+        filename = os.path.basename(args.file)
+    else:
+        data, mime, filename = clipboard_image()
+
+    print(f"Uploading {mime} ({len(data) // 1024}K) to {args.assets_repo}...", file=sys.stderr)
+
+    ensure_repo_exists(args.assets_repo, token)
+    url = upload_to_repo(args.assets_repo, token, filename, data, mime)
+
+    if mime in ("image/png", "image/jpeg"):
+        w, h = image_dims(data, mime)
+        if w and h:
+            markdown = f'<img width="{w}" height="{h}" alt="image" src="{url}" />'
+        else:
+            markdown = f"![image]({url})"
+    elif mime.startswith("video/"):
+        markdown = url
+    else:
+        markdown = f"![image]({url})"
+
+    print(markdown)
+    subprocess.run(["wl-copy"], input=markdown.encode())
+    print("(copied to clipboard)", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    main()
