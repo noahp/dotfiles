@@ -239,7 +239,7 @@ alias xclip="xclip -selection c"
 alias show-colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
 
 # emoji picker, uses https://github.com/noahp/emoji-fzf
-alias emoj="uvx emoji-fzf preview | fzf --preview 'emoji-fzf get --name {1}' | cut -d \" \" -f 1 | emoji-fzf get | xclip"
+alias emoj="uvx emoji-fzf preview --prepend | fzf | cut -d \" \" -f 1 | tr -d '\n' | wl-copy"
 
 # no safe cp for me
 (( $+aliases[rm] )) && unalias rm
