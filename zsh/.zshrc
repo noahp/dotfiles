@@ -224,6 +224,34 @@ function ghcommiturl() {
   sha=$(git rev-parse "${1:-HEAD}") || return 1
   echo "$(gh repo view --json url -q .url)/commit/${sha}"
 }
+# generate a github compare url for the current branch vs. upstream default branch;
+# handles forks by checking which remote the branch tracks vs. origin
+function ghbranchcompare() {
+  local branch upstream_ref tracking_remote
+  branch=$(git rev-parse --abbrev-ref HEAD) || return 1
+
+  # which remote does this branch track?
+  upstream_ref=$(git rev-parse --abbrev-ref @{u} 2>/dev/null)
+  tracking_remote=${upstream_ref%%/*}   # e.g. "noahp" from "noahp/my-branch"
+  [[ -z "$tracking_remote" ]] && tracking_remote="origin"
+
+  # origin is the canonical upstream repo (gh resolves it from the origin remote)
+  local origin_json origin_owner repo_name default_branch
+  origin_json=$(gh repo view --json name,owner,defaultBranchRef) || return 1
+  origin_owner=$(jq -r .owner.login <<< "$origin_json")
+  repo_name=$(jq -r .name <<< "$origin_json")
+  default_branch=$(jq -r .defaultBranchRef.name <<< "$origin_json")
+
+  if [[ "$tracking_remote" != "origin" ]]; then
+    # extract owner from the tracking remote's URL (works for both ssh and https)
+    local remote_url fork_owner
+    remote_url=$(git remote get-url "$tracking_remote") || return 1
+    fork_owner=$(echo "$remote_url" | sed 's|.*github\.com[:/]\([^/]*\)/.*|\1|')
+    echo "https://github.com/${origin_owner}/${repo_name}/compare/${default_branch}...${fork_owner}:${repo_name}:${branch}"
+  else
+    echo "https://github.com/${origin_owner}/${repo_name}/compare/${default_branch}...${branch}"
+  fi
+}
 
 # Other aliases
 
