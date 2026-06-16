@@ -84,15 +84,51 @@ try {
     sections.push({ text: `${percent}%`, bgColor, color });
   }
 
-  // Rate limit usage
+  // Rate limit usage. Claude Code currently exposes `five_hour` and `seven_day`
+  // (each independently present/absent), and only includes `rate_limits` at all
+  // for Claude.ai subscribers after the first API response. A flat monthly-limit
+  // plan may populate only a subset of these — so render whichever windows are
+  // present rather than requiring all of them. `monthly` is mapped speculatively
+  // for if/when it's surfaced to statuslines.
   const rateLimits = input.rate_limits;
-  if (rateLimits?.five_hour && rateLimits?.seven_day) {
-    const fiveH = Math.round(rateLimits.five_hour.used_percentage);
-    const sevenD = Math.round(rateLimits.seven_day.used_percentage);
-    const maxPct = Math.max(fiveH, sevenD);
-    const bgColor = maxPct > 75 ? "rgb(226, 0, 0)" : maxPct > 50 ? "rgb(217, 119, 87)" : "rgb(70, 107, 62)";
-    const color = "rgb(255, 255, 255)";
-    sections.push({ text: `5h:${fiveH}% 7d:${sevenD}%`, bgColor, color });
+  let showedRateLimits = false;
+  if (rateLimits) {
+    const WINDOW_LABELS = [
+      ["five_hour", "5h"],
+      ["seven_day", "7d"],
+      ["seven_day_opus", "opus7d"],
+      ["seven_day_sonnet", "sonnet7d"],
+      ["monthly", "mo"],
+    ];
+
+    const parts = [];
+    let maxPct = 0;
+    for (const [key, label] of WINDOW_LABELS) {
+      const used = rateLimits[key]?.used_percentage;
+      if (typeof used !== "number") {
+        continue;
+      }
+      const pct = Math.round(used);
+      parts.push(`${label}:${pct}%`);
+      maxPct = Math.max(maxPct, pct);
+    }
+
+    if (parts.length) {
+      const bgColor = maxPct > 75 ? "rgb(226, 0, 0)" : maxPct > 50 ? "rgb(217, 119, 87)" : "rgb(70, 107, 62)";
+      const color = "rgb(255, 255, 255)";
+      sections.push({ text: parts.join(" "), bgColor, color });
+      showedRateLimits = true;
+    }
+  }
+
+  // Fallback: on plans where no rate-limit windows are exposed (e.g. the flat
+  // monthly subscription), show per-session API cost instead.
+  if (!showedRateLimits) {
+    const cost = input.cost?.total_cost_usd;
+    if (typeof cost === "number") {
+      const text = cost < 10 ? `$${cost.toFixed(2)}` : `$${cost.toFixed(1)}`;
+      sections.push({ text, bgColor: "rgb(58, 90, 100)", color: "rgb(255, 255, 255)" });
+    }
   }
 
   console.log(formatSections(sections));
