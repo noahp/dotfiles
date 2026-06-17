@@ -31,6 +31,8 @@
     ~/.local/bin/wa: scripts/wa
     ~/.local/bin/zig: zig/zig
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux/gp-vpn.sh: tmux/gp-vpn.sh
+    ~/.tmux/power.sh: tmux/power.sh
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
     ~/.urlview: urlview/.urlview
     ~/.tiorc: tio/.tiorc
