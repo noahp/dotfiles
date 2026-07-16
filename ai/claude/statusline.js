@@ -5,6 +5,13 @@ const { execSync } = require('node:child_process');
 
 const CLAUDE_DUMB_ZONE = 59;
 
+function formatTokens(tokens) {
+  if (tokens >= 1000) {
+    return `${(tokens / 1000).toFixed(1)}k`;
+  }
+  return `${tokens}`;
+}
+
 function getGitBranch() {
   try {
     return execSync('git branch --show-current 2>/dev/null', { encoding: 'utf-8' }).trim();
@@ -81,7 +88,7 @@ try {
     const isDumbZone = percent > CLAUDE_DUMB_ZONE;
     const bgColor = isDumbZone ? "rgb(226, 0, 0)" : "rgb(217, 119, 87)";
     const color = isDumbZone ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)";
-    sections.push({ text: `${percent}%`, bgColor, color });
+    sections.push({ text: `${formatTokens(currentTokens)}/${formatTokens(contextSize)} (${percent}%)`, bgColor, color });
   }
 
   // Rate limit usage. Claude Code currently exposes `five_hour` and `seven_day`
