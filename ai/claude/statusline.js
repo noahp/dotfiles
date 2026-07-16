@@ -88,7 +88,9 @@ try {
     const isDumbZone = percent > CLAUDE_DUMB_ZONE;
     const bgColor = isDumbZone ? "rgb(226, 0, 0)" : "rgb(217, 119, 87)";
     const color = isDumbZone ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)";
-    sections.push({ text: `${formatTokens(currentTokens)}/${formatTokens(contextSize)} (${percent}%)`, bgColor, color });
+    const cacheRead = usage.cache_read_input_tokens || 0;
+    const cacheSuffix = cacheRead > 0 ? ` ⚡${formatTokens(cacheRead)}` : '';
+    sections.push({ text: `${formatTokens(currentTokens)}/${formatTokens(contextSize)} (${percent}%)${cacheSuffix}`, bgColor, color });
   }
 
   // Rate limit usage. Claude Code currently exposes `five_hour` and `seven_day`
