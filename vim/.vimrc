@@ -30,7 +30,11 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'                " beginning of the end
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'                 " git status info
+if has('nvim-0.10')
+  Plug 'echasnovski/mini.diff'                " git hunks + inline diff overlay (needs vim.uv)
+else
+  Plug 'airblade/vim-gitgutter'               " git status info
+endif
 Plug 'tpope/vim-fugitive'                     " use git
 Plug 'tpope/vim-rhubarb'                      " github links
 Plug 'tpope/vim-vinegar'                      " easy netrw open
@@ -48,6 +52,39 @@ Plug 'mzlogin/vim-markdown-toc'		      " markdown table of contents generator
 Plug 'tpope/vim-commentary'		      " comment stuff
 
 call plug#end()
+
+if has('nvim-0.10')
+lua << EOF
+local ok, diff = pcall(require, 'mini.diff')
+if ok then
+  -- Default ref is the index (matches lazygit's unstaged view). NVIM_DIFF_REF
+  -- (e.g. HEAD) diffs against a commit instead so staged changes show too.
+  local source = diff.gen_source.git()
+  local ref = vim.env.NVIM_DIFF_REF
+  if ref then
+    source = { name = 'git-' .. ref, attach = function(buf)
+      local path = vim.api.nvim_buf_get_name(buf)
+      if path == '' then return false end
+      local lines = vim.fn.systemlist({ 'git', '-C', vim.fn.fnamemodify(path, ':h'),
+        'show', ref .. ':./' .. vim.fn.fnamemodify(path, ':t') })
+      -- not in ref (new file): everything shows as added
+      diff.set_ref_text(buf, vim.v.shell_error == 0 and lines or {})
+    end }
+  end
+  diff.setup({ source = source })
+  vim.keymap.set('n', '<leader>do', function() diff.toggle_overlay(0) end, { desc = 'toggle diff overlay' })
+  -- NVIM_DIFF_OVERLAY=1: turn the overlay on for each buffer when it first gets a diff
+  if vim.env.NVIM_DIFF_OVERLAY then
+    vim.api.nvim_create_autocmd('User', { pattern = 'MiniDiffUpdated', callback = function(ev)
+      if not vim.b[ev.buf].diff_overlay_init then
+        vim.b[ev.buf].diff_overlay_init = true
+        diff.toggle_overlay(ev.buf)
+      end
+    end })
+  end
+end
+EOF
+endif
 
 set number    " Show line numbers
 " highlight current line

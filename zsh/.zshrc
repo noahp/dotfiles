@@ -190,6 +190,15 @@ alias gdd='git diff @{u}'
 alias gddo='git difftool --dir-diff @{u}'
 alias gro='git reset @{u}'
 alias gnp='git --no-pager'
+# open files changed vs HEAD (staged + unstaged) in nvim with inline diff overlay
+# (mini.diff, see vimrc). optional args are pathspecs.
+function patchedit() {
+  local root
+  root=$(git rev-parse --show-toplevel) || return
+  local files=("${(@f)$(git -C "$root" diff HEAD --name-only --diff-filter=d -- "$@")}")
+  [[ -n ${files[1]} ]] || { echo "patchedit: no changes" >&2; return 1; }
+  (cd "$root" && NVIM_DIFF_REF=HEAD NVIM_DIFF_OVERLAY=1 nvim -- "${files[@]}")
+}
 # 'git reset date'... set date of top commit to current date. use a single variable
 # in a subshell to avoid committer/author date not exactly matching
 alias grd='(GIT_AUTHOR_DATE="$(date -R)"; GIT_COMMITTER_DATE="$GIT_AUTHOR_DATE"; git commit --amend --date "$GIT_COMMITTER_DATE" --no-edit)'
@@ -482,7 +491,6 @@ export PATH=$PATH:~/.local/bin
 
 # slop machine settings
 export CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1
-export COPILOT_CUSTOM_INSTRUCTIONS_DIRS=$HOME
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

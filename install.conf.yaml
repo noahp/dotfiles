@@ -8,6 +8,7 @@
 - link:
     ~/antidote.zsh: third-party/antidote/antidote.zsh
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
+    ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/nvim/init.vim: vim/.vimrc
     ~/.claude/CLAUDE.md: ai/AGENTS.md
     ~/.claude/statusline.js: ai/claude/statusline.js

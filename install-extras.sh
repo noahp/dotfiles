@@ -44,7 +44,7 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     export APPIMAGE_EXTRACT_AND_RUN=1  # since we're in docker, set this
     command_exists nvim || \
         (\
-         curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim.appimage > ~/.local/bin/nvim \
+         curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage > ~/.local/bin/nvim \
          && chmod +x ~/.local/bin/nvim
         )
     export PATH="$HOME/.local/bin:$PATH"

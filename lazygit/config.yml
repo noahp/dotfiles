@@ -1,0 +1,8 @@
+git:
+  pagers:
+    - pager: delta --dark --paging=never
+os:
+  # inline diff overlay via mini.diff (see vimrc)
+  edit: 'NVIM_DIFF_OVERLAY=1 nvim -- {{filename}}'
+  editAtLine: 'NVIM_DIFF_OVERLAY=1 nvim +{{line}} -- {{filename}}'
+  editInTerminal: true

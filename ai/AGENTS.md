@@ -63,3 +63,9 @@ Also ask before irreversible local actions, even though they're not external:
 - attached hardware: mass-erase/recover/unlock commands, fuse/OTP writes, or
   writing to block devices (`dd`). Routine dev-board flashing (`west flash`,
   `idf.py flash`, etc.) is fine without asking.
+
+## Comments
+
+BE CONCISE! emphasize the "why", DO NOT just write an explanation (unless the
+code is too opaque without comment). Above all avoid excessive, useless
+comments, and keep comments simple and to the point.
