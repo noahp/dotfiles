@@ -6,7 +6,7 @@
 - clean: ["~"]
 
 - link:
-    ~/antidote.zsh: third-party/antidote/antidote.zsh
+    ~/.antidote: third-party/antidote
     ~/.config/kitty/kitty.conf: kitty/kitty.conf
     ~/.config/lazygit/config.yml: lazygit/config.yml
     ~/.config/nvim/init.vim: vim/.vimrc
@@ -23,29 +23,30 @@
     ~/.gdbinit: gdb/.gdbinit
     ~/.gdbearlyinit: gdb/.gdbearlyinit
     ~/.gitconfig: git/.gitconfig
-    ~/.local/bin/black-preview: scripts/black-preview
     ~/.local/bin/committime: git/committime.sh
     ~/.local/bin/commit-count-per-month.py: scripts/commit-count-per-month.py
     ~/.local/bin/maxminvers.py: scripts/maxminvers.py
     ~/.local/bin/inotify-consumers: scripts/inotify-consumers
     ~/.local/bin/dsync: scripts/dsync
     ~/.local/bin/wa: scripts/wa
-    ~/.local/bin/zig: zig/zig
     ~/.tmux.conf: tmux/.tmux.conf
-    ~/.tmux/gp-vpn.sh: tmux/gp-vpn.sh
     ~/.tmux/power.sh: tmux/power.sh
     ~/.tromey-gdb-helpers: third-party/tromey-gdb-helpers
     ~/.urlview: urlview/.urlview
     ~/.tiorc: tio/.tiorc
-    ~/.zfunc/_rg: third-party/BurntSushi-ripgrep/complete/_rg
-    ~/.zfunc/_zig: third-party/ziglang-shell-completions/_zig
     ~/.zshrc: zsh/.zshrc
     ~/.zsh_plugins.txt: zsh/.zsh_plugins.txt
     ~/.p10k.zsh: zsh/.p10k.zsh
 
 - shell:
+    # rm first: an old ~/.zfunc/_rg may be a dangling symlink into the removed
+    # ripgrep submodule, and the redirect would follow it
+    - command: >-
+        command -v rg >/dev/null || exit 0;
+        mkdir -p ~/.zfunc && rm -f ~/.zfunc/_rg && rg --generate complete-zsh > ~/.zfunc/_rg
+      description: Generate ripgrep zsh completion
     # see the script for optional behavior. by default no action taken
     - command: bash install-extras.sh
       stdout: true
       stderr: true
-      description: Install extras. By default no action, set DOTFILE_INSTALL_ALL=y to install all!
+      description: Install extras. By default no action, set DOTFILES_INSTALL_ALL=y to install all!

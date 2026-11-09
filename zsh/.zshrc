@@ -107,7 +107,7 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 
 # Antidote managed plugins
 # see https://antidote.sh/
-source ~/antidote.zsh
+source ~/.antidote/antidote.zsh
 antidote load
 
 # Disable auto-escaping urls in wget/curl. This actually doesn't work to disable
@@ -180,13 +180,12 @@ alias dec2hex='printf "%x\n"'
 alias hex2dec='printf "%u\n"'
 alias gddir='git difftool --dir-diff'
 alias gdm='git diff $(git merge-base HEAD origin/master)'
-alias gdd='git diff $(git merge-base HEAD origin/develop)'
+alias gdd='git difftool --dir-diff'
 alias gddm='git difftool --dir-diff $(git merge-base HEAD origin/master)'
-alias gddd='git difftool --dir-diff $(git merge-base HEAD origin/develop)'
 alias gst='git status -sb'
 alias gac='git add -A && git commit -v'
 alias gt='git tree' # https://github.com/knugie/git-status-tree#install
-alias gdd='git diff @{u}'
+alias gdu='git diff @{u}'
 alias gddo='git difftool --dir-diff @{u}'
 alias gro='git reset @{u}'
 alias gnp='git --no-pager'
@@ -295,6 +294,7 @@ alias sp='tio $(fd . /dev/serial/by-id/ | fzf)'
 
 # sickos.jpeg
 alias c=claude
+alias ca='claude --permission-mode auto'
 
 # Custom functions
 
@@ -363,17 +363,6 @@ function git-commit-message-ratio() {
   echo "  ratio: $contents_size / $total_size = $ratio"
 }
 
-# print an svg piechart to stdout
-# requires pygal (pip install pygal)
-# ex: piechart "My Chart" "cat 1" 1.25 "cat 2" 3.56 "cat 3" 2.34 > /tmp/out.svg && firefox /tmp/out.svg
-function piechart() {
-  python -c "import sys, pygal; pie_chart = pygal.Pie(); \
-  pie_chart.title = sys.argv[1]; \
-  slices = zip(*[iter(sys.argv[2:])]*2); \
-  map(lambda a: pie_chart.add(a[0],float(a[1])), slices); \
-  print pie_chart.render()" "$@"
-}
-
 # log_2 distribution of file sizes in cwd
 function filesizes() {
   find . -type f -print0 | \
@@ -389,35 +378,16 @@ function bash-time() {
   done 2>&1 | rg "^real"
 }
 
-# haste client
-# Either set env variable HASTE_SERVER to your server base url, eg:
-# HASTE_SERVER=https://hastebin.com
-# or
-# Put a file ~/.hastebin with the url.
-# Returns url of paste. TODO doesn't return non-zero on failure
-# Inspired by https://github.com/seejohnrun/haste-client#lightweight-alternative
-function hastebin() {
-  a=$(cat);
-  if [ -z "$HASTE_SERVER" ]; then
-    if [ -f ~/.hastebin ]; then
-      local HASTE_SERVER=$(cat ~/.hastebin)
-    else
-      local HASTE_SERVER='https://hastebin.com'
-    fi
-  fi
-  curl -X POST -s -d "$a" $HASTE_SERVER/documents | awk -v HASTE_SERVER=$HASTE_SERVER -F '"' '{print HASTE_SERVER "/" $4}';
-}
-
 # Hex dump to binary python oneliner
 # usage: hexdump-to-bin abcd0123 > out.bin
 function hexdump-to-bin {
-    python -c "import sys; sys.stdout.write(sys.argv[1].decode('hex'))" "$1"
+    xxd -r -p <<< "$1"
 }
 
 # weather, from https://wttr.in/:bash.function
 # see also: http://wttr.in/:help
 function wttr {
-  local request="wttr.in/${1-$1}"
+  local request="wttr.in/${1}"
   # if $COLUMNS is less than 125, use the compact form
   [ "$COLUMNS" -lt 125 ] && request+='?n'
   curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
@@ -480,12 +450,6 @@ function git-long-commit-messages() {
 # disable python venv before activating tmux
 alias tmux='[ -n "$VIRTUAL_ENV" ] && deactivate; tmux'
 
-# arcanist path
-export PATH=$PATH:~/arcinstall/arcanist/bin
-
-# add ccache
-export PATH=/usr/lib/ccache:$PATH
-
 # include ~/.local/bin
 export PATH=$PATH:~/.local/bin
 
@@ -521,7 +485,7 @@ fi
 
 # enable sccache for rust
 if type sccache > /dev/null; then
-  export RUSTC_WRAPPER=sccache
+  # export RUSTC_WRAPPER=sccache
 fi
 
 # add fzf

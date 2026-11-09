@@ -19,7 +19,7 @@ before running the install script if you want the ones in this repo (see
 
 ## Feature highlight
 
-- oh-my-zsh (zsh plugin framework and lots of aliases)
+- antidote (zsh plugin manager), loading oh-my-zsh libs/plugins
 - powerlevel10k (fast zsh prompt theme)
 - cyrus gdb dashboard (featureful gdb dashboard)
 - tmux config
@@ -145,14 +145,6 @@ Fast Python package and project manager.
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-#### ydiff
-
-Nicer diffs, e.g. `diff -du <file1> <file2> | ydiff`.
-
-```bash
-uv tool install ydiff
-```
-
 #### direnv
 
 Set your environment when entering a directory, by placing a `.envrc` file into
@@ -198,7 +190,7 @@ Requires either configuration in the gnome-weather application or enabling
 location in GNOME.
 
 ```bash
-sudo apt install gnome-weather chrome-gnome-shell
+sudo apt install gnome-weather gnome-browser-connector
 
 # enable the extension
 open https://extensions.gnome.org/extension/5470/weather-oclock/

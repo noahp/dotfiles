@@ -1,5 +1,4 @@
-" Should work for neovim and vim8. For neovim, symlink:
-" mkdir -p ~/.config/nvim; ln -s ~/.vimrc ~/.config/nvim/init.vim
+" Should work for neovim and vim8. ./install links this to ~/.config/nvim/init.vim
 
 " ---------------------
 " Plug
@@ -39,14 +38,12 @@ Plug 'tpope/vim-fugitive'                     " use git
 Plug 'tpope/vim-rhubarb'                      " github links
 Plug 'tpope/vim-vinegar'                      " easy netrw open
 Plug 'tpope/vim-sleuth'                       " non-insane auto tabs vs spaces
-Plug 'tmux-plugins/vim-tmux-focus-events'     " enable focus events in tmux
-Plug 'ConradIrwin/vim-bracketed-paste'        " pasting without formatting
 Plug 'rust-lang/rust.vim'                     " rusty vim
 Plug 'ntpeters/vim-better-whitespace'         " highlight trailing whitespace
 Plug 'matze/vim-move'			      " move lines
 Plug 'justinmk/vim-sneak'                     " faster search
 " LSP
-Plug 'w0rp/ale'                               " language client https://github.com/w0rp/ale
+Plug 'dense-analysis/ale'                     " language client https://github.com/dense-analysis/ale
 
 Plug 'mzlogin/vim-markdown-toc'		      " markdown table of contents generator
 Plug 'tpope/vim-commentary'		      " comment stuff
@@ -139,7 +136,7 @@ set noswapfile
 
 " Automatically update a file if it is changed externally
 set autoread
-au FocusGained,BufEnter * checktime  " see https://github.com/tmux-plugins/vim-tmux-focus-events
+au FocusGained,BufEnter * checktime
 
 " Set file picker to tree style
 let g:netrw_liststyle = 3
@@ -176,22 +173,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:vmt_list_item_char = '-'
 " Indent by two spaces per level
 let g:vmt_list_indent_text = '  '
-
-" Add language support:
-" c: https://github.com/MaskRay/ccls/wiki/Getting-started , sudo ln -s $(realpath Release/ccls) /usr/bin/ccls
-" markdown: sudo npm install -g markdownlint-cli
-" python: pip install python-language server
-" rust: rustup component add rls-preview rust-analysis rust-src
-" vim: pip install vim-vint
-
-" Old autozimu/LanguageClient-neovim config, might need the cquery one to
-" auto DB with ale...
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['rls'],
-"     \ 'c': ['cquery', '--init={"cacheDirectory": "/tmp/cquery"}'],
-"     \ 'cpp': ['cquery', '--init={"cacheDirectory": "/tmp/cquery"}'],
-"     \ 'python': ['pyls'],
-"     \ }
 
 " Replace em-dashes with hyphens across the file
 nnoremap <Leader>- :%s/—/-/g<CR>

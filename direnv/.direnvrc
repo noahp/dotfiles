@@ -42,18 +42,3 @@ deactivate () {
                 unset -f deactivate
         fi
 }
-
-# layout conda env by name. attempts to pick it off of:
-# 1. $1 - manually specified
-# 2. current directory name (from OLDPWD, in case we traverse up)
-layout_anaconda2() {
-  local ACTIVATE="${HOME}/miniconda2/bin/activate"
-
-  if [ -n "$1" ]; then
-    # Explicit environment name from layout command.
-    local env_name="$1"
-    deactivate; source $ACTIVATE ${env_name}
-  elif [[ -d ${HOME}/miniconda2/envs/${OLDPWD##*/} ]]; then
-    deactivate; source $ACTIVATE "${OLDPWD##*/}"
-  fi;
-}

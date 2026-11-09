@@ -2,7 +2,7 @@
 # ^ this only works on ubuntu/debian anyway, so assume bash is available
 #
 # Options:
-# DOTFILE_INSTALL_ALL=y - enable all installation steps. you can still blacklist
+# DOTFILES_INSTALL_ALL=y - enable all installation steps. you can still blacklist
 #   other steps by setting them to any non-"y" value (eg =n)
 
 set -e
@@ -73,23 +73,11 @@ function conditional_git_install() {
 }
 
 if [ "$DOTFILES_INSTALL_ZSH_PLUGINS" == "y" ]; then
-    # install oh-my-zsh if it's missing. see here for details
-    # https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    # don't use the normal setup script (it overwrites ~/.zshrc), instead just clone.
-    ZSH=${ZSH:-~/.oh-my-zsh}
-    if [ ! -d "$ZSH" ]; then
-        git clone -c core.eol=lf -c core.autocrlf=false \
-            -c fsck.zeroPaddedFilemode=ignore \
-            -c fetch.fsck.zeroPaddedFilemode=ignore \
-            -c receive.fsck.zeroPaddedFilemode=ignore \
-            --depth=1 --branch master https://github.com/robbyrussell/oh-my-zsh.git "$ZSH"
-    fi
-
     # tmux plugin manager
     conditional_git_install \
         ~/.tmux/plugins/tpm \
         https://github.com/tmux-plugins/tpm \
-        26d9ace1b47f4591b2afdf333442a498311b6ace
+        e261deb1b47614eed3400089ce7197dc68acc4eb
 fi
 
 if [ "$DOTFILES_INSTALL_VSCODE_EXTS" == "y" ]; then

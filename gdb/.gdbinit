@@ -83,6 +83,8 @@ if os.path.exists(gdbinit_local):
 end
 
 python
+import struct
+
 class NvicInfo(gdb.Command):
     """Pretty print out interesting ARMv7m NVIC registers"""
 
@@ -110,7 +112,7 @@ class NvicInfo(gdb.Command):
                 val = self._read32(address + i * 4)
                 val = format(val, '032b')
                 active.extend([(j + i*32) for j, ltr in enumerate(val) if ltr == '1'])
-            print("{} :\n\t{}".format(name, "\n\t".join(active)))
+            print("{} :\n\t{}".format(name, "\n\t".join(map(str, active))))
 
     @staticmethod
     def _read32(address):

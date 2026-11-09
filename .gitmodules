@@ -7,15 +7,6 @@
 [submodule "third-party/tromey-gdb-helpers"]
 	path = third-party/tromey-gdb-helpers
 	url = ../../tromey/gdb-helpers.git
-[submodule "third-party/BurntSushi-ripgrep"]
-	path = third-party/BurntSushi-ripgrep
-	url = ../../BurntSushi/ripgrep
-[submodule "third-party/antigen"]
-	path = third-party/antigen
-	url = ../../zsh-users/antigen.git
-[submodule "third-party/ziglang-shell-completions"]
-	path = third-party/ziglang-shell-completions
-	url = ../../ziglang/shell-completions.git
 [submodule "third-party/antidote"]
 	path = third-party/antidote
 	url = ../../mattmc3/antidote
