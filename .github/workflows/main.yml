@@ -10,13 +10,15 @@ on:
       - main
 
 jobs:
-  ci:
+  install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
 
-      # build the Docker image we use to run the tests
-      - name: test.sh
-        run: ./test.sh
+      - name: install-all
+        run: ./install-all
+        env:
+          DOTBOT_NO_SUBMODULE_UPDATE: 1
+          DOTFILES_INSTALL_VSCODE_EXTS: n

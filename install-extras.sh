@@ -41,7 +41,7 @@ if [ "$DOTFILES_INSTALL_EXTRA" == "y" ]; then
     command_exists curl || sudo apt install -y curl
 
     # install latest neovim
-    export APPIMAGE_EXTRACT_AND_RUN=1  # since we're in docker, set this
+    export APPIMAGE_EXTRACT_AND_RUN=1  # no FUSE in CI/containers
     command_exists nvim || \
         (\
          curl -sL https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage > ~/.local/bin/nvim \
