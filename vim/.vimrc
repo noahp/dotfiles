@@ -76,6 +76,10 @@ if ok then
       if not vim.b[ev.buf].diff_overlay_init then
         vim.b[ev.buf].diff_overlay_init = true
         diff.toggle_overlay(ev.buf)
+        -- jump to first hunk when opening
+        if ev.buf == vim.api.nvim_get_current_buf() then
+          diff.goto_hunk('first')
+        end
       end
     end })
   end
