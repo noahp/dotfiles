@@ -1,3 +1,5 @@
+# skip "Press enter to return to lazygit" after editor exits (still shown on error)
+promptToReturnFromSubprocess: false
 git:
   pagers:
     - pager: delta --dark --paging=never
